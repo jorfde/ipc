@@ -19,11 +19,23 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <ButtonBar layoutX="201.0" layoutY="299.0" prefHeight="72.0" prefWidth="333.0">
+      <ButtonBar layoutX="173.0" layoutY="298.0" prefHeight="80.0" prefWidth="388.0">
         <buttons>
-            <Button mnemonicParsing="false" text="Patient" />
-          <Button mnemonicParsing="false" text="Doctor" />
-            <Button mnemonicParsing="false" text="Appointment" />
+            <Button mnemonicParsing="false" prefHeight="271.0" prefWidth="200.0" text="Patient">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+          <Button mnemonicParsing="false" prefHeight="99.0" prefWidth="276.0" text="Doctor">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="370.0" text="Appointment">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
         </buttons>
       </ButtonBar>
    </children>
