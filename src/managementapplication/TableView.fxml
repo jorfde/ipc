@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
-    
-</AnchorPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TableView fx:id="tableView" prefHeight="400.0" prefWidth="627.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Name" />
+          <TableColumn fx:id="surnameColumn" prefWidth="136.0" text="Surname" />
+            <TableColumn fx:id="dniColumn" prefWidth="137.0" text="DNI" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" top="25.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+   <right>
+      <VBox prefHeight="400.0" prefWidth="165.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="viewButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="View">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="197.0" text="Add">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="148.0" text="Delete">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="appointmentButton" mnemonicParsing="false" prefHeight="40.0" text="Appointments">
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>
