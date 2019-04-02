@@ -1,27 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Text layoutX="24.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details about this doctor." wrappingWidth="507.869140625">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-      <TextField layoutX="213.0" layoutY="153.0" />
-      <Text layoutX="46.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DNI:" />
-      <Accordion layoutX="45.0" layoutY="220.0" />
-      <TextField layoutX="213.0" layoutY="193.0" />
-      <Text layoutX="46.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
-      <TextField layoutX="215.0" layoutY="234.0" />
-      <Text layoutX="46.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" />
-      <TextField layoutX="215.0" layoutY="277.0" />
-      <Text layoutX="45.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone:" />
-      <Text layoutX="104.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="queda añadir la foto del doctor en un campo" wrappingWidth="574.52587890625" />
-   </children>
-</Pane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Identifier:" />
+                  <TextField fx:id="identifierField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Name:" />
+                  <TextField fx:id="nameField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Surname:" />
+                  <TextField fx:id="surnameField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Telephone:" />
+                  <TextField fx:id="telephoneField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Photo (optional):" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Visit days:" />
+                  <TextField fx:id="visitDaysField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Starting time:" />
+                  <TextField fx:id="startingTimeField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Ending time:" />
+                  <TextField fx:id="endingTimeField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Examination room:" />
+                  <TextField fx:id="examinationRoomField" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
