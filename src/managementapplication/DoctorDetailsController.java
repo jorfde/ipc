@@ -10,7 +10,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import model.Days;
 import model.Doctor;
 import model.Person;
 
@@ -20,6 +26,34 @@ import model.Person;
  * @author Stéphane
  */
 public class DoctorDetailsController implements Initializable {
+    @FXML
+    private TextField identifierField;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField surnameField;
+    @FXML
+    private TextField telephoneField;
+    @FXML
+    private TextField visitDaysField;
+    @FXML
+    private TextField startingTimeField;
+    @FXML
+    private TextField endingTimeField;
+    @FXML
+    private TextField numberRoomField;
+    @FXML
+    private TextField equipmentField;
+    @FXML
+    private Button okButton;
+    @FXML
+    private Button cancelButton;
+
+    private ArrayList<Doctor> doctors;
+    
+    private ObservableList<Person> persons;
+    
+    private int index;
 
     /**
      * Initializes the controller class.
@@ -28,9 +62,53 @@ public class DoctorDetailsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
     public void initData(ObservableList<Person> persons, ArrayList<Doctor> doctors, int index){
-    
+        this.index = index;
+        this.doctors = doctors;
+        this.persons = persons;
+        
+        if (index >= 0){
+            Doctor doctor = doctors.get(index);
+            identifierField.setText(doctor.getIdentifier());
+            identifierField.setEditable(false);
+            nameField.setText(doctor.getName());
+            nameField.setEditable(false);
+            surnameField.setText(doctor.getSurname());
+            surnameField.setEditable(false);
+            telephoneField.setText(doctor.getTelephon());
+            telephoneField.setEditable(false);
+            ArrayList<Days> visitDays = doctor.getVisitDays();
+            String res = "";
+            for(int i=0;i<visitDays.size();i++) {
+                res += visitDays.get(i).toString();
+            } 
+            visitDaysField.setText(res);
+            visitDaysField.setEditable(false);
+            startingTimeField.setText(""+doctor.getVisitStartTime());
+            startingTimeField.setEditable(false);
+            endingTimeField.setText(""+doctor.getVisitEndTime());
+            endingTimeField.setEditable(false);
+            numberRoomField.setText(""+doctor.getExaminationRoom().getIdentNumber());
+            numberRoomField.setEditable(false);
+            equipmentField.setText(doctor.getExaminationRoom().getEquipmentDescription());
+            equipmentField.setEditable(false);
+        } else {
+            identifierField.setEditable(true);
+            nameField.setEditable(true);
+            surnameField.setEditable(true);
+            telephoneField.setEditable(true);
+        }
+    }    
+
+    @FXML
+    private void buttonHandler(ActionEvent event) {
+        if(((Node) event.getSource()).getId().equals("okButton") && index == -1){
+            //Doctor d = new Doctor(identifierField.getText(), nameField.getText(), surnameField.getText(),
+                //telephoneField.getText(), null);
+            //doctors.add(d);
+            //persons.add(d);
+        } 
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
     
 }
