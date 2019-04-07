@@ -7,6 +7,7 @@
 package managementapplication;
 
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Days;
 import model.Doctor;
+import model.ExaminationRoom;
 import model.Person;
 
 /**
@@ -92,21 +94,36 @@ public class DoctorDetailsController implements Initializable {
             numberRoomField.setEditable(false);
             equipmentField.setText(doctor.getExaminationRoom().getEquipmentDescription());
             equipmentField.setEditable(false);
-        } else {
-            identifierField.setEditable(true);
-            nameField.setEditable(true);
-            surnameField.setEditable(true);
-            telephoneField.setEditable(true);
         }
     }    
 
     @FXML
     private void buttonHandler(ActionEvent event) {
         if(((Node) event.getSource()).getId().equals("okButton") && index == -1){
-            //Doctor d = new Doctor(identifierField.getText(), nameField.getText(), surnameField.getText(),
-                //telephoneField.getText(), null);
-            //doctors.add(d);
-            //persons.add(d);
+            ArrayList<Days> days = new ArrayList<Days>();
+            String visitDays = visitDaysField.getText();
+            String day = "";
+            for(int i = 0;i < visitDays.length();i++){
+                char c = visitDays.charAt(i);
+                if (c == ','){
+                    switch(day){
+                        case "Monday": days.add(Days.Monday);break;
+                        case "Tuesday": days.add(Days.Tuesday);break;
+                        case "Wednesday": days.add(Days.Wednesday);break;
+                        case "Thursday": days.add(Days.Thursday);break;
+                        case "Friday": days.add(Days.Friday);break;
+                        case "Saturday": days.add(Days.Saturday);break;
+                        case "Sunday": days.add(Days.Sunday);break;    
+                    }
+                }
+            }
+            ExaminationRoom e = new ExaminationRoom(Integer.parseInt(numberRoomField.getText()), equipmentField.getText());
+            days.add(Days.Monday);
+            Doctor d = new Doctor(e, null, LocalTime.parse(startingTimeField.getText()), LocalTime.parse(endingTimeField.getText()),
+                identifierField.getText(), nameField.getText(), surnameField.getText(), telephoneField.getText(), null);
+            d.setVisitDays(days);
+            doctors.add(d);
+            persons.add(d);
         } 
         ((Node) event.getSource()).getScene().getWindow().hide();
     }

@@ -79,11 +79,6 @@ public class PatientDetailsController implements Initializable {
             surnameField.setEditable(false);
             telephoneField.setText(patient.getTelephon());
             telephoneField.setEditable(false);
-        } else {
-            identifierField.setEditable(true);
-            nameField.setEditable(true);
-            surnameField.setEditable(true);
-            telephoneField.setEditable(true);
         }
     }
     
