@@ -6,12 +6,15 @@
 
 package managementapplication;
 
+import DBAccess.ClinicDBAccess;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +26,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Doctor;
+import model.Patient;
 import model.Person;
 
 /**
@@ -48,12 +53,13 @@ public class TableViewController implements Initializable {
     @FXML
     private Button appointmentButton;
     
-    private ObservableList<Person> patients = FXCollections.observableArrayList();
-    private ObservableList<Person> doctors = FXCollections.observableArrayList();
+    private ObservableList<Patient> patients = FXCollections.observableArrayList();
+    private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
+    private ObservableList<Person> persons = FXCollections.observableArrayList();
+    
+    private ClinicDBAccess clinic;
     
     private int mode = 0;
-    private final int PATIENTS = 0;
-    private final int DOCTORS = 1;
 
     /**
      * Initializes the controller class.
@@ -64,7 +70,7 @@ public class TableViewController implements Initializable {
         //Initialization of the columns of the TableView
         nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
         surnameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("surname"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("idemtifier"));
+        dniColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("identifier"));
         
         //Disable delete button
         deleteButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
@@ -74,7 +80,7 @@ public class TableViewController implements Initializable {
     }
     
     private void createListWindow(int index) throws IOException{
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("FXMLAddEditView.fxml"));
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
         Pane root = (Pane) myLoader.load();
         
         Scene scene = new Scene (root);
@@ -83,10 +89,10 @@ public class TableViewController implements Initializable {
             
         //Get the controller of the UI
         switch(mode){
-            case 0: PatientDetailsController patientController = myLoader.<PatientDetailsController>getController();
+            case ManagementApplicationController.PATIENT_MODE: PatientDetailsController patientController = myLoader.<PatientDetailsController>getController();
                     //patientController.initData(patients, index);
                     break;
-            case 1: DoctorDetailsController doctorController = myLoader.<DoctorDetailsController>getController();
+            case ManagementApplicationController.DOCTOR_MODE: DoctorDetailsController doctorController = myLoader.<DoctorDetailsController>getController();
                     //patientController.initData(patients, index);
                     break;
         }
@@ -100,6 +106,34 @@ public class TableViewController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
   
+    }
+    
+    public void initData(int mode, ClinicDBAccess clinic){
+        this.mode = mode;
+        this.clinic = clinic;
+        switch(mode){
+            case ManagementApplicationController.PATIENT_MODE: 
+                    persons = FXCollections.observableList( changeClass(clinic.getPatients()) );
+                    tableView.setItems(persons);
+                    break;
+            case ManagementApplicationController.DOCTOR_MODE: 
+                    doctors = FXCollections.observableList(clinic.getDoctors());
+                    break;
+                
+        }
+    }
+    
+    private ArrayList<Person> changeClass(ArrayList list){
+        ArrayList<Person> persons = new ArrayList<Person>();
+        for(int i = 0;i < list.size();i++){
+            persons.add((Person) list.get(i));
+        }
+        
+        return persons;
+    }
+    
+    @FXML
+    private void buttonHandler(ActionEvent event) {
     }
     
 }
