@@ -87,21 +87,24 @@ public class TableViewController implements Initializable {
     }
     
     private void createDetailsWindow(int index) throws IOException{
-        FXMLLoader myLoader = null;       
+        FXMLLoader myLoader = null; 
+        Pane root = null;
         
         switch(mode){
-            case ManagementApplicationController.PATIENT_MODE: 
+            case PATIENT_MODE: 
                 myLoader = new FXMLLoader(getClass().getResource("PatientDetails.fxml"));
+                root = (Pane) myLoader.load();
                 PatientDetailsController patientController = myLoader.<PatientDetailsController>getController();
                 patientController.initData(persons, patients, index);
                 break;
-            case ManagementApplicationController.DOCTOR_MODE: 
+            case DOCTOR_MODE: 
                 myLoader = new FXMLLoader(getClass().getResource("DoctorDetails.fxml"));
+                root = (Pane) myLoader.load();
                 DoctorDetailsController doctorController = myLoader.<DoctorDetailsController>getController();
                 doctorController.initData(persons, doctors, index);
                 break;
         }
-        Pane root = (Pane) myLoader.load();
+        
         Scene scene = new Scene (root);
         Stage stage = new Stage();
         stage.setScene(scene);
