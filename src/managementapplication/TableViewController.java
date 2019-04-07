@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -26,6 +27,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import static managementapplication.ManagementApplicationController.APPOINTMENT_MODE;
+import static managementapplication.ManagementApplicationController.DOCTOR_MODE;
+import static managementapplication.ManagementApplicationController.PATIENT_MODE;
 import model.Doctor;
 import model.Patient;
 import model.Person;
@@ -53,8 +57,8 @@ public class TableViewController implements Initializable {
     @FXML
     private Button appointmentButton;
     
-    private ObservableList<Patient> patients = FXCollections.observableArrayList();
-    private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
+    private ArrayList<Patient> patients;
+    private ArrayList<Doctor> doctors;
     private ObservableList<Person> persons = FXCollections.observableArrayList();
     
     private ClinicDBAccess clinic;
@@ -77,25 +81,30 @@ public class TableViewController implements Initializable {
         
         //Disable view details button
         viewButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
+        
+        //Disable appointments button
+        appointmentButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
     }
     
-    private void createListWindow(int index) throws IOException{
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
-        Pane root = (Pane) myLoader.load();
+    private void createDetailsWindow(int index) throws IOException{
+        FXMLLoader myLoader = null;       
         
+        switch(mode){
+            case ManagementApplicationController.PATIENT_MODE: 
+                myLoader = new FXMLLoader(getClass().getResource("PatientDetails.fxml"));
+                PatientDetailsController patientController = myLoader.<PatientDetailsController>getController();
+                patientController.initData(persons, patients, index);
+                break;
+            case ManagementApplicationController.DOCTOR_MODE: 
+                myLoader = new FXMLLoader(getClass().getResource("DoctorDetails.fxml"));
+                DoctorDetailsController doctorController = myLoader.<DoctorDetailsController>getController();
+                doctorController.initData(persons, doctors, index);
+                break;
+        }
+        Pane root = (Pane) myLoader.load();
         Scene scene = new Scene (root);
         Stage stage = new Stage();
         stage.setScene(scene);
-            
-        //Get the controller of the UI
-        switch(mode){
-            case ManagementApplicationController.PATIENT_MODE: PatientDetailsController patientController = myLoader.<PatientDetailsController>getController();
-                    //patientController.initData(patients, index);
-                    break;
-            case ManagementApplicationController.DOCTOR_MODE: DoctorDetailsController doctorController = myLoader.<DoctorDetailsController>getController();
-                    //patientController.initData(patients, index);
-                    break;
-        }
         
         //Retocar
         if (index >=0){
@@ -103,6 +112,7 @@ public class TableViewController implements Initializable {
         } else {
             stage.setTitle("Add a new person");
         }
+        
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
   
@@ -112,12 +122,15 @@ public class TableViewController implements Initializable {
         this.mode = mode;
         this.clinic = clinic;
         switch(mode){
-            case ManagementApplicationController.PATIENT_MODE: 
-                    persons = FXCollections.observableList( changeClass(clinic.getPatients()) );
+            case PATIENT_MODE:
+                    patients = clinic.getPatients();
+                    persons = FXCollections.observableList( changeClass(patients) );
                     tableView.setItems(persons);
                     break;
-            case ManagementApplicationController.DOCTOR_MODE: 
-                    doctors = FXCollections.observableList(clinic.getDoctors());
+            case DOCTOR_MODE: 
+                    doctors = clinic.getDoctors();
+                    persons = FXCollections.observableList( changeClass(doctors) );
+                    tableView.setItems(persons);
                     break;
                 
         }
@@ -133,7 +146,23 @@ public class TableViewController implements Initializable {
     }
     
     @FXML
-    private void buttonHandler(ActionEvent event) {
+    private void buttonHandler(ActionEvent event) throws IOException {
+        int index = tableView.getSelectionModel().selectedIndexProperty().getValue();
+        switch(((Node)event.getSource()).getId()){
+            case "addButton": createDetailsWindow(-1);break;
+            case "viewButton": createDetailsWindow(index);break;
+            case "deleteButton": 
+                persons.remove(index);
+                if(mode == PATIENT_MODE){
+                    patients.remove(index);
+                }
+                else {
+                    doctors.remove(index);
+                }
+                break;
+            case "appointmentButton": break;
+        }
+        
     }
     
 }

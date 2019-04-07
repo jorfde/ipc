@@ -7,8 +7,12 @@
 package managementapplication;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
+import model.Patient;
+import model.Person;
 
 /**
  * FXML Controller class
@@ -23,6 +27,10 @@ public class PatientDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    public void initData(ObservableList<Person> persons, ArrayList<Patient> patients, int index){
+        
+    }
     
 }
