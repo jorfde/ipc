@@ -1,38 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppointmentsTableViewController">
-    <stylesheets>
-        <URL value="@appointmentstableview.css" />
-    </stylesheets>
-   <children>
-      <TableView layoutX="25.0" layoutY="14.0" prefHeight="370.0" prefWidth="410.0">
+
+<BorderPane stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppointmentsTableViewController">
+   <center>
+      <TableView fx:id="tableView" prefHeight="370.0" prefWidth="410.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="102.5" styleClass="tableColumn" text="Patient" />
-          <TableColumn minWidth="102.5" prefWidth="85.0" styleClass="tableColumn" text="Doctor" />
-            <TableColumn minWidth="102.5" prefWidth="83.0" styleClass="tableColumn" text="Date " />
-            <TableColumn minWidth="102.5" prefWidth="110.0" styleClass="tableColumn" text="Time" />
+          <TableColumn fx:id="patientColumn" prefWidth="102.5" styleClass="tableColumn" text="Patient" />
+          <TableColumn fx:id="doctorColumn" minWidth="102.5" prefWidth="85.0" styleClass="tableColumn" text="Doctor" />
+            <TableColumn fx:id="dateColumn" minWidth="102.5" prefWidth="83.0" styleClass="tableColumn" text="Date " />
+            <TableColumn fx:id="timeColumn" minWidth="102.5" prefWidth="110.0" styleClass="tableColumn" text="Time" />
         </columns>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </BorderPane.margin>
       </TableView>
-      <Button layoutX="459.0" layoutY="24.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Add" textFill="#ffffff">
-         <font>
-            <Font name="Arial" size="15.0" />
-         </font>
-      </Button>
-      <Button layoutX="459.0" layoutY="96.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="View" textFill="#ffffff" AnchorPane.bottomAnchor="246.0">
-         <font>
-            <Font name="Roboto Black" size="15.0" />
-         </font></Button>
-      <Button layoutX="459.0" layoutY="171.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Delete" textFill="#ffffff">
-         <font>
-            <Font name="Roboto Black" size="15.0" />
-         </font>
-      </Button>
-   </children>
-</AnchorPane>
+   </center>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
+         <children>
+            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Add" textFill="#ffffff">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="viewButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="View" textFill="#ffffff">
+               <font>
+                  <Font name="Roboto Black" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="25.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Delete" textFill="#ffffff">
+               <font>
+                  <Font name="Roboto Black" size="15.0" />
+               </font>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets right="25.0" top="25.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+</BorderPane>
