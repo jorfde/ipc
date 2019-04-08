@@ -34,6 +34,7 @@
                         <Insets right="30.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="identifierField" />
+                  <Label fx:id="identifierError" textFill="#e41111" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="50.0" />
@@ -46,6 +47,7 @@
                         <Insets right="30.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="nameField" />
+                  <Label fx:id="nameError" textFill="#f80303" />
                   <Label text="Photo (optional):">
                      <HBox.margin>
                         <Insets left="75.0" />
@@ -62,6 +64,7 @@
                         <Insets right="30.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="surnameField" />
+                  <Label fx:id="surnameError" textFill="#e80606" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -74,6 +77,7 @@
                         <Insets right="30.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="telephoneField" />
+                  <Label fx:id="telephoneError" textFill="#e80e0e" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -86,6 +90,7 @@
                         <Insets right="30.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="visitDaysField" />
+                  <Label fx:id="visitDaysError" textFill="#e40a0a" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -98,6 +103,7 @@
                         <Insets right="30.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="startingTimeField" />
+                  <Label fx:id="startingTimeError" textFill="#dd0a0a" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -110,6 +116,7 @@
                         <Insets right="30.0" />
                      </HBox.margin></Label>
                   <TextField fx:id="endingTimeField" />
+                  <Label fx:id="endingTimeError" textFill="#da0909" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -133,15 +140,21 @@
                               </Label>
                               <TextField fx:id="numberRoomField" prefHeight="31.0" prefWidth="45.0">
                                  <HBox.margin>
-                                    <Insets right="50.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </TextField>
+                              <Label fx:id="roomError" textFill="#e80909">
+                                 <HBox.margin>
+                                    <Insets right="50.0" />
+                                 </HBox.margin>
+                              </Label>
                               <Label text="Equipment:">
                                  <HBox.margin>
                                     <Insets right="25.0" />
                                  </HBox.margin>
                               </Label>
                               <TextField fx:id="equipmentField" prefHeight="31.0" prefWidth="217.0" />
+                              <Label fx:id="equipmentError" textFill="#e40505" />
                            </children>
                         </HBox>
                      </children>
@@ -151,21 +164,23 @@
                   <Insets left="30.0" top="15.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="okButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="93.0" text="OK">
-                     <HBox.margin>
-                        <Insets right="25.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="98.0" text="Cancel">
-                     <HBox.margin>
-                        <Insets right="25.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
          </children>
       </VBox>
    </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="93.0" text="OK">
+               <HBox.margin>
+                  <Insets right="25.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="98.0" text="Cancel">
+               <HBox.margin>
+                  <Insets right="25.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

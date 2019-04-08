@@ -57,16 +57,27 @@ public class PatientDetailsController implements Initializable {
     private int index;
     
     private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    
+    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+    
+    private boolean error = false;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        errorAlert.setTitle("Error");
+        errorAlert.setHeaderText("A field is not valid");
     }    
 
     @FXML
     private void buttonHandler(ActionEvent event) {
+        boolean errorIdentifier = false;
+        boolean errorTelephone = false;
+        boolean errorName = false;
+        boolean errorSurname = false;
+        
         if(((Node)event.getSource()).getId().equals("okButton") && index == -1){
             
             String identifier = identifierField.getText();
@@ -74,25 +85,43 @@ public class PatientDetailsController implements Initializable {
             String surname = surnameField.getText();
             String telephone = telephoneField.getText();
             
-            if(identifier.matches("[A-Za-z\\\\s]+")){
-                
-            };
+            String contentText = "";
             
-            
-            
-            
-            
-            
-            Patient p = new Patient(identifierField.getText(), nameField.getText(), surnameField.getText(),
-                telephoneField.getText(), null);
-            patients.add(p);
-            persons.add(p);
-            
-            alert.setTitle("Information");
-            alert.setHeaderText("You have added a patient");
-            alert.setContentText("The patient was succesfully added to the data base.");
-            
-            alert.showAndWait();
+            if(!identifier.matches("[0-9A-Z]+")){
+                errorIdentifier = true;
+                identifierError.setText("Not valid");
+                contentText+="You can only use numbers and capital letters in the IDENTIFIER field" + "\n";
+            } else errorIdentifier = false;
+            if(!telephone.matches("[0-9]+")){
+                errorTelephone = true;
+                telephoneError.setText("Not valid");
+                contentText+="You can only use numbers TELEPHONE field" + "\n";
+            } else errorTelephone = false;
+            if(!name.matches("[a-zA-z]+")){
+                nameError.setText("Not valid");
+                contentText+="You can only use letters in the NAME field" + "\n";
+            } else errorName = false;
+            if(!surname.matches("[a-zA-z]+")){
+                surnameError.setText("Not valid");
+                contentText+="You can only use letters in the SURNAME field";
+            }  else errorSurname = false;
+            error = errorIdentifier || errorTelephone || errorName || errorSurname;
+            if(error){
+                errorAlert.setContentText(contentText);
+                errorAlert.showAndWait();
+            }
+            else {
+                Patient p = new Patient(identifierField.getText(), nameField.getText(), surnameField.getText(),
+                    telephoneField.getText(), null);
+                patients.add(p);
+                persons.add(p);
+
+                alert.setTitle("Information");
+                alert.setHeaderText("You have added a patient");
+                alert.setContentText("The patient was succesfully added to the data base.");
+
+                alert.showAndWait();
+            }
         } else {
         ((Node) event.getSource()).getScene().getWindow().hide();
         }

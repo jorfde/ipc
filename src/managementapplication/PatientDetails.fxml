@@ -76,11 +76,6 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="errorLabel" textFill="#ee0606">
-               <HBox.margin>
-                  <Insets right="30.0" />
-               </HBox.margin>
-            </Label>
             <Button fx:id="okButton" maxWidth="92.0" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="92.0" text="OK">
                <HBox.margin>
                   <Insets right="25.0" />
