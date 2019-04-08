@@ -24,9 +24,13 @@
             </Text>
             <HBox prefHeight="27.0" prefWidth="422.0">
                <children>
-                  <Label text="Identifier:   " />
-                  <TextField fx:id="identifierField" />
-                  <Label text="Photo (opt): Falta poner imgview">
+                  <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="69.0" text="Identifier: ">
+                     <HBox.margin>
+                        <Insets right="7.0" />
+                     </HBox.margin></Label>
+                  <TextField fx:id="identifierField" prefHeight="31.0" prefWidth="192.0" />
+                  <Label fx:id="identifierError" textFill="#d70b0b" />
+                  <Label text="Photo (opt): ">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>
@@ -40,6 +44,7 @@
                <children>
                   <Label text="Name:        " />
                   <TextField fx:id="nameField" />
+                  <Label fx:id="nameError" textFill="#e80909" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" right="20.0" />
@@ -49,6 +54,7 @@
                <children>
                   <Label text="Surname:   " />
                   <TextField fx:id="surnameField" />
+                  <Label fx:id="surnameError" textFill="#e40a0a" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" right="20.0" />
@@ -58,18 +64,23 @@
                <children>
                   <Label text="Telephone:" />
                   <TextField fx:id="telephoneField" />
+                  <Label fx:id="telephoneError" textFill="#dd0808" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" right="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="8.0" prefWidth="600.0" />
          </children>
       </VBox>
    </center>
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <Label fx:id="errorLabel" textFill="#ee0606">
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </Label>
             <Button fx:id="okButton" maxWidth="92.0" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="92.0" text="OK">
                <HBox.margin>
                   <Insets right="25.0" />
