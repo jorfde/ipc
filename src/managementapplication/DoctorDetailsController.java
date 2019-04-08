@@ -85,7 +85,7 @@ public class DoctorDetailsController implements Initializable {
             ArrayList<Days> visitDays = doctor.getVisitDays();
             String res = "";
             for(int i=0;i<visitDays.size();i++) {
-                res += visitDays.get(i).toString()+",";
+                res += visitDays.get(i).toString()+" ";
             } 
             visitDaysField.setText(res);
             visitDaysField.setEditable(false);

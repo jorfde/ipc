@@ -9,7 +9,6 @@ package managementapplication;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Patient;
 import model.Person;
@@ -28,17 +28,27 @@ import model.Person;
  */
 public class PatientDetailsController implements Initializable {
     @FXML
+    private Label errorLabel;
+    @FXML
     private Button okButton;
     @FXML
     private Button cancelButton;
     @FXML
     private TextField identifierField;
     @FXML
+    private Label identifierError;
+    @FXML
     private TextField nameField;
+    @FXML
+    private Label nameError;
     @FXML
     private TextField surnameField;
     @FXML
+    private Label surnameError;
+    @FXML
     private TextField telephoneField;
+    @FXML
+    private Label telephoneError;
 
     private ArrayList<Patient> patients;
     
@@ -68,8 +78,9 @@ public class PatientDetailsController implements Initializable {
             alert.setContentText("The patient was succesfully added to the data base.");
             
             alert.showAndWait();
-        } 
+        } else {
         ((Node) event.getSource()).getScene().getWindow().hide();
+        }
     }
     
     public void initData(ObservableList<Person> persons, ArrayList<Patient> patients, int index){
