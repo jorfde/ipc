@@ -121,9 +121,10 @@ public class PatientDetailsController implements Initializable {
                 alert.setContentText("The patient was succesfully added to the data base.");
 
                 alert.showAndWait();
+                ((Node) event.getSource()).getScene().getWindow().hide();
             }
         } else {
-        ((Node) event.getSource()).getScene().getWindow().hide();
+            ((Node) event.getSource()).getScene().getWindow().hide();
         }
     }
     

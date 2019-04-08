@@ -88,7 +88,7 @@ public class DoctorDetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        System.out.println(startingTimeError);
     }    
     public void initData(ObservableList<Person> persons, ArrayList<Doctor> doctors, int index){
         this.index = index;
@@ -130,7 +130,9 @@ public class DoctorDetailsController implements Initializable {
         boolean errorName = false;
         boolean errorSurname = false;
         boolean errorVisitDays = false;
-        
+        boolean errorStartingTime = false;
+        boolean errorEndingTime = false;
+        boolean errorNumberRoom = false;  
         
         if(((Node) event.getSource()).getId().equals("okButton") && index == -1){
             String identifier = identifierField.getText();
@@ -138,6 +140,8 @@ public class DoctorDetailsController implements Initializable {
             String surname = surnameField.getText();
             String telephone = telephoneField.getText();
             String startingTime = startingTimeField.getText();
+            String endingTime = endingTimeField.getText();
+            String numberRoom = numberRoomField.getText();
             
             
             String contentText = "";
@@ -145,22 +149,25 @@ public class DoctorDetailsController implements Initializable {
             if(!identifier.matches("[0-9A-Z]+")){
                 errorIdentifier = true;
                 identifierError.setText("Not valid");
-                contentText+="You can only use numbers and capital letters in the IDENTIFIER field" + "\n";
+                contentText+="You can only use numbers and capital letters in the IDENTIFIER field" + "\n" + "\n";
             } else errorIdentifier = false;
             
             if(!name.matches("[a-zA-z]+")){
+                errorName = true;
                 nameError.setText("Not valid");
-                contentText+="You can only use letters in the NAME field" + "\n";
+                contentText+="You can only use letters in the NAME field" + "\n" + "\n";
             } else errorName = false;
+            
             if(!surname.matches("[a-zA-z]+")){
+                errorSurname = true;
                 surnameError.setText("Not valid");
-                contentText+="You can only use letters in the SURNAME field";
+                contentText+="You can only use letters in the SURNAME field" + "\n" + "\n";
             }  else errorSurname = false;
             
             if(!telephone.matches("[0-9]+")){
                 errorTelephone = true;
                 telephoneError.setText("Not valid");
-                contentText+="You can only use numbers TELEPHONE field" + "\n";
+                contentText+="You can only use numbers in the TELEPHONE field" + "\n" + "\n";
             } else errorTelephone = false;
             
             ArrayList<Days> days = new ArrayList<Days>();
@@ -168,35 +175,54 @@ public class DoctorDetailsController implements Initializable {
             String day = "";
             for(int i = 0;i < visitDays.length() && errorVisitDays;i++){
                 char c = visitDays.charAt(i);
+                day += c;
                 if (c == ','){
-                    switch(day){
-                        case "Monday": days.add(Days.Monday);break;
-                        case "Tuesday": days.add(Days.Tuesday);break;
-                        case "Wednesday": days.add(Days.Wednesday);break;
-                        case "Thursday": days.add(Days.Thursday);break;
-                        case "Friday": days.add(Days.Friday);break;
-                        case "Saturday": days.add(Days.Saturday);break;
-                        case "Sunday": days.add(Days.Sunday);break;    
+                    day="";
+                    switch(day.toLowerCase()){
+                        case "monday": days.add(Days.Monday);break;
+                        case "tuesday": days.add(Days.Tuesday);break;
+                        case "wednesday": days.add(Days.Wednesday);break;
+                        case "thursday": days.add(Days.Thursday);break;
+                        case "friday": days.add(Days.Friday);break;
+                        case "saturday": days.add(Days.Saturday);break;
+                        case "sunday": days.add(Days.Sunday);break;    
                         default: errorVisitDays = true; 
                             visitDaysError.setText("Not valid");
                             contentText+="You can't use spaces and the days must be separeted by commas" + "\n" +
-                                    "Example: Monday,Tuesday,Wednesday" + "\n";
+                                    "Example: Monday,Tuesday,Wednesday" + "\n" + "\n";
+                            break;
                     }
                 }
             }
             
-            if(!startingTime.matches("[0-9][0-9]:[00+15+30+45]")){
+            if(!startingTime.matches("([0-1][0-9]|2[0-3]):([03]0|[14]5)")){
+                errorStartingTime = true;
                 startingTimeError.setText("Not valid");
-                contentText+="You can only use times ended in 00, 15, 30, 45" + "\n";
-            }
-            error = errorIdentifier || errorTelephone || errorName || errorSurname || errorVisitDays;
+                contentText+="You can only use times ended in 00, 15, 30, 45 in the STARTING TIME field" + "\n" + "\n";
+            } else errorStartingTime = false;
+            
+            if(!endingTime.matches("([0-1][0-9]|2[0-3]):([03]0|[14]5)")){
+                errorEndingTime = true;
+                endingTimeError.setText("Not valid");
+                contentText+="You can only use times ended in 00, 15, 30, 45 in the ENDING TIME field" + "\n" + "\n";
+            } else errorEndingTime = false;
+            
+            if(!numberRoom.matches("[0-9]+")){
+                errorNumberRoom = true;
+                roomError.setText("Not valid");
+                contentText+="You can only use numbers in the NºROOM field" + "\n" + "\n";
+            } else errorTelephone = false;
+            
+            
+            error = errorIdentifier || errorTelephone || errorName || errorSurname || errorVisitDays || errorStartingTime ||
+                    errorEndingTime;
             if(error){
                 errorAlert.setContentText(contentText);
                 errorAlert.showAndWait();
             } else {
-                ExaminationRoom e = new ExaminationRoom(Integer.parseInt(numberRoomField.getText()), equipmentField.getText());
-                Doctor d = new Doctor(e, null, LocalTime.parse(startingTimeField.getText()), LocalTime.parse(endingTimeField.getText()),
-                    identifierField.getText(), nameField.getText(), surnameField.getText(), telephoneField.getText(), null);
+                ExaminationRoom e = new ExaminationRoom(Integer.parseInt(numberRoom), equipmentField.getText());
+                Doctor d = new Doctor(e, null, LocalTime.parse(startingTime), LocalTime.parse(endingTime),
+                    identifier, name, surname, telephone, null);
                 d.setVisitDays(days);
                 doctors.add(d);
                 persons.add(d);
@@ -206,6 +232,7 @@ public class DoctorDetailsController implements Initializable {
                 alert.setContentText("The doctor was succesfully added to the data base.");
 
                 alert.showAndWait();
+                ((Node) event.getSource()).getScene().getWindow().hide();
             }
         } else {
             ((Node) event.getSource()).getScene().getWindow().hide();
