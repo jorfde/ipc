@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Days;
@@ -56,6 +57,8 @@ public class DoctorDetailsController implements Initializable {
     private ObservableList<Person> persons;
     
     private int index;
+    
+    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     /**
      * Initializes the controller class.
@@ -82,7 +85,7 @@ public class DoctorDetailsController implements Initializable {
             ArrayList<Days> visitDays = doctor.getVisitDays();
             String res = "";
             for(int i=0;i<visitDays.size();i++) {
-                res += visitDays.get(i).toString();
+                res += visitDays.get(i).toString()+",";
             } 
             visitDaysField.setText(res);
             visitDaysField.setEditable(false);
@@ -124,6 +127,12 @@ public class DoctorDetailsController implements Initializable {
             d.setVisitDays(days);
             doctors.add(d);
             persons.add(d);
+            
+            alert.setTitle("Information");
+            alert.setHeaderText("You have added a doctor");
+            alert.setContentText("The doctor was succesfully added to the data base.");
+            
+            alert.showAndWait();
         } 
         ((Node) event.getSource()).getScene().getWindow().hide();
     }

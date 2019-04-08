@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -64,7 +65,9 @@ public class TableViewController implements Initializable {
     private ClinicDBAccess clinic;
     
     private int mode = 0;
-
+    
+    private Alert alert = new Alert(Alert.AlertType.ERROR);
+    
     /**
      * Initializes the controller class.
      */
@@ -151,16 +154,33 @@ public class TableViewController implements Initializable {
     @FXML
     private void buttonHandler(ActionEvent event) throws IOException {
         int index = tableView.getSelectionModel().selectedIndexProperty().getValue();
+        boolean removed = false;
         switch(((Node)event.getSource()).getId()){
             case "addButton": createDetailsWindow(-1);break;
             case "viewButton": createDetailsWindow(index);break;
             case "deleteButton": 
-                persons.remove(index);
-                if(mode == PATIENT_MODE){
+                
+                if(mode == PATIENT_MODE && clinic.hasAppointments(clinic.getPatients().get(index))){
                     patients.remove(index);
+                    removed = true;
                 }
-                else {
+                else if(mode == DOCTOR_MODE && clinic.hasAppointments(clinic.getPatients().get(index))) {
                     doctors.remove(index);
+                    removed = true;
+                } else {
+                    alert.setTitle("Error");
+                    if(mode == PATIENT_MODE){
+                        alert.setHeaderText("You cannot remove this patient");
+                        alert.setContentText("This patient has some appointments.");
+                    }
+                    else {
+                        alert.setHeaderText("You cannot remove this doctor");
+                        alert.setContentText("This doctor has some appointments.");
+                    }
+                    alert.showAndWait();
+                }
+                if(removed){
+                    persons.remove(index);
                 }
                 break;
             case "appointmentButton": break;

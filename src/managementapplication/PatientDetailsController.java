@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Patient;
@@ -44,13 +45,14 @@ public class PatientDetailsController implements Initializable {
     private ObservableList<Person> persons;
     
     private int index;
+    
+    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
@@ -60,6 +62,12 @@ public class PatientDetailsController implements Initializable {
                 telephoneField.getText(), null);
             patients.add(p);
             persons.add(p);
+            
+            alert.setTitle("Information");
+            alert.setHeaderText("You have added a patient");
+            alert.setContentText("The patient was succesfully added to the data base.");
+            
+            alert.showAndWait();
         } 
         ((Node) event.getSource()).getScene().getWindow().hide();
     }
