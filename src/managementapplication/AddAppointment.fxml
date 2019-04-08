@@ -9,30 +9,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppointmentsTableViewController">
+<BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
+      <VBox prefHeight="499.0" prefWidth="150.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Add" textFill="#ffffff">
+            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="193.0" text="Set Time &amp; Date" textFill="#ffffff">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="25.0" />
                </VBox.margin>
-            </Button>
-            <Button fx:id="viewButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="View" textFill="#ffffff">
-               <font>
-                  <Font name="Roboto Black" size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="25.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Delete" textFill="#ffffff">
-               <font>
-                  <Font name="Roboto Black" size="15.0" />
-               </font>
             </Button>
          </children>
          <BorderPane.margin>
