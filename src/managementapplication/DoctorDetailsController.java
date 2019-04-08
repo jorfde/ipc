@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Days;
 import model.Doctor;
@@ -30,27 +31,45 @@ import model.Person;
  */
 public class DoctorDetailsController implements Initializable {
     @FXML
-    private TextField identifierField;
-    @FXML
-    private TextField nameField;
-    @FXML
-    private TextField surnameField;
-    @FXML
-    private TextField telephoneField;
-    @FXML
-    private TextField visitDaysField;
-    @FXML
-    private TextField startingTimeField;
-    @FXML
-    private TextField endingTimeField;
-    @FXML
-    private TextField numberRoomField;
-    @FXML
-    private TextField equipmentField;
-    @FXML
     private Button okButton;
     @FXML
     private Button cancelButton;
+    @FXML
+    private TextField identifierField;
+    @FXML
+    private Label identifierError;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private Label nameError;
+    @FXML
+    private TextField surnameField;
+    @FXML
+    private Label surnameError;
+    @FXML
+    private TextField telephoneField;
+    @FXML
+    private Label telephoneError;
+    @FXML
+    private TextField visitDaysField;
+    @FXML
+    private Label visitDaysError;
+    @FXML
+    private TextField startingTimeField;
+    @FXML
+    private Label startingTimeError;
+    @FXML
+    private TextField endingTimeField;
+    @FXML
+    private Label endingTimeError;
+    @FXML
+    private TextField numberRoomField;
+    @FXML
+    private Label roomError;
+    @FXML
+    private TextField equipmentField;
+    @FXML
+    private Label equipmentError;
 
     private ArrayList<Doctor> doctors;
     
