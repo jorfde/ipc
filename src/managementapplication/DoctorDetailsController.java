@@ -139,6 +139,7 @@ public class DoctorDetailsController implements Initializable {
             String telephone = telephoneField.getText();
             String startingTime = startingTimeField.getText();
             
+            
             String contentText = "";
             
             if(!identifier.matches("[0-9A-Z]+")){
@@ -183,32 +184,32 @@ public class DoctorDetailsController implements Initializable {
                     }
                 }
             }
+            
+            if(!startingTime.matches("[0-9][0-9]:[00+15+30+45]")){
+                startingTimeError.setText("Not valid");
+                contentText+="You can only use times ended in 00, 15, 30, 45" + "\n";
+            }
             error = errorIdentifier || errorTelephone || errorName || errorSurname || errorVisitDays;
             if(error){
                 errorAlert.setContentText(contentText);
                 errorAlert.showAndWait();
+            } else {
+                ExaminationRoom e = new ExaminationRoom(Integer.parseInt(numberRoomField.getText()), equipmentField.getText());
+                Doctor d = new Doctor(e, null, LocalTime.parse(startingTimeField.getText()), LocalTime.parse(endingTimeField.getText()),
+                    identifierField.getText(), nameField.getText(), surnameField.getText(), telephoneField.getText(), null);
+                d.setVisitDays(days);
+                doctors.add(d);
+                persons.add(d);
+
+                alert.setTitle("Information");
+                alert.setHeaderText("You have added a doctor");
+                alert.setContentText("The doctor was succesfully added to the data base.");
+
+                alert.showAndWait();
             }
-            
-            
-            
-            
-            
-            
-            
-            ExaminationRoom e = new ExaminationRoom(Integer.parseInt(numberRoomField.getText()), equipmentField.getText());
-            Doctor d = new Doctor(e, null, LocalTime.parse(startingTimeField.getText()), LocalTime.parse(endingTimeField.getText()),
-                identifierField.getText(), nameField.getText(), surnameField.getText(), telephoneField.getText(), null);
-            d.setVisitDays(days);
-            doctors.add(d);
-            persons.add(d);
-            
-            alert.setTitle("Information");
-            alert.setHeaderText("You have added a doctor");
-            alert.setContentText("The doctor was succesfully added to the data base.");
-            
-            alert.showAndWait();
-        } 
-        ((Node) event.getSource()).getScene().getWindow().hide();
+        } else {
+            ((Node) event.getSource()).getScene().getWindow().hide();
+        }
     }
     
 }
