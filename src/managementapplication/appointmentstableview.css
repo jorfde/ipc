@@ -10,25 +10,22 @@
   -fx-font-size: 14px;
   -fx-font-family: Arial;
   -fx-text-fill: #ffffff;
-
 }
-
 .dashboard{
  -fx-background-color: #ffffff;
 }
-
-
 .tableColumn{
      -fx-background-color: #2196f3; 
      -fx-font-family: Arial;
      -fx-color: #ffffff;
      -fx-text-fill: #ffffff;
-
-
 }
-
-.doctorTitle{
-    
+.doctorTitle{    
   -fx-background-color: #2196f3; 
-
+}
+.textForm{
+-fx-background-color: #eeeeee; 
+}
+.textFormInput{
+ -fx-font-family: Arial;
 }
