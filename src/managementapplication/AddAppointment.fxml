@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
+<BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
    <right>
       <VBox prefHeight="499.0" prefWidth="150.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -32,12 +32,12 @@
          <children>
             <TableView prefHeight="498.0" prefWidth="334.0">
               <columns>
-                  <TableColumn fx:id="tableDate" minWidth="102.5" prefWidth="323.00000762939453" styleClass="tableColumn" text="Date " />
+                  <TableColumn fx:id="tableDate" minWidth="102.5" prefWidth="298.0" styleClass="tableColumn" text="Date " />
               </columns>
             </TableView>
             <TableView prefHeight="499.0" prefWidth="305.0">
                <columns>
-                  <TableColumn fx:id="tableTime" minWidth="102.5" prefWidth="294.0" styleClass="tableColumn" text="Time" />
+                  <TableColumn fx:id="tableTime" minWidth="102.5" prefWidth="269.0" styleClass="tableColumn" text="Time" />
                </columns>
             </TableView>
          </children>
