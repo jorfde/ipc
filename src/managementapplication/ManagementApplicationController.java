@@ -31,7 +31,7 @@ import model.Patient;
 /**
  * FXML Controller class
  *
- * @author Stéphane
+ * @author Stéphane & Jorge
  */
 public class ManagementApplicationController implements Initializable {
     @FXML
