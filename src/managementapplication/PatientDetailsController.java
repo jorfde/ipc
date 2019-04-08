@@ -68,6 +68,21 @@ public class PatientDetailsController implements Initializable {
     @FXML
     private void buttonHandler(ActionEvent event) {
         if(((Node)event.getSource()).getId().equals("okButton") && index == -1){
+            
+            String identifier = identifierField.getText();
+            String name = nameField.getText();
+            String surname = surnameField.getText();
+            String telephone = telephoneField.getText();
+            
+            if(identifier.matches("[A-Za-z\\\\s]+")){
+                
+            };
+            
+            
+            
+            
+            
+            
             Patient p = new Patient(identifierField.getText(), nameField.getText(), surnameField.getText(),
                 telephoneField.getText(), null);
             patients.add(p);
