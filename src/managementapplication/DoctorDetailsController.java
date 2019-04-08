@@ -82,14 +82,16 @@ public class DoctorDetailsController implements Initializable {
     private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
     
     private boolean error = false;
+    
+    private String contentText = "";
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(startingTimeError);
     }    
+    
     public void initData(ObservableList<Person> persons, ArrayList<Doctor> doctors, int index){
         this.index = index;
         this.doctors = doctors;
@@ -107,8 +109,10 @@ public class DoctorDetailsController implements Initializable {
             telephoneField.setEditable(false);
             ArrayList<Days> visitDays = doctor.getVisitDays();
             String res = "";
-            for(int i=0;i<visitDays.size();i++) {
-                res += visitDays.get(i).toString()+" ";
+            int size = visitDays.size();
+            for(int i=0;i<size;i++) {
+                res += visitDays.get(i).toString();
+                if(i != size-1) res += ", ";
             } 
             visitDaysField.setText(res);
             visitDaysField.setEditable(false);
@@ -143,82 +147,65 @@ public class DoctorDetailsController implements Initializable {
             String endingTime = endingTimeField.getText();
             String numberRoom = numberRoomField.getText();
             
+            errorIdentifier = checkField(identifier, "[0-9A-Z]+", 
+                    "You can only use numbers and capital letters in the IDENTIFIER field" + "\n" + "\n", identifierError);
             
-            String contentText = "";
+            errorName = checkField(name, "[^0-9]+", "You can only use letters in the NAME field" + "\n" + "\n", nameError);;
             
-            if(!identifier.matches("[0-9A-Z]+")){
-                errorIdentifier = true;
-                identifierError.setText("Not valid");
-                contentText+="You can only use numbers and capital letters in the IDENTIFIER field" + "\n" + "\n";
-            } else errorIdentifier = false;
+            errorSurname = checkField(surname, "[^0-9]+", "You can only use letters in the SURNAME field" + "\n" + "\n", surnameError);
             
-            if(!name.matches("[a-zA-z]+")){
-                errorName = true;
-                nameError.setText("Not valid");
-                contentText+="You can only use letters in the NAME field" + "\n" + "\n";
-            } else errorName = false;
-            
-            if(!surname.matches("[a-zA-z]+")){
-                errorSurname = true;
-                surnameError.setText("Not valid");
-                contentText+="You can only use letters in the SURNAME field" + "\n" + "\n";
-            }  else errorSurname = false;
-            
-            if(!telephone.matches("[0-9]+")){
-                errorTelephone = true;
-                telephoneError.setText("Not valid");
-                contentText+="You can only use numbers in the TELEPHONE field" + "\n" + "\n";
-            } else errorTelephone = false;
-            
+            errorTelephone = checkField(telephone, "[0-9]+", "You can only use numbers in the TELEPHONE field" + "\n" + "\n", telephoneError);
+             
             ArrayList<Days> days = new ArrayList<Days>();
-            String visitDays = visitDaysField.getText();
+            String visitDays = visitDaysField.getText() + " ";
             String day = "";
-            for(int i = 0;i < visitDays.length() && errorVisitDays;i++){
+            for(int i = 0;i < visitDays.length() && !errorVisitDays;i++){
                 char c = visitDays.charAt(i);
-                day += c;
-                if (c == ','){
-                    day="";
+                if (c != ',' && c != ' ')
+                    day += "" + c;
+                else {
+                    System.out.println(day);
                     switch(day.toLowerCase()){
-                        case "monday": days.add(Days.Monday);break;
-                        case "tuesday": days.add(Days.Tuesday);break;
-                        case "wednesday": days.add(Days.Wednesday);break;
-                        case "thursday": days.add(Days.Thursday);break;
-                        case "friday": days.add(Days.Friday);break;
-                        case "saturday": days.add(Days.Saturday);break;
-                        case "sunday": days.add(Days.Sunday);break;    
-                        default: errorVisitDays = true; 
+                        case "monday": days.add(Days.Monday);errorVisitDays = false;break;
+                        case "tuesday": days.add(Days.Tuesday);errorVisitDays = false;break;
+                        case "wednesday": days.add(Days.Wednesday);errorVisitDays = false;break;
+                        case "thursday": days.add(Days.Thursday);errorVisitDays = false;break;
+                        case "friday": days.add(Days.Friday);errorVisitDays = false;break;
+                        case "saturday": days.add(Days.Saturday);errorVisitDays = false;break;
+                        case "sunday": days.add(Days.Sunday);errorVisitDays = false;break;    
+                        default: 
+                            errorVisitDays = true; 
                             visitDaysError.setText("Not valid");
-                            contentText+="You can't use spaces and the days must be separeted by commas" + "\n" +
-                                    "Example: Monday,Tuesday,Wednesday" + "\n" + "\n";
-                            break;
+                            contentText+="The days must be separeted by commas or spaces and must be valid" + "\n" +
+                                    "Example: Monday, Tuesday, Wednesday" + "\n" + "\n";
                     }
+                    day="";
                 }
             }
             
-            if(!startingTime.matches("([0-1][0-9]|2[0-3]):([03]0|[14]5)")){
-                errorStartingTime = true;
-                startingTimeError.setText("Not valid");
-                contentText+="You can only use times ended in 00, 15, 30, 45 in the STARTING TIME field" + "\n" + "\n";
-            } else errorStartingTime = false;
-            
-            if(!endingTime.matches("([0-1][0-9]|2[0-3]):([03]0|[14]5)")){
-                errorEndingTime = true;
+            errorStartingTime = checkField(startingTime, "([0-1][0-9]|2[0-3]):([03]0|[14]5)",
+                    "You can only use times ended in 00, 15, 30, 45 in the STARTING TIME field" + "\n" + "\n", startingTimeError);
+ 
+            errorEndingTime = checkField(endingTime, "([0-1][0-9]|2[0-3]):([03]0|[14]5)", 
+                    "You can only use times ended in 00, 15, 30, 45 in the ENDING TIME field" + "\n" + "\n", endingTimeError);
+            if(!errorEndingTime && !errorStartingTime && !LocalTime.parse(endingTime).isAfter(LocalTime.parse(startingTime))){
+                errorEndingTime = false;
+                contentText += "The ENDING TIME must be after the STARTING TIME" + "\n" + "\n"; 
                 endingTimeError.setText("Not valid");
-                contentText+="You can only use times ended in 00, 15, 30, 45 in the ENDING TIME field" + "\n" + "\n";
-            } else errorEndingTime = false;
+            }
             
-            if(!numberRoom.matches("[0-9]+")){
-                errorNumberRoom = true;
-                roomError.setText("Not valid");
-                contentText+="You can only use numbers in the NºROOM field" + "\n" + "\n";
-            } else errorTelephone = false;
+            
+            errorNumberRoom = checkField(numberRoom, "[0-9]+", "You can only use numbers in the NºROOM field" + "\n" + "\n", roomError);
+                
             
             
             error = errorIdentifier || errorTelephone || errorName || errorSurname || errorVisitDays || errorStartingTime ||
-                    errorEndingTime;
+                    errorEndingTime || errorNumberRoom;
+            
             if(error){
                 errorAlert.setContentText(contentText);
                 errorAlert.showAndWait();
+                contentText = "";
             } else {
                 ExaminationRoom e = new ExaminationRoom(Integer.parseInt(numberRoom), equipmentField.getText());
                 Doctor d = new Doctor(e, null, LocalTime.parse(startingTime), LocalTime.parse(endingTime),
@@ -237,6 +224,21 @@ public class DoctorDetailsController implements Initializable {
         } else {
             ((Node) event.getSource()).getScene().getWindow().hide();
         }
+    }
+    
+    private boolean checkField(String data, String regex, String content, Label error){
+        
+        boolean res = false;
+        
+        if(!data.matches(regex)){
+            error.setText("Not valid");
+            contentText += content;
+            res = true;
+        } else {
+            error.setText("");
+        }
+        
+        return res;
     }
     
 }
