@@ -27,7 +27,7 @@ import model.Person;
 /**
  * FXML Controller class
  *
- * @author Stéphane
+ * @author Stéphane & Jorge
  */
 public class DoctorDetailsController implements Initializable {
     @FXML

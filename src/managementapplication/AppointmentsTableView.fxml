@@ -5,24 +5,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppointmentsTableViewController">
-   <center>
-      <TableView fx:id="tableView" prefHeight="370.0" prefWidth="410.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="patientColumn" prefWidth="102.5" styleClass="tableColumn" text="Patient" />
-          <TableColumn fx:id="doctorColumn" minWidth="102.5" prefWidth="85.0" styleClass="tableColumn" text="Doctor" />
-            <TableColumn fx:id="dateColumn" minWidth="102.5" prefWidth="83.0" styleClass="tableColumn" text="Date " />
-            <TableColumn fx:id="timeColumn" minWidth="102.5" prefWidth="110.0" styleClass="tableColumn" text="Time" />
-        </columns>
-         <BorderPane.margin>
-            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-         </BorderPane.margin>
-      </TableView>
-   </center>
+<BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppointmentsTableViewController">
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -49,8 +36,36 @@
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets right="25.0" top="25.0" />
+            <Insets left="25.0" right="25.0" top="50.0" />
          </BorderPane.margin>
       </VBox>
    </right>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableData" prefHeight="370.0" prefWidth="410.0">
+              <columns>
+                <TableColumn fx:id="patientColumn" prefWidth="167.74522006511688" styleClass="tableColumn" text="Patient" />
+                <TableColumn fx:id="doctorColumn" minWidth="52.5" prefWidth="170.75477600097656" styleClass="tableColumn" text="Doctor" />
+              </columns>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TableView>
+            <TableView prefHeight="549.0" prefWidth="271.0">
+              <columns>
+                  <TableColumn fx:id="tableDate" minWidth="102.5" prefWidth="199.5" styleClass="tableColumn" text="Date " />
+              </columns>
+            </TableView>
+            <TableView prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="tableTime" minWidth="102.5" prefWidth="128.5" styleClass="tableColumn" text="Time" />
+               </columns>
+            </TableView>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" top="25.0" />
+         </BorderPane.margin>
+      </HBox>
+   </center>
 </BorderPane>

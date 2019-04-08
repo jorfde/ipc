@@ -35,7 +35,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="identifierField" />
+                  <TextField fx:id="identifierField" styleClass="textForm" />
                   <Label fx:id="identifierError" textFill="#e41111" />
                </children>
                <VBox.margin>
@@ -48,7 +48,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="nameField" />
+                  <TextField fx:id="nameField" styleClass="textForm" />
                   <Label text="Photo (optional):">
                      <HBox.margin>
                         <Insets left="75.0" />
@@ -64,7 +64,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="surnameField" />
+                  <TextField fx:id="surnameField" styleClass="textForm" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -76,7 +76,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="telephoneField" />
+                  <TextField fx:id="telephoneField" styleClass="textForm" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -88,7 +88,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="visitDaysField" />
+                  <TextField fx:id="visitDaysField" styleClass="textForm" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -100,7 +100,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="startingTimeField" />
+                  <TextField fx:id="startingTimeField" styleClass="textForm" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -112,7 +112,7 @@
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="endingTimeField" />
+                  <TextField fx:id="endingTimeField" styleClass="textForm" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="15.0" />
@@ -149,7 +149,7 @@
                                     <Insets right="25.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="equipmentField" prefHeight="31.0" prefWidth="217.0" />
+                              <TextField fx:id="equipmentField" prefHeight="31.0" prefWidth="217.0" styleClass="textForm" />
                            </children>
                         </HBox>
                      </children>
