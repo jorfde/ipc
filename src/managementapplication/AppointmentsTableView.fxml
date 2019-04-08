@@ -5,22 +5,34 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="managementapplication.AppointmentsTableViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppointmentsTableViewController">
     <stylesheets>
         <URL value="@appointmentstableview.css" />
     </stylesheets>
    <children>
-      <Button layoutX="455.0" layoutY="14.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Function1" AnchorPane.bottomAnchor="328.0" />
-      <Button layoutX="455.0" layoutY="90.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Function2" />
-      <Button layoutX="455.0" layoutY="165.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Function3" />
       <TableView layoutX="25.0" layoutY="14.0" prefHeight="370.0" prefWidth="410.0">
         <columns>
-          <TableColumn prefWidth="102.5" text="Attr1" />
-          <TableColumn minWidth="102.5" prefWidth="85.0" text="Attr2" />
-            <TableColumn minWidth="102.5" prefWidth="83.0" text="Attr3" />
-            <TableColumn minWidth="102.5" prefWidth="110.0" text="Attr4" />
+          <TableColumn prefWidth="102.5" styleClass="tableColumn" text="Patient" />
+          <TableColumn minWidth="102.5" prefWidth="85.0" styleClass="tableColumn" text="Doctor" />
+            <TableColumn minWidth="102.5" prefWidth="83.0" styleClass="tableColumn" text="Date " />
+            <TableColumn minWidth="102.5" prefWidth="110.0" styleClass="tableColumn" text="Time" />
         </columns>
       </TableView>
+      <Button layoutX="459.0" layoutY="24.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Add" textFill="#ffffff">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="459.0" layoutY="96.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="View" textFill="#ffffff" AnchorPane.bottomAnchor="246.0">
+         <font>
+            <Font name="Roboto Black" size="15.0" />
+         </font></Button>
+      <Button layoutX="459.0" layoutY="171.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="127.0" text="Delete" textFill="#ffffff">
+         <font>
+            <Font name="Roboto Black" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

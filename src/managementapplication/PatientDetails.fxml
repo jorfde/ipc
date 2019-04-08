@@ -10,25 +10,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.PatientDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.PatientDetailsController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Data" wrappingWidth="574.2060546875">
-               <font>
-                  <Font size="48.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" top="20.0" />
-               </VBox.margin>
-            </Text>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Data" wrappingWidth="574.2060546875">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="30.0" top="35.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
             <HBox prefHeight="27.0" prefWidth="422.0">
                <children>
                   <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="69.0" text="Identifier: ">
                      <HBox.margin>
                         <Insets right="7.0" />
                      </HBox.margin></Label>
-                  <TextField fx:id="identifierField" prefHeight="31.0" prefWidth="192.0" />
+                  <TextField fx:id="identifierField" prefHeight="27.0" prefWidth="196.0" styleClass="textForm" />
                   <Label fx:id="identifierError" textFill="#d70b0b" />
                   <Label text="Photo (opt): ">
                      <HBox.margin>
@@ -42,32 +46,32 @@
             </HBox>
             <HBox prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Label text="Name:        " />
-                  <TextField fx:id="nameField" />
+                  <Label text="Name:          " />
+                  <TextField fx:id="nameField" prefHeight="27.0" prefWidth="195.0" styleClass="textForm" />
                   <Label fx:id="nameError" textFill="#e80909" />
                </children>
                <VBox.margin>
-                  <Insets left="30.0" right="20.0" />
+                  <Insets bottom="15.0" left="30.0" right="20.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="51.0" prefWidth="600.0">
                <children>
-                  <Label text="Surname:   " />
-                  <TextField fx:id="surnameField" />
-                  <Label fx:id="surnameError" textFill="#e40a0a" />
+                  <Label text="Surname:     " />
+                  <TextField fx:id="surnameField" prefHeight="27.0" prefWidth="196.0" styleClass="textForm" />
+                  <Label fx:id="surnameError" prefHeight="17.0" prefWidth="0.0" textFill="#e40a0a" />
                </children>
                <VBox.margin>
-                  <Insets left="30.0" right="20.0" />
+                  <Insets bottom="20.0" left="30.0" right="20.0" />
                </VBox.margin>
             </HBox>
             <HBox prefHeight="50.0" prefWidth="600.0">
                <children>
-                  <Label text="Telephone:" />
-                  <TextField fx:id="telephoneField" />
+                  <Label text="Telephone:   " />
+                  <TextField fx:id="telephoneField" prefHeight="27.0" prefWidth="191.0" styleClass="textForm" />
                   <Label fx:id="telephoneError" textFill="#dd0808" />
                </children>
                <VBox.margin>
-                  <Insets left="30.0" right="20.0" />
+                  <Insets bottom="20.0" left="30.0" right="20.0" />
                </VBox.margin>
             </HBox>
          </children>
