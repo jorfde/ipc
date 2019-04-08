@@ -8,22 +8,43 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.ManagementApplicationController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="734.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.ManagementApplicationController">
    <children>
       <VBox prefHeight="558.0" prefWidth="734.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="297.0" prefWidth="734.0" styleClass="doctorTitle">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" textAlignment="CENTER">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" textAlignment="CENTER">
                      <font>
                         <Font size="65.0" />
                      </font>
                   </Text>
                </children>
+               <opaqueInsets>
+                  <Insets bottom="50.0" />
+               </opaqueInsets>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="92.0" prefWidth="734.0" styleClass="doctorTitle">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please select your kind of operation:">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="This is IPC's Hospital Management application" textAlignment="CENTER">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="50.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="734.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please select your kind of operation:" textAlignment="CENTER" wrappingWidth="660.59375">
                      <font>
                         <Font size="20.0" />
                      </font>
