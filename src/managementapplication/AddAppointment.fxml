@@ -43,23 +43,14 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableData" prefHeight="370.0" prefWidth="410.0">
+            <TableView prefHeight="498.0" prefWidth="334.0">
               <columns>
-                <TableColumn fx:id="patientColumn" prefWidth="167.74522006511688" styleClass="tableColumn" text="Patient" />
-                <TableColumn fx:id="doctorColumn" minWidth="52.5" prefWidth="170.75477600097656" styleClass="tableColumn" text="Doctor" />
-              </columns>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </TableView>
-            <TableView prefHeight="549.0" prefWidth="271.0">
-              <columns>
-                  <TableColumn fx:id="tableDate" minWidth="102.5" prefWidth="199.5" styleClass="tableColumn" text="Date " />
+                  <TableColumn fx:id="tableDate" minWidth="102.5" prefWidth="323.00000762939453" styleClass="tableColumn" text="Date " />
               </columns>
             </TableView>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <TableView prefHeight="499.0" prefWidth="305.0">
                <columns>
-                  <TableColumn fx:id="tableTime" minWidth="102.5" prefWidth="128.5" styleClass="tableColumn" text="Time" />
+                  <TableColumn fx:id="tableTime" minWidth="102.5" prefWidth="294.0" styleClass="tableColumn" text="Time" />
                </columns>
             </TableView>
          </children>

@@ -24,21 +24,15 @@ import model.Person;
  */
 public class AppointmentsTableViewController implements Initializable {
     @FXML
-    private TableView<Appointment> tableView;
-    @FXML
-    private TableColumn<Appointment, String> patientColumn;
-    @FXML
-    private TableColumn<Appointment, String> doctorColumn;
-    @FXML
-    private TableColumn<Appointment, String> dateColumn;
-    @FXML
-    private TableColumn<Appointment, String> timeColumn;
-    @FXML
     private Button addButton;
     @FXML
     private Button viewButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private TableColumn<?, ?> tableDate;
+    @FXML
+    private TableColumn<?, ?> tableTime;
 
     /**
      * Initializes the controller class.
