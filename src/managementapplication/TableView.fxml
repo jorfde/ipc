@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
    <center>
       <TableView fx:id="tableView" prefHeight="400.0" prefWidth="627.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="136.0" text="Name" />
-          <TableColumn fx:id="surnameColumn" prefWidth="136.0" text="Surname" />
-            <TableColumn fx:id="dniColumn" prefWidth="137.0" text="DNI" />
+          <TableColumn fx:id="nameColumn" prefWidth="136.0" styleClass="tableColumn" text="Name" />
+          <TableColumn fx:id="surnameColumn" prefWidth="136.0" styleClass="tableColumn" text="Surname" />
+            <TableColumn fx:id="dniColumn" prefWidth="137.0" styleClass="tableColumn" text="DNI" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="25.0" left="25.0" top="25.0" />
