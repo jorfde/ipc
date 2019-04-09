@@ -19,14 +19,14 @@
                   <Insets bottom="20.0" />
                </opaqueInsets>
                <children>
-                  <ImageView fitHeight="360.0" fitWidth="391.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="269.0" fitWidth="319.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/ipclogo.png" />
                      </image>
                   </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="92.0" prefWidth="734.0" styleClass="doctorTitle">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="734.0" styleClass="doctorTitle">
                <children>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hospital Management Application" textAlignment="CENTER" wrappingWidth="730.7666015625">
                      <font>
@@ -46,12 +46,12 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="734.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please select your kind of operation:" textAlignment="CENTER" wrappingWidth="660.59375">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please select your kind of operation:" textAlignment="CENTER" wrappingWidth="690.59375">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <HBox.margin>
-                        <Insets bottom="25.0" left="25.0" top="25.0" />
+                        <Insets bottom="10.0" left="25.0" top="35.0" />
                      </HBox.margin>
                   </Text>
                </children>
@@ -74,7 +74,7 @@
                         <Insets bottom="25.0" right="25.0" top="25.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="50.0" prefWidth="282.0" text="Appointment">
+                  <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="50.0" prefWidth="211.0" text="Appointment">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -82,6 +82,12 @@
                         <Insets bottom="25.0" right="25.0" top="25.0" />
                      </HBox.margin>
                   </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Save" />
+                  <Button mnemonicParsing="false" text="Exit" />
                </children>
             </HBox>
          </children>
