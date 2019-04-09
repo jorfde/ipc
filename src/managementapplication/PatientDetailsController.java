@@ -90,6 +90,7 @@ public class PatientDetailsController  {
         boolean errorTelephone = false;
         boolean errorName = false;
         boolean errorSurname = false;
+        
         switch(((Node)event.getSource()).getId()){
             case "searchButton":
                 FileChooser fileChooser = new FileChooser();
