@@ -6,18 +6,25 @@
 
 package managementapplication;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import model.Patient;
 import model.Person;
 
@@ -26,8 +33,7 @@ import model.Person;
  *
  * @author Stéphane & Jorge
  */
-public class PatientDetailsController implements Initializable {
-    @FXML
+public class PatientDetailsController  {
     private Label errorLabel;
     @FXML
     private Button okButton;
@@ -48,7 +54,11 @@ public class PatientDetailsController implements Initializable {
     @FXML
     private TextField telephoneField;
     @FXML
-    private Label telephoneError;
+    private Label telephoneError;   
+    @FXML
+    private Button searchButton;
+    @FXML
+    private ImageView imageView;
 
     private ArrayList<Patient> patients;
     
@@ -64,58 +74,80 @@ public class PatientDetailsController implements Initializable {
     
     private String contentText = "";
 
+    
     /**
      * Initializes the controller class.
      */
-    @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
         errorAlert.setTitle("Error");
         errorAlert.setHeaderText("A field is not valid");
     }    
 
     @FXML
-    private void buttonHandler(ActionEvent event) {
+    private void buttonHandler(ActionEvent event) throws FileNotFoundException {
         boolean errorIdentifier = false;
         boolean errorTelephone = false;
         boolean errorName = false;
         boolean errorSurname = false;
+        switch(((Node)event.getSource()).getId()){
+            case "searchButton":
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open file");    
+                fileChooser.getExtensionFilters().addAll( new ExtensionFilter("Images", "*.png", "*.jpg") );    
+                File selectedFile = fileChooser.showOpenDialog( ((Node)event.getSource()).getScene().getWindow());    
+                if (selectedFile != null) {
+                    String path = selectedFile.getAbsolutePath();
+                    Image image = new Image ( new FileInputStream (path));
+                    imageView.imageProperty().setValue( image );
+                } break;
         
-        if(((Node)event.getSource()).getId().equals("okButton") && index == -1){
-            
-            String identifier = identifierField.getText();
-            String name = nameField.getText();
-            String surname = surnameField.getText();
-            String telephone = telephoneField.getText();
-            
-            errorIdentifier = checkField(identifier, "[0-9A-Z]+", 
-                    "You can only use numbers and capital letters in the IDENTIFIER field" + "\n" + "\n", identifierError);
-            
-            errorName = checkField(name, "[^0-9]+", "You can only use letters in the NAME field" + "\n" + "\n", nameError);;
-            
-            errorSurname = checkField(surname, "[^0-9]+", "You can only use letters in the SURNAME field" + "\n" + "\n", surnameError);
-            
-            errorTelephone = checkField(telephone, "[0-9]+", "You can only use numbers in the TELEPHONE field" + "\n" + "\n", telephoneError);
-            
-            error = errorIdentifier || errorTelephone || errorName || errorSurname;
-            
-            if(error){
-                errorAlert.setContentText(contentText);
-                errorAlert.showAndWait();
-            } else {
-                Patient p = new Patient(identifierField.getText(), nameField.getText(), surnameField.getText(),
-                    telephoneField.getText(), null);
-                patients.add(p);
-                persons.add(p);
 
-                alert.setTitle("Information");
-                alert.setHeaderText("You have added a patient");
-                alert.setContentText("The patient was succesfully added to the data base.");
+            case "okButton": 
+                
+                if(index == -1){
+            
+                    String identifier = identifierField.getText();
+                    String name = nameField.getText();
+                    String surname = surnameField.getText();
+                    String telephone = telephoneField.getText();
 
-                alert.showAndWait();
-                ((Node) event.getSource()).getScene().getWindow().hide();
-            }
-        } else {
-            ((Node) event.getSource()).getScene().getWindow().hide();
+                    errorIdentifier = checkField(identifier, "[0-9A-Z]+", 
+                            "You can only use numbers and capital letters in the IDENTIFIER field" + "\n" + "\n", identifierError);
+
+                    errorName = checkField(name, "[^0-9]+", "You can only use letters in the NAME field" + "\n" + "\n", nameError);;
+
+                    errorSurname = checkField(surname, "[^0-9]+", "You can only use letters in the SURNAME field" + "\n" + "\n", surnameError);
+
+                    errorTelephone = checkField(telephone, "[0-9]+", "You can only use numbers in the TELEPHONE field" + "\n" + "\n", telephoneError);
+
+                    error = errorIdentifier || errorTelephone || errorName || errorSurname;
+
+                    if(error){
+                        errorAlert.setContentText(contentText);
+                        errorAlert.showAndWait();
+                    } else {
+                        Patient p = new Patient(identifierField.getText(), nameField.getText(), surnameField.getText(),
+                            telephoneField.getText(), imageView.getImage());
+                        patients.add(p);
+                        persons.add(p);
+
+                        alert.setTitle("Information");
+                        alert.setHeaderText("You have added a patient");
+                        alert.setContentText("The patient was succesfully added to the data base.");
+
+                        alert.showAndWait();
+                        exit(event);
+                    }
+                } else {
+                    exit(event);
+                }
+                
+                break;
+        
+            case "cancelButton":
+                exit(event);
+                break;               
         }
     }
     
@@ -134,6 +166,8 @@ public class PatientDetailsController implements Initializable {
             surnameField.setEditable(false);
             telephoneField.setText(patient.getTelephon());
             telephoneField.setEditable(false);
+            imageView.imageProperty().setValue(patient.getPhoto());
+            searchButton.setVisible(false);
         }
     }
     
@@ -150,5 +184,9 @@ public class PatientDetailsController implements Initializable {
         }
         
         return res;
+    }
+    
+    private void exit(ActionEvent event){
+        ((Node) event.getSource()).getScene().getWindow().hide();
     }
 }
