@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,20 +15,20 @@
       <VBox prefHeight="558.0" prefWidth="734.0">
          <children>
             <HBox alignment="CENTER" prefHeight="297.0" prefWidth="734.0" styleClass="doctorTitle">
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome!" textAlignment="CENTER">
-                     <font>
-                        <Font size="65.0" />
-                     </font>
-                  </Text>
-               </children>
                <opaqueInsets>
-                  <Insets bottom="50.0" />
+                  <Insets bottom="20.0" />
                </opaqueInsets>
+               <children>
+                  <ImageView fitHeight="360.0" fitWidth="391.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ipclogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="92.0" prefWidth="734.0" styleClass="doctorTitle">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="This is IPC's Hospital Management application" textAlignment="CENTER">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hospital Management Application" textAlignment="CENTER" wrappingWidth="730.7666015625">
                      <font>
                         <Font size="30.0" />
                      </font>
