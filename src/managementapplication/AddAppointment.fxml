@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
+<BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
    <right>
       <VBox prefHeight="494.0" prefWidth="175.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -23,9 +23,9 @@
                   <Insets bottom="25.0" />
                </VBox.margin>
             </Button>
-            <Label fx:id="timeLabel" text="Time:" />
+            <Label text="Time:" />
             <TextField fx:id="timeField" styleClass="textForm" />
-            <Label fx:id="dateLabel" text="Date:">
+            <Label text="Date:">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
@@ -53,15 +53,11 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="498.0" prefWidth="334.0">
+            <TableView fx:id="tableView" prefHeight="538.0" prefWidth="582.0">
               <columns>
                   <TableColumn fx:id="patientTable" minWidth="102.5" prefWidth="298.0" styleClass="tableColumn" text="Patient" />
+                  <TableColumn fx:id="doctorColumn" prefWidth="245.0" text="Doctor" />
               </columns>
-            </TableView>
-            <TableView prefHeight="499.0" prefWidth="305.0">
-               <columns>
-                  <TableColumn fx:id="doctorTable" minWidth="102.5" prefWidth="269.0" styleClass="tableColumn" text="Doctor" />
-               </columns>
             </TableView>
          </children>
          <BorderPane.margin>
