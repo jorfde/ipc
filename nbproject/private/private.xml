@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/Calendar.fxml</file>
-            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/CalendarController.java</file>
-            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/AppTableViewController.java</file>
-            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/appointmentstableview.css</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/ManagementApplication.fxml</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/TableView.fxml</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/CalendarController.java</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/ManagementApplicationController.java</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/AppTableViewController.java</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/TableViewController.java</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/DoctorDetailsController.java</file>
+            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/AddAppointment.fxml</file>
         </group>
     </open-files>
 </project-private>
