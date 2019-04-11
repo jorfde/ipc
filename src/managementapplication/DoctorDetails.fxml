@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.DoctorDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.DoctorDetailsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -153,11 +153,15 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Photo (optional):" />
-                              <Button fx:id="searchButton" mnemonicParsing="false" onAction="#buttonHandler" text="Search" />
+                              <Label />
+                              <HBox prefHeight="0.0" prefWidth="205.0">
+                                 <children>
+                                    <Button fx:id="searchButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="0.0" prefWidth="96.0" text="Add Photo" />
+                                 </children>
+                              </HBox>
                            </children>
                         </HBox>
-                        <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageView" fitHeight="160.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <VBox.margin>
                               <Insets top="25.0" />
                            </VBox.margin>
