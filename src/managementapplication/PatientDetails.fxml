@@ -11,16 +11,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="791.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.PatientDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="791.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.PatientDetailsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="okButton" maxWidth="92.0" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="92.0" text="OK">
+            <Button fx:id="okButton" maxWidth="92.0" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="92.0" styleClass="saveButton" text="OK">
                <HBox.margin>
                   <Insets right="25.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="91.0" text="Cancel">
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="31.0" prefWidth="91.0" styleClass="exitButton" text="Cancel">
                <HBox.margin>
                   <Insets right="25.0" />
                </HBox.margin>
@@ -83,12 +83,12 @@
                <children>
                   <HBox prefHeight="53.0" prefWidth="366.0">
                      <children>
-                        <Label text="Photo (opt): ">
+                        <Label>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="14.0" prefWidth="75.0" text="Search" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="101.0" text="Add Photo" />
                      </children>
                      <VBox.margin>
                         <Insets top="50.0" />

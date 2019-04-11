@@ -21,7 +21,7 @@
       </TableView>
    </center>
    <right>
-      <VBox prefHeight="400.0" prefWidth="165.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="400.0" prefWidth="169.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="viewButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="180.0" text="View">
                <VBox.margin>
@@ -38,7 +38,7 @@
                   <Insets left="25.0" right="25.0" top="25.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="156.0" text="Appointments">
+            <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="122.0" text="Appointments">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" top="25.0" />
                </VBox.margin>
