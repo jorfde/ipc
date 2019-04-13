@@ -119,10 +119,10 @@ public class CalendarController implements Initializable {
         dateField.setEditable(false);
         
         //Disable before week
-        beforeWeek.disableProperty().bind(Bindings.equal(currentWeek, weekProperty));
+        //beforeWeek.disableProperty().bind(Bindings.equal(currentWeek, weekProperty));
         
         //Disable next week
-        nextWeek.disableProperty().bind(Bindings.equal(12, weekProperty));
+        //nextWeek.disableProperty().bind(Bindings.equal(12, weekProperty));
     }    
 
     @FXML
@@ -146,7 +146,7 @@ public class CalendarController implements Initializable {
         }
     }
     
-    public void initData(Doctor d, Patient p) {
+    public void initData(Patient p, Doctor d) {
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
@@ -163,7 +163,10 @@ public class CalendarController implements Initializable {
         doctorWeek = getAppointmentsWeek(currentWeek, days, start, 
                 end, appointments);
         
-        weekProperty.set(week);
+        slots = FXCollections.observableList( doctorWeek );
+        tableView.setItems(slots);
+        
+        //weekProperty.set(week);
     }
     
 }

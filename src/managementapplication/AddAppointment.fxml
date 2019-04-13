@@ -53,10 +53,14 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableView" prefHeight="538.0" prefWidth="582.0">
+            <TableView fx:id="patientTable" prefHeight="538.0" prefWidth="299.0">
               <columns>
-                  <TableColumn fx:id="patientTable" minWidth="102.5" prefWidth="298.0" styleClass="tableColumn" text="Patient" />
-                  <TableColumn fx:id="doctorColumn" prefWidth="245.0" text="Doctor" />
+                  <TableColumn fx:id="patientColumn" minWidth="102.5" prefWidth="298.0" styleClass="tableColumn" text="Patient" />
+              </columns>
+            </TableView>
+            <TableView fx:id="doctorTable" prefHeight="538.0" prefWidth="261.0">
+              <columns>
+                <TableColumn fx:id="doctorColumn" prefWidth="252.0" text="Doctor" />
               </columns>
             </TableView>
          </children>
