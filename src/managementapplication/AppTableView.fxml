@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppTableViewController">
    <right>
       <VBox prefHeight="400.0" prefWidth="89.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="0.0" prefWidth="89.0" text="Add">
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="0.0" prefWidth="89.0" text="Add">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
@@ -19,7 +19,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </Button>
-            <Button fx:id="viewButton" mnemonicParsing="false" prefHeight="0.0" prefWidth="90.0" text="View">
+            <Button fx:id="viewButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="0.0" prefWidth="90.0" text="View">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
@@ -27,7 +27,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="0.0" prefWidth="90.0" text="Delete">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="0.0" prefWidth="90.0" text="Delete">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>

@@ -183,9 +183,28 @@ public class TableViewController implements Initializable {
                     persons.remove(index);
                 }
                 break;
-            case "appointmentButton": break;
+            case "appointmentButton": 
+                if(mode == PATIENT_MODE) createAppointmentWindow(PATIENT_MODE, patients.get(index).getIdentifier(), null);
+                else createAppointmentWindow(DOCTOR_MODE, null, doctors.get(index).getIdentifier());
+                break;
         }
         
+    }
+    
+    private void createAppointmentWindow(int mode, String patientID, String doctorID) throws IOException{
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AppTableView.fxml"));; 
+        Pane root = (Pane) myLoader.load();;
+        
+        AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
+        appTableViewController.initData(mode, patientID, doctorID);
+      
+        Scene scene = new Scene (root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("List of appointments");
+             
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show(); 
     }
     
 }

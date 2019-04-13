@@ -74,24 +74,34 @@ public class ManagementApplicationController implements Initializable {
         }
     }
     
-    private void createTable(int mode) throws IOException {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
-        Pane root = (Pane) myLoader.load();
-            
-        //Get the controller of the UI
-        TableViewController tableviewcontroller = myLoader.<TableViewController>getController();
+    private void createTable(int mode) throws IOException {     
+        FXMLLoader myLoader = null; 
+        Pane root = null;
+        
+        switch(mode){
+            case PATIENT_MODE: 
+
+            case DOCTOR_MODE: 
+                myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
+                root = (Pane) myLoader.load();
+                TableViewController tableViewController = myLoader.<TableViewController>getController();
+                tableViewController.initData(mode, clinic);
+                break;
+                
+            case APPOINTMENT_MODE: 
+                myLoader = new FXMLLoader(getClass().getResource("AppTableView.fxml"));
+                root = (Pane) myLoader.load();
+                AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
+                appTableViewController.initData(mode, null, null);
+                break;
+        }
         
         Scene scene = new Scene (root);
         Stage stage = new Stage();
         stage.setScene(scene);
-  
-        switch(mode){
-            case PATIENT_MODE: 
-            case DOCTOR_MODE: tableviewcontroller.initData(mode, clinic); break;
-            case APPOINTMENT_MODE:
-        }
+        
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+        
     }
-    
 }
