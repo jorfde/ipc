@@ -38,7 +38,7 @@ import utils.SlotWeek;
 /**
  * FXML Controller class
  *
- * @author jorge
+ * @author jorge & steph
  */
 public class CalendarController implements Initializable {
     @FXML
