@@ -12,10 +12,14 @@
 <?import javafx.scene.text.Font?>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <BorderPane minWidth="-Infinity" prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
 =======
 <BorderPane prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
 >>>>>>> 0810a69ad7408fb3582b3a3924c82a19650d6016
+=======
+<BorderPane minWidth="-Infinity" prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
+>>>>>>> a02de196bc1c462cb89b8c14a8d65c8d8d9cc808
    <right>
       <VBox prefHeight="494.0" prefWidth="175.0" BorderPane.alignment="TOP_CENTER">
          <children>
