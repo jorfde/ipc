@@ -35,6 +35,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </Button>
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#buttonHandler" text="Return" />
          </children>
          <BorderPane.margin>
             <Insets right="30.0" />

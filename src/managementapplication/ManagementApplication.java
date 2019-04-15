@@ -20,7 +20,12 @@ public class ManagementApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ManagementApplication.fxml"));
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("ManagementApplication.fxml"));
+        
+        Parent root = myLoader.load();
+        
+        ManagementApplicationController managementApplicationController = myLoader.<ManagementApplicationController>getController();
+        managementApplicationController.initStage(stage);
         
         Scene scene = new Scene(root);
         

@@ -10,6 +10,7 @@ import DBAccess.ClinicDBAccess;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -22,13 +23,14 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import static managementapplication.ManagementApplicationController.APPOINTMENT_MODE;
+import javafx.stage.WindowEvent;
 import static managementapplication.ManagementApplicationController.DOCTOR_MODE;
 import static managementapplication.ManagementApplicationController.PATIENT_MODE;
 import model.Doctor;
@@ -67,6 +69,13 @@ public class TableViewController implements Initializable {
     private int mode = 0;
     
     private Alert alert = new Alert(Alert.AlertType.ERROR);
+    private Alert remove = new Alert(Alert.AlertType.CONFIRMATION);
+    
+    private Stage primaryStage;
+    private Scene prevScene;
+    private String prevTitle;
+    @FXML
+    private Button returnButton;
     
     /**
      * Initializes the controller class.
@@ -87,6 +96,10 @@ public class TableViewController implements Initializable {
         
         //Disable appointments button
         appointmentButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
+        
+        remove.setTitle("Confirmation Dialog");
+        remove.setHeaderText("Remove an element");
+        remove.setContentText("Do you want to continue?");
     }
     
     private void createDetailsWindow(int index) throws IOException{
@@ -155,18 +168,23 @@ public class TableViewController implements Initializable {
     private void buttonHandler(ActionEvent event) throws IOException {
         int index = tableView.getSelectionModel().selectedIndexProperty().getValue();
         boolean removed = false;
+        boolean continueRemove = false;
         switch(((Node)event.getSource()).getId()){
             case "addButton": createDetailsWindow(-1);break;
             case "viewButton": createDetailsWindow(index);break;
             case "deleteButton": 
                 
-                if(mode == PATIENT_MODE && clinic.hasAppointments(clinic.getPatients().get(index))){
-                    patients.remove(index);
-                    removed = true;
+                if(mode == PATIENT_MODE && !clinic.hasAppointments(clinic.getPatients().get(index))){
+                    if(delete()){
+                        patients.remove(index);
+                        removed = true;
+                    }
                 }
-                else if(mode == DOCTOR_MODE && clinic.hasAppointments(clinic.getPatients().get(index))) {
-                    doctors.remove(index);
-                    removed = true;
+                else if(mode == DOCTOR_MODE && !clinic.hasAppointments(clinic.getPatients().get(index))) {
+                    if(delete()){
+                        doctors.remove(index);
+                        removed = true;
+                    }
                 } else {
                     alert.setTitle("Error");
                     if(mode == PATIENT_MODE){
@@ -187,6 +205,8 @@ public class TableViewController implements Initializable {
                 if(mode == PATIENT_MODE) createAppointmentWindow(PATIENT_MODE, patients.get(index).getIdentifier(), null);
                 else createAppointmentWindow(DOCTOR_MODE, null, doctors.get(index).getIdentifier());
                 break;
+                
+            case "returnButton": exit();break;
         }
         
     }
@@ -206,5 +226,34 @@ public class TableViewController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show(); 
     }
+
+    public void initStage(Stage stage) {
+        primaryStage = stage;
+        prevScene = stage.getScene();
+        prevTitle = stage.getTitle();
+        
+        primaryStage.setOnCloseRequest((WindowEvent event) ->{
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(clinic.getClinicName());
+        alert.setHeaderText("Saving data in DB");
+        alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+        alert.show();
+        clinic.saveDB();
+        });
+    }
     
+    private void exit(){
+        primaryStage.setTitle(prevTitle);
+        primaryStage.setScene(prevScene);
+    }
+    
+    private boolean delete(){
+        boolean res = false;
+        Optional<ButtonType> result = remove.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK){
+                res = true;
+            }
+            
+         return res;
+    }
 }

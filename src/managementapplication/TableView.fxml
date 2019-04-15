@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
    <center>
       <TableView fx:id="tableView" prefHeight="400.0" prefWidth="627.0" BorderPane.alignment="CENTER">
         <columns>
@@ -43,6 +43,7 @@
                   <Insets left="25.0" right="25.0" top="25.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#buttonHandler" text="Return" />
          </children>
       </VBox>
    </right>

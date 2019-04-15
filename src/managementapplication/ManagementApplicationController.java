@@ -21,11 +21,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.Patient;
 
 /**
@@ -46,6 +49,8 @@ public class ManagementApplicationController implements Initializable {
     public static final int PATIENT_MODE = 0;
     public static final int DOCTOR_MODE = 1;
     public static final int APPOINTMENT_MODE = 2;
+    
+    private Stage mainStage;
 
     /**
      * Initializes the controller class.
@@ -54,15 +59,6 @@ public class ManagementApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         clinic.setClinicName("IPC Medical Services Clinic");
-        String url2 = System.getProperty("user.dir")+File.separator+ "src"+ File.separator+ "images"+ File.separator+ "men2.PNG";
-        Image avatar = null;
-        try {
-            avatar = new Image(new FileInputStream(url2));
-        } catch (FileNotFoundException ex) {
-            System.out.print("Tonto");
-        }
-        Patient patient = new Patient("5307867J", "Juan", "Cafe Grandes", "9376543", avatar);
-        clinic.getPatients().add(patient);
     }    
 
     @FXML
@@ -85,6 +81,7 @@ public class ManagementApplicationController implements Initializable {
                 myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
                 root = (Pane) myLoader.load();
                 TableViewController tableViewController = myLoader.<TableViewController>getController();
+                tableViewController.initStage(mainStage);
                 tableViewController.initData(mode, clinic);
                 break;
                 
@@ -92,16 +89,25 @@ public class ManagementApplicationController implements Initializable {
                 myLoader = new FXMLLoader(getClass().getResource("AppTableView.fxml"));
                 root = (Pane) myLoader.load();
                 AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
+                appTableViewController.initStage(mainStage);
                 appTableViewController.initData(mode, null, null);
                 break;
         }
         
         Scene scene = new Scene (root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
+        mainStage.setScene(scene); 
+    }
+    
+    public void initStage(Stage s){
+        mainStage = s;
         
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-        
+        mainStage.setOnCloseRequest((WindowEvent event) ->{
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(clinic.getClinicName());
+        alert.setHeaderText("Saving data in DB");
+        alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+        alert.show();
+        clinic.saveDB();
+        });
     }
 }

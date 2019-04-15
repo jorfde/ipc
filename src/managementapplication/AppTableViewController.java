@@ -8,6 +8,7 @@ package managementapplication;
 import DBAccess.ClinicDBAccess;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,7 +19,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import static managementapplication.ManagementApplicationController.APPOINTMENT_MODE;
 import static managementapplication.ManagementApplicationController.DOCTOR_MODE;
 import static managementapplication.ManagementApplicationController.PATIENT_MODE;
@@ -57,6 +61,15 @@ public class AppTableViewController implements Initializable {
     private ClinicDBAccess clinic;
     
     private ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+    
+    private Stage primaryStage;
+    private Scene prevScene;
+    private String prevTitle;
+    
+    @FXML
+    private Button returnButton;
+    
+    private Alert remove = new Alert(Alert.AlertType.CONFIRMATION);
 
     /**
      * Initializes the controller class.
@@ -68,6 +81,10 @@ public class AppTableViewController implements Initializable {
         doctorColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDoctor().getName() + " " +  c.getValue().getDoctor().getSurname()));
         dateColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getAppointmentDateTime().toLocalDate().toString()));
         timeColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getAppointmentDateTime().toLocalTime().toString()));
+        
+        remove.setTitle("Confirmation Dialog");
+        remove.setHeaderText("Remove an element");
+        remove.setContentText("Do you want to continue?");
     }    
 
     @FXML
@@ -77,7 +94,11 @@ public class AppTableViewController implements Initializable {
         switch(((Node)event.getSource()).getId()){
             case "addButton": createAddWindow();break;
                 
-            case "deleteButton":appointments.remove(index);break;
+            case "deleteButton":
+                if(delete())
+                appointments.remove(index);break;
+                
+            case "returnButton": exit();break;
         }
     }
     
@@ -115,5 +136,35 @@ public class AppTableViewController implements Initializable {
         }
         
         tableView.setItems(appointments);
+    }
+
+    public void initStage(Stage stage) {
+        primaryStage = stage;
+        prevScene = stage.getScene();
+        prevTitle = stage.getTitle();
+        
+        primaryStage.setOnCloseRequest((WindowEvent event) ->{
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(clinic.getClinicName());
+        alert.setHeaderText("Saving data in DB");
+        alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+        alert.show();
+        clinic.saveDB();
+        });
+    }
+    
+    private void exit(){
+        primaryStage.setTitle(prevTitle);
+        primaryStage.setScene(prevScene);
+    }
+    
+    private boolean delete(){
+        boolean res = false;
+        Optional<ButtonType> result = remove.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK){
+                res = true;
+            }
+            
+         return res;
     }
 }
