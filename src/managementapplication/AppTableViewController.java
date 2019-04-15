@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,6 +86,12 @@ public class AppTableViewController implements Initializable {
         remove.setTitle("Confirmation Dialog");
         remove.setHeaderText("Remove an element");
         remove.setContentText("Do you want to continue?");
+        
+        //Disable delete button
+        deleteButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
+        
+        //Disable view details button
+        viewButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
     }    
 
     @FXML

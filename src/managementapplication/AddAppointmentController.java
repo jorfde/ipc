@@ -8,6 +8,7 @@ package managementapplication;
 import DBAccess.ClinicDBAccess;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Doctor;
 import model.Patient;
 import model.Person;
@@ -65,6 +67,10 @@ public class AddAppointmentController implements Initializable {
     private int patientIndex;
     
     private int doctorIndex;
+    
+    private LocalDateTime date;
+    
+    private boolean done;
 
     /**
      * Initializes the controller class.
@@ -77,6 +83,9 @@ public class AddAppointmentController implements Initializable {
         //Disable set time button
         setTimeButton.disableProperty().bind(Bindings.or(Bindings.equal(-1,patientTable.getSelectionModel().selectedIndexProperty()),
                 Bindings.equal(-1,doctorTable.getSelectionModel().selectedIndexProperty())));
+        
+        timeField.setEditable(false);
+        dateField.setEditable(false);
     }    
 
     void initData() {
@@ -95,20 +104,27 @@ public class AddAppointmentController implements Initializable {
         doctorIndex = doctorTable.getSelectionModel().selectedIndexProperty().getValue();
 
         switch(((Node)event.getSource()).getId()){
-            case "setTimeButton": createTimeWindow(); break;
+            case "setTimeButton": 
+                createTimeWindow(); 
+                break;
                 
-            case "okButton":break;
+            case "okButton":
+                if(done){
+                    clinic.getAppointments().add(new Appointment(date, clinic.getDoctors().get(doctorIndex), clinic.getPatients().get(patientIndex)));
+                }
+                ((Node) event.getSource()).getScene().getWindow().hide();
+                break;
                 
-            case "cancelButton": break;
+            case "cancelButton": ((Node) event.getSource()).getScene().getWindow().hide();break;
         }
     }
     
     private void createTimeWindow() throws IOException{
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("Calendar.fxml"));; 
-        Pane root = (Pane) myLoader.load();;
+        Pane root = (Pane) myLoader.load();
         
         CalendarController calendarController = myLoader.<CalendarController>getController();
-        calendarController.initData(clinic.getPatients().get(patientIndex), clinic.getDoctors().get(doctorIndex));
+        calendarController.initData(clinic.getPatients().get(patientIndex), clinic.getDoctors().get(doctorIndex), this);
       
         Scene scene = new Scene (root);
         Stage stage = new Stage();
@@ -118,10 +134,12 @@ public class AddAppointmentController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show(); 
     }
-     
-    public void retrieveData(){
     
+    public void getData(LocalDateTime d){
+        date = d;
+        
+        timeField.setText(date.toLocalTime().toString());
+        dateField.setText(date.toLocalDate().toString());
+        done = true;
     }
-     
-    
 }

@@ -6,6 +6,7 @@
 package managementapplication;
 
 import DBAccess.ClinicDBAccess;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,8 +23,10 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -31,6 +34,7 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import model.Appointment;
 import model.Days;
 import model.Doctor;
@@ -107,6 +111,12 @@ public class CalendarController implements Initializable {
     
     private LocalTime time;
     
+    private boolean dateValid = false;
+    
+    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+    
+    AddAppointmentController controller;
+    
     /**
      * Initializes the controller class.
      */
@@ -122,11 +132,14 @@ public class CalendarController implements Initializable {
         saturdayColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, String>("saturdayAvailability"));
         sundayColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, String>("sundayAvailability"));
         
+        //Not editable fields
         timeField.setEditable(false);
         dateField.setEditable(false);
         
+        //Selection by cells
         tableView.getSelectionModel().setCellSelectionEnabled(true);
         
+        //Add a listener to the cell of the TableView
         ObservableList<TablePosition> selectedCells = tableView.getSelectionModel().getSelectedCells() ;
         selectedCells.addListener((ListChangeListener.Change<? extends TablePosition> change) -> {
             if (selectedCells.size() > 0) {
@@ -134,7 +147,6 @@ public class CalendarController implements Initializable {
                 TableColumn column = selectedCell.getTableColumn();
                 int columnIndex = selectedCell.getColumn();
                 int rowIndex = selectedCell.getRow();
-                
                 
                 time = slots.get(rowIndex).getSlot();
                 timeField.setText(time.toString());
@@ -146,19 +158,23 @@ public class CalendarController implements Initializable {
                         date = date.plusDays(sumDays);
                     if(sumDays < 0)
                         date = date.minusDays(sumDays * -1);
-
+                                                                                                                        
                     dateField.setText(date.toString());
+                    
+                    if(date.isAfter(LocalDate.now())){
+                        dateValid = true;
+                    } else {
+                        dateValid = false;
+                    }
                 } else {
                     dateField.setText("");
-                }
-                
-                
+                }  
             }
         });
     }    
 
     @FXML
-    private void buttonHandler(ActionEvent event) {
+    private void buttonHandler(ActionEvent event) throws IOException {
         switch(((Node) event.getSource()).getId()){
             case "beforeWeek":
                 if(week != currentWeek) {
@@ -179,19 +195,30 @@ public class CalendarController implements Initializable {
                 break;
                 
             case "okButton":
-                LocalDateTime dateTime = LocalDateTime.of(date,time);
+                if(dateValid) {
+                    controller.getData(LocalDateTime.of(date, time));
+                    ((Node) event.getSource()).getScene().getWindow().hide();
+                } else {
+                    errorAlert.setContentText("Please select a free day");
+                    errorAlert.showAndWait();
+                }
+                break;
+                
+            case "cancelButton": ((Node) event.getSource()).getScene().getWindow().hide();
         }
         
-        weekNumberLabel.setText(""+week);
+        weekNumberLabel.setText("Week of the year: "+ week +" Month: " + date.getMonth() +  " Year: " + date.getYear() );
     }
     
-    public void initData(Patient p, Doctor d) {
+    public void initData(Patient p, Doctor d, AddAppointmentController before) {
+        controller = before;
+        
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         currentWeek = LocalDate.now().get(weekFields.weekOfWeekBasedYear());
         week = currentWeek;
-        numDayNow =LocalDate.now().get(weekFields.dayOfWeek());
+        numDayNow = LocalDate.now().get(weekFields.dayOfWeek());
         
         days = d.getVisitDays();
         start = d.getVisitStartTime();
@@ -205,11 +232,10 @@ public class CalendarController implements Initializable {
         slots = FXCollections.observableList( doctorWeek );
         tableView.setItems(slots);
         
-        weekNumberLabel.setText(""+week);
-        
         date = LocalDate.now();
         
-        weekDay= numDayNow;
+        weekNumberLabel.setText("Week of the year: "+ week +" Month: " + date.getMonth() +  " Year: " + date.getYear() );
+        
+        weekDay = numDayNow;
     }
-    
 }

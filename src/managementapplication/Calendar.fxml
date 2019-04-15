@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="777.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="777.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
    <padding>
       <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
    </padding>
@@ -37,7 +37,7 @@
                   <Insets right="25.0" />
                </HBox.margin>
             </Button>
-            <Label text="Week Nº">
+            <Label fx:id="weekNumberLabel">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,7 +45,6 @@
                   <Insets top="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="weekNumberLabel" />
             <Button fx:id="nextWeek" mnemonicParsing="false" onAction="#buttonHandler" text="&gt;">
                <HBox.margin>
                   <Insets left="25.0" />
