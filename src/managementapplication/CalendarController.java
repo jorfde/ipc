@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author jorge
+ * @author jorge & steph
  */
 public class CalendarController implements Initializable {
 
