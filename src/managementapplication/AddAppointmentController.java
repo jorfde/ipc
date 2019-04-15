@@ -75,8 +75,8 @@ public class AddAppointmentController implements Initializable {
         doctorColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getName() + " " +  c.getValue().getSurname()));
         
         //Disable set time button
-        setTimeButton.disableProperty().bind(Bindings.equal(-1,doctorTable.getSelectionModel().selectedIndexProperty()));
-        setTimeButton.disableProperty().bind(Bindings.equal(-1,patientTable.getSelectionModel().selectedIndexProperty()));
+        setTimeButton.disableProperty().bind(Bindings.or(Bindings.equal(-1,patientTable.getSelectionModel().selectedIndexProperty()),
+                Bindings.equal(-1,doctorTable.getSelectionModel().selectedIndexProperty())));
     }    
 
     void initData() {
@@ -103,7 +103,7 @@ public class AddAppointmentController implements Initializable {
         }
     }
     
-     private void createTimeWindow() throws IOException{
+    private void createTimeWindow() throws IOException{
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("Calendar.fxml"));; 
         Pane root = (Pane) myLoader.load();;
         
@@ -118,5 +118,10 @@ public class AddAppointmentController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show(); 
     }
+     
+    public void retrieveData(){
+    
+    }
+     
     
 }
