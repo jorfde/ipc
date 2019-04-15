@@ -144,6 +144,8 @@ public class CalendarController implements Initializable {
                     tableView.setItems(slots);
                 }
         }
+        
+        weekNumberLabel.setText(""+week);
     }
     
     public void initData(Patient p, Doctor d) {
@@ -166,7 +168,7 @@ public class CalendarController implements Initializable {
         slots = FXCollections.observableList( doctorWeek );
         tableView.setItems(slots);
         
-        //weekProperty.set(week);
+        weekNumberLabel.setText(""+week);
     }
     
 }
