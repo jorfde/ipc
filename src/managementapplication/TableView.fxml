@@ -43,6 +43,10 @@
                   <Insets left="25.0" right="25.0" top="25.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="119.0" text="Return">
+               <VBox.margin>
+                  <Insets left="25.0" top="30.0" />
+               </VBox.margin></Button>
          </children>
       </VBox>
    </right>

@@ -103,7 +103,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient's Data" wrappingWidth="574.2060546875">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Data" wrappingWidth="574.2060546875">
                <font>
                   <Font size="48.0" />
                </font>

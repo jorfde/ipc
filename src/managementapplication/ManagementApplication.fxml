@@ -95,12 +95,10 @@
                      <children>
                         <HBox prefHeight="50.0" prefWidth="203.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="66.0" styleClass="saveButton" text="Save">
+                              <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="67.0" styleClass="exitButton" text="Exit">
                                  <HBox.margin>
-                                    <Insets left="50.0" right="30.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="67.0" styleClass="exitButton" text="Exit" />
+                                    <Insets left="150.0" />
+                                 </HBox.margin></Button>
                            </children>
                            <VBox.margin>
                               <Insets top="15.0" />
