@@ -13,6 +13,8 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -99,9 +101,17 @@ public class DoctorDetailsController implements Initializable {
      * Initializes the controller class.
      */
     public void initialize(URL url, ResourceBundle rb) {
+        String url2 = System.getProperty("user.dir")+File.separator+"images"+File.separator+"anonimo.png";
+        Image avatar = null;
+        try {
+            avatar = new Image(new FileInputStream(url2));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DoctorDetailsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        imageView.imageProperty().setValue(avatar);
     }    
     
-    public void initData(ObservableList<Person> persons, ArrayList<Doctor> doctors, int index){
+    public void initData(ObservableList<Person> persons, ArrayList<Doctor> doctors, int index) throws FileNotFoundException{
         this.index = index;
         this.doctors = doctors;
         this.persons = persons;
@@ -133,7 +143,10 @@ public class DoctorDetailsController implements Initializable {
             numberRoomField.setEditable(false);
             equipmentField.setText(doctor.getExaminationRoom().getEquipmentDescription());
             equipmentField.setEditable(false);
-            imageView.imageProperty().setValue(doctor.getPhoto());
+            Image image = doctor.getPhoto();
+            if(image != null){
+                imageView.imageProperty().setValue(image);
+            }
             searchButton.setVisible(false);
         }
     }    

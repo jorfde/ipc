@@ -51,6 +51,8 @@ public class ManagementApplicationController implements Initializable {
     public static final int APPOINTMENT_MODE = 2;
     
     private Stage mainStage;
+    @FXML
+    private Button exitButton;
 
     /**
      * Initializes the controller class.
@@ -67,7 +69,7 @@ public class ManagementApplicationController implements Initializable {
             case "patientButton": createTable(PATIENT_MODE);break;
             case "doctorButton": createTable(DOCTOR_MODE);break;
             case "appointmentButton": createTable(APPOINTMENT_MODE);break;
-            case "":
+            case "exitButton":
         }
     }
     
