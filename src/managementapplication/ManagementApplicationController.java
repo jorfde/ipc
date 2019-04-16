@@ -67,6 +67,7 @@ public class ManagementApplicationController implements Initializable {
             case "patientButton": createTable(PATIENT_MODE);break;
             case "doctorButton": createTable(DOCTOR_MODE);break;
             case "appointmentButton": createTable(APPOINTMENT_MODE);break;
+            case "":
         }
     }
     
