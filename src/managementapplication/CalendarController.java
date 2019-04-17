@@ -25,6 +25,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -117,7 +118,8 @@ public class CalendarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         //Initialization of the columns of the TableView
+         
+        //Initialization of the columns of the TableView
         timeColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, LocalTime>("slot"));
         mondayColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, String>("mondayAvailability"));
         tuesdayColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, String>("tuesdayAvailability"));
@@ -126,6 +128,30 @@ public class CalendarController implements Initializable {
         fridayColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, String>("fridayAvailability"));
         saturdayColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, String>("saturdayAvailability"));
         sundayColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, String>("sundayAvailability"));
+        
+        timeColumn.setCellFactory(column -> {
+            return new TableCell<SlotWeek, LocalTime>() {
+                @Override
+                protected void updateItem(LocalTime item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setDisable(true);
+                        setText(item.toString());
+                    }
+                }
+            };
+        });
+        
+        disableCell(mondayColumn);
+        disableCell(tuesdayColumn);
+        disableCell(wednesdayColumn);
+        disableCell(thursdayColumn);
+        disableCell(fridayColumn);
+        disableCell(saturdayColumn);
+        disableCell(sundayColumn);
         
         //Not editable fields
         timeField.setEditable(false);
@@ -137,33 +163,28 @@ public class CalendarController implements Initializable {
         //Add a listener to the cell of the TableView
         ObservableList<TablePosition> selectedCells = tableView.getSelectionModel().getSelectedCells() ;
         selectedCells.addListener((ListChangeListener.Change<? extends TablePosition> change) -> {
-            if (selectedCells.size() > 0) {
+            if (selectedCells.size() > 0) {           
                 TablePosition selectedCell = selectedCells.get(0);
-                TableColumn column = selectedCell.getTableColumn();
                 int columnIndex = selectedCell.getColumn();
                 int rowIndex = selectedCell.getRow();
                 
                 time = slots.get(rowIndex).getSlot();
                 timeField.setText(time.toString());
                 
-                if(columnIndex > 0 && !column.getCellData(rowIndex).equals("Not Available")){
+                if(columnIndex > 0){
                     int sumDays = columnIndex - weekDay;
                     weekDay = columnIndex;
+                    
                     if(sumDays > 0)
                         date = date.plusDays(sumDays);
                     if(sumDays < 0)
                         date = date.minusDays(sumDays * -1);
                                                                                                                         
                     dateField.setText(date.toString());
-                    
-                    if(date.isAfter(LocalDate.now())){
-                        dateValid = true;
-                    } else {
-                        dateValid = false;
-                    }
-                } else {
-                    dateField.setText("");
-                }  
+                    dateValid = true;
+                }
+                
+                updateLabel();
             }
         });
     }    
@@ -192,17 +213,17 @@ public class CalendarController implements Initializable {
             case "okButton":
                 if(dateValid) {
                     controller.getData(LocalDateTime.of(date, time));
-                    ((Node) event.getSource()).getScene().getWindow().hide();
+                    okButton.getScene().getWindow().hide();
                 } else {
                     errorAlert.setContentText("Please select a free day");
                     errorAlert.showAndWait();
                 }
                 break;
                 
-            case "cancelButton": ((Node) event.getSource()).getScene().getWindow().hide();
+            case "cancelButton": cancelButton.getScene().getWindow().hide();
         }
         
-        weekNumberLabel.setText("Week of the year: "+ week +" Month: " + date.getMonth() +  " Year: " + date.getYear() );
+        updateLabel();
     }
     
     public void initData(Patient p, Doctor d, AddAppointmentController before) {
@@ -229,8 +250,35 @@ public class CalendarController implements Initializable {
         
         date = LocalDate.now();
         
-        weekNumberLabel.setText("Week of the year: "+ week +" Month: " + date.getMonth() +  " Year: " + date.getYear() );
+        updateLabel();
         
         weekDay = numDayNow;
+    }
+    
+    private void disableCell(TableColumn tcolumn){
+        tcolumn.setCellFactory(column -> {
+            return new TableCell<SlotWeek, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        if(!item.equalsIgnoreCase("Free")){
+                            setDisable(true);
+                        }  
+                        else {
+                            setDisable(false);
+                        }
+                        setText(item);
+                    }
+                }
+            };
+        });
+    }
+    
+    private void updateLabel(){
+        weekNumberLabel.setText("DAY: "+ date.getDayOfMonth() +" MONTH: " + date.getMonth() +  " YEAR: " + date.getYear() );
     }
 }

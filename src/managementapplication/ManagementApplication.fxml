@@ -103,7 +103,7 @@
                      <children>
                         <HBox prefHeight="50.0" prefWidth="203.0">
                            <children>
-                              <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="61.0" styleClass="exitButton" text="Exit">
+                              <Button fx:id="exitButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="61.0" styleClass="exitButton" text="Exit">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="150.0" />
                                  </HBox.margin></Button>

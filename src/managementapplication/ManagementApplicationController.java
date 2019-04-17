@@ -7,14 +7,9 @@
 package managementapplication;
 
 import DBAccess.ClinicDBAccess;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,12 +19,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import model.Patient;
 
 /**
  * FXML Controller class
@@ -43,6 +35,8 @@ public class ManagementApplicationController implements Initializable {
     private Button doctorButton;
     @FXML
     private Button appointmentButton;
+    @FXML
+    private Button exitButton;
     
     private ClinicDBAccess clinic;
     
@@ -51,8 +45,9 @@ public class ManagementApplicationController implements Initializable {
     public static final int APPOINTMENT_MODE = 2;
     
     private Stage mainStage;
-    @FXML
-    private Button exitButton;
+    
+    private Alert alert;
+    
 
     /**
      * Initializes the controller class.
@@ -61,6 +56,11 @@ public class ManagementApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         clinic.setClinicName("IPC Medical Services Clinic");
+        
+        alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(clinic.getClinicName());
+        alert.setHeaderText("Saving data in DB");
+        alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
     }    
 
     @FXML
@@ -69,7 +69,7 @@ public class ManagementApplicationController implements Initializable {
             case "patientButton": createTable(PATIENT_MODE);break;
             case "doctorButton": createTable(DOCTOR_MODE);break;
             case "appointmentButton": createTable(APPOINTMENT_MODE);break;
-            case "exitButton":
+            case "exitButton": alert.show();clinic.saveDB();mainStage.close();
         }
     }
     
@@ -105,10 +105,7 @@ public class ManagementApplicationController implements Initializable {
         mainStage = s;
         
         mainStage.setOnCloseRequest((WindowEvent event) ->{
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle(clinic.getClinicName());
-        alert.setHeaderText("Saving data in DB");
-        alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+        
         alert.show();
         clinic.saveDB();
         });
