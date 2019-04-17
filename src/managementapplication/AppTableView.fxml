@@ -8,9 +8,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppTableViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AppTableViewController">
    <right>
       <VBox prefHeight="400.0" prefWidth="89.0" BorderPane.alignment="CENTER">
          <children>
@@ -54,28 +57,44 @@
       </TableView>
    </center>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Exit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="View">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Doctors" />
-                  <MenuItem mnemonicParsing="false" text="Patients" />
-                  <MenuItem mnemonicParsing="false" text="Appointments" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Add">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Doctors" />
-                  <MenuItem mnemonicParsing="false" text="Patients" />
-                  <MenuItem mnemonicParsing="false" text="Appointments" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="629.0">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Exit">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Close" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="View">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Doctors" />
+                              <MenuItem mnemonicParsing="false" text="Patients" />
+                              <MenuItem mnemonicParsing="false" text="Appointments" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Add">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Doctors" />
+                              <MenuItem mnemonicParsing="false" text="Patients" />
+                              <MenuItem mnemonicParsing="false" text="Appointments" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Y View">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </top>
 </BorderPane>
