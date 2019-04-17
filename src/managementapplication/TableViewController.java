@@ -216,15 +216,12 @@ public class TableViewController implements Initializable {
         Pane root = (Pane) myLoader.load();;
         
         AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
+        appTableViewController.initStage(primaryStage);
         appTableViewController.initData(mode, patientID, doctorID);
       
         Scene scene = new Scene (root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("List of appointments");
-             
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show(); 
+        primaryStage.setScene(scene);
+        primaryStage.show(); 
     }
 
     public void initStage(Stage stage) {
