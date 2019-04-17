@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane minWidth="-Infinity" prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
    <right>
@@ -51,11 +52,11 @@
       </VBox>
    </right>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="297.0" prefWidth="544.0" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="patientTable" prefHeight="538.0" prefWidth="299.0">
               <columns>
-                  <TableColumn fx:id="patientColumn" minWidth="102.5" prefWidth="298.0" styleClass="tableColumn" text="Patient" />
+                  <TableColumn fx:id="patientColumn" minWidth="102.5" prefWidth="289.99999809265137" styleClass="tableColumn" text="Patient" />
               </columns>
             </TableView>
             <TableView fx:id="doctorTable" prefHeight="538.0" prefWidth="261.0">
@@ -69,4 +70,18 @@
          </BorderPane.margin>
       </HBox>
    </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="794.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Add an appointment">
+               <font>
+                  <Font size="48.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="25.0" top="25.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

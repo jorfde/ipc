@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.ManagementApplicationController">
+<Pane stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.ManagementApplicationController">
    
 
     <children>
@@ -102,12 +102,6 @@
                   <VBox prefHeight="49.0" prefWidth="215.0">
                      <children>
                         <HBox prefHeight="50.0" prefWidth="203.0">
-                           <children>
-                              <Button fx:id="exitButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="61.0" styleClass="exitButton" text="Exit">
-                                 <HBox.margin>
-                                    <Insets bottom="10.0" left="150.0" />
-                                 </HBox.margin></Button>
-                           </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
