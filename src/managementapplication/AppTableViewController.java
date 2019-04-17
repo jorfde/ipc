@@ -114,7 +114,7 @@ public class AppTableViewController implements Initializable {
         Pane root = (Pane) myLoader.load();;
         
         AddAppointmentController addAppointmentController = myLoader.<AddAppointmentController>getController();
-        addAppointmentController.initData();
+        addAppointmentController.initData(appointments);
       
         Scene scene = new Scene (root);
         Stage stage = new Stage();

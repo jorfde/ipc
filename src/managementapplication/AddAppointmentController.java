@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
-import model.Person;
 
 /**
  * FXML Controller class
@@ -64,9 +63,11 @@ public class AddAppointmentController implements Initializable {
     
     private ObservableList<Doctor> doctors = FXCollections.observableArrayList();
     
-    private int patientIndex;
+    private ObservableList<Appointment> appointments = FXCollections.observableArrayList();
     
-    private int doctorIndex;
+    private Doctor doctor;
+    
+    private Patient patient;
     
     private LocalDateTime date;
     
@@ -88,7 +89,9 @@ public class AddAppointmentController implements Initializable {
         dateField.setEditable(false);
     }    
 
-    void initData() {
+    void initData(ObservableList<Appointment> appointments) {
+        this.appointments = appointments;
+        
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         
         patients = FXCollections.observableList( clinic.getPatients() );
@@ -100,8 +103,11 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     private void buttonHandle(ActionEvent event) throws IOException {
-        patientIndex = patientTable.getSelectionModel().selectedIndexProperty().getValue();
-        doctorIndex = doctorTable.getSelectionModel().selectedIndexProperty().getValue();
+        int patientIndex = patientTable.getSelectionModel().selectedIndexProperty().getValue();
+        int doctorIndex = doctorTable.getSelectionModel().selectedIndexProperty().getValue();
+        
+        patient = patients.get(patientIndex);
+        doctor = doctors.get(doctorIndex);
 
         switch(((Node)event.getSource()).getId()){
             case "setTimeButton": 
@@ -110,12 +116,12 @@ public class AddAppointmentController implements Initializable {
                 
             case "okButton":
                 if(done){
-                    clinic.getAppointments().add(new Appointment(date, clinic.getDoctors().get(doctorIndex), clinic.getPatients().get(patientIndex)));
+                    appointments.add(new Appointment(date, doctor, patient));
                 }
-                ((Node) event.getSource()).getScene().getWindow().hide();
+                okButton.getScene().getWindow().hide();
                 break;
                 
-            case "cancelButton": ((Node) event.getSource()).getScene().getWindow().hide();break;
+            case "cancelButton": cancelButton.getScene().getWindow().hide();break;
         }
     }
     
@@ -124,7 +130,7 @@ public class AddAppointmentController implements Initializable {
         Pane root = (Pane) myLoader.load();
         
         CalendarController calendarController = myLoader.<CalendarController>getController();
-        calendarController.initData(clinic.getPatients().get(patientIndex), clinic.getDoctors().get(doctorIndex), this);
+        calendarController.initData(patient, doctor, this);
       
         Scene scene = new Scene (root);
         Stage stage = new Stage();
