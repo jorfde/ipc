@@ -52,7 +52,8 @@ public class AppTableViewController implements Initializable {
     private TableColumn<Appointment, String> timeColumn;
     @FXML
     private Button addButton;
-    private Button viewButton;
+    @FXML
+    private Button returnButton;
     @FXML
     private Button deleteButton;
     
@@ -64,8 +65,9 @@ public class AppTableViewController implements Initializable {
     private Scene prevScene;
     private String prevTitle;
     
-    @FXML
-    private Button returnButton;
+    private int mode;
+    
+    private int index;
     
     private Alert remove = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -108,7 +110,7 @@ public class AppTableViewController implements Initializable {
         Pane root = (Pane) myLoader.load();;
         
         AddAppointmentController addAppointmentController = myLoader.<AddAppointmentController>getController();
-        addAppointmentController.initData(appointments);
+        addAppointmentController.initData(mode, appointments, index);
       
         Scene scene = new Scene (root);
         Stage stage = new Stage();
@@ -119,8 +121,10 @@ public class AppTableViewController implements Initializable {
         stage.show(); 
     }
     
-    public void initData(int mode, String patientID, String doctorID){
+    public void initData(int mode, String patientID, String doctorID, int index){
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
+        this.mode = mode;
+        this.index = index;
         
         switch(mode){
             case PATIENT_MODE:

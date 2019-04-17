@@ -59,6 +59,8 @@ public class TableViewController implements Initializable {
     private Button deleteButton;
     @FXML
     private Button appointmentButton;
+    @FXML
+    private Button returnButton;
     
     private ArrayList<Patient> patients;
     private ArrayList<Doctor> doctors;
@@ -74,8 +76,8 @@ public class TableViewController implements Initializable {
     private Stage primaryStage;
     private Scene prevScene;
     private String prevTitle;
-    @FXML
-    private Button returnButton;
+    
+    private int index;
     
     /**
      * Initializes the controller class.
@@ -166,7 +168,7 @@ public class TableViewController implements Initializable {
     
     @FXML
     private void buttonHandler(ActionEvent event) throws IOException {
-        int index = tableView.getSelectionModel().selectedIndexProperty().getValue();
+        index = tableView.getSelectionModel().selectedIndexProperty().getValue();
         boolean removed = false;
         boolean continueRemove = false;
         switch(((Node)event.getSource()).getId()){
@@ -217,7 +219,7 @@ public class TableViewController implements Initializable {
         
         AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
         appTableViewController.initStage(primaryStage);
-        appTableViewController.initData(mode, patientID, doctorID);
+        appTableViewController.initData(mode, patientID, doctorID, index);
       
         Scene scene = new Scene (root);
         primaryStage.setScene(scene);

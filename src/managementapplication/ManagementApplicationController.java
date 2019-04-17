@@ -93,7 +93,7 @@ public class ManagementApplicationController implements Initializable {
                 root = (Pane) myLoader.load();
                 AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
                 appTableViewController.initStage(mainStage);
-                appTableViewController.initData(mode, null, null);
+                appTableViewController.initData(mode, null, null, -1);
                 break;
         }
         
