@@ -103,11 +103,5 @@ public class ManagementApplicationController implements Initializable {
     
     public void initStage(Stage s){
         mainStage = s;
-        
-        mainStage.setOnCloseRequest((WindowEvent event) ->{
-        
-        alert.show();
-        clinic.saveDB();
-        });
     }
 }

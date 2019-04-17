@@ -23,14 +23,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import static managementapplication.ManagementApplicationController.APPOINTMENT_MODE;
 import static managementapplication.ManagementApplicationController.DOCTOR_MODE;
 import static managementapplication.ManagementApplicationController.PATIENT_MODE;
@@ -54,7 +51,6 @@ public class AppTableViewController implements Initializable {
     private TableColumn<Appointment, String> timeColumn;
     @FXML
     private Button addButton;
-    @FXML
     private Button viewButton;
     @FXML
     private Button deleteButton;
@@ -97,7 +93,7 @@ public class AppTableViewController implements Initializable {
     @FXML
     private void buttonHandler(ActionEvent event) throws IOException {
         int index = tableView.getSelectionModel().selectedIndexProperty().getValue();
-        boolean removed = false;
+
         switch(((Node)event.getSource()).getId()){
             case "addButton": createAddWindow();break;
                 
@@ -131,13 +127,16 @@ public class AppTableViewController implements Initializable {
         switch(mode){
             case PATIENT_MODE:
                     appointments = FXCollections.observableList( clinic.getPatientAppointments(patientID) );
+                    primaryStage.setTitle("Patient's Appointments");
                     break;
             case DOCTOR_MODE: 
                     appointments = FXCollections.observableList( clinic.getDoctorAppointments(doctorID) );
+                    primaryStage.setTitle("Doctor's Appointments");
                     break;
                 
             case APPOINTMENT_MODE:
                     appointments = FXCollections.observableList( clinic.getAppointments() );
+                    primaryStage.setTitle("List of Appointments");
                     break;
                 
         }
@@ -149,15 +148,6 @@ public class AppTableViewController implements Initializable {
         primaryStage = stage;
         prevScene = stage.getScene();
         prevTitle = stage.getTitle();
-        
-        primaryStage.setOnCloseRequest((WindowEvent event) ->{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(clinic.getClinicName());
-            alert.setHeaderText("Saving data in DB");
-            alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
-            alert.show();
-            clinic.saveDB();
-        });
     }
     
     private void exit(){

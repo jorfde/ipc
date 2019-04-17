@@ -231,15 +231,6 @@ public class TableViewController implements Initializable {
         primaryStage = stage;
         prevScene = stage.getScene();
         prevTitle = stage.getTitle();
-        
-        primaryStage.setOnCloseRequest((WindowEvent event) ->{
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(clinic.getClinicName());
-        alert.setHeaderText("Saving data in DB");
-        alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
-        alert.show();
-        clinic.saveDB();
-        });
     }
     
     private void exit(){
