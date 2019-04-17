@@ -11,21 +11,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="777.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="899.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
    <padding>
       <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
    </padding>
    <center>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" styleClass="tableColumn" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="283.0" prefWidth="599.0" styleClass="tableColumn" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn fx:id="timeColumn" prefWidth="75.0" styleClass="tableview" text="Time" />
-            <TableColumn fx:id="mondayColumn" prefWidth="75.0" styleClass="tableview" text="Mon." />
-          <TableColumn fx:id="tuesdayColumn" prefWidth="75.0" styleClass="tableview" text="Tue." />
-          <TableColumn fx:id="wednesdayColumn" prefWidth="75.0" styleClass="tableview" text="Wed." />
-            <TableColumn fx:id="thursdayColumn" prefWidth="75.0" styleClass="tableview" text="Th." />
-            <TableColumn fx:id="fridayColumn" prefWidth="75.0" styleClass="tableview" text="Fri." />
-            <TableColumn fx:id="saturdayColumn" prefWidth="75.0" styleClass="tableview" text="Sat." />
-            <TableColumn fx:id="sundayColumn" prefWidth="75.0" styleClass="tableview" text="Sun." />
+            <TableColumn fx:id="timeColumn" prefWidth="80.68903923034668" styleClass="tableview" text="Time" />
+            <TableColumn fx:id="mondayColumn" prefWidth="84.5" styleClass="tableview" text="Mon." />
+          <TableColumn fx:id="tuesdayColumn" prefWidth="84.5" styleClass="tableview" text="Tue." />
+          <TableColumn fx:id="wednesdayColumn" prefWidth="84.5" styleClass="tableview" text="Wed." />
+            <TableColumn fx:id="thursdayColumn" prefWidth="84.5" styleClass="tableview" text="Th." />
+            <TableColumn fx:id="fridayColumn" prefWidth="84.5" styleClass="tableview" text="Fri." />
+            <TableColumn fx:id="saturdayColumn" prefWidth="84.5" styleClass="tableview" text="Sat." />
+            <TableColumn fx:id="sundayColumn" prefWidth="84.5" styleClass="tableview" text="Sun." />
         </columns>
       </TableView>
    </center>
@@ -62,7 +62,7 @@
       </HBox>
    </top>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="279.0" prefWidth="152.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="25.0" />
          </BorderPane.margin>
@@ -74,14 +74,19 @@
                   <Insets top="30.0" />
                </VBox.margin></Label>
             <TextField fx:id="dateField" styleClass="textForm" />
-            <Button fx:id="okButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="157.0" styleClass="saveButton" text="OK">
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="164.0" styleClass="exitButton" text="Cancel">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="okButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="157.0" styleClass="saveButton" text="OK" />
+               </children>
                <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin></Button>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="194.0" styleClass="exitButton" text="Cancel">
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin></Button>
+                  <Insets top="120.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
    </right>

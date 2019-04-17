@@ -33,7 +33,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </Button>
-            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="130.0" text="Return">
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="130.0" styleClass="returnButton" text="Return">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin></Button>
