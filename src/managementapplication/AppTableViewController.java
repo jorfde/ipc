@@ -85,9 +85,6 @@ public class AppTableViewController implements Initializable {
         
         //Disable delete button
         deleteButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
-        
-        //Disable view details button
-        viewButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
     }    
 
     @FXML
