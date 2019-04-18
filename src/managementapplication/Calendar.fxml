@@ -39,7 +39,7 @@
                         <Insets right="25.0" />
                      </HBox.margin>
                   </Button>
-                  <Label fx:id="weekNumberLabel" prefHeight="23.0" prefWidth="506.0">
+                  <Label fx:id="weekNumberLabel" prefHeight="23.0" prefWidth="226.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -76,12 +76,15 @@
             <TextField fx:id="dateField" styleClass="textForm" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="164.0" styleClass="exitButton" text="Cancel">
+                  <Button fx:id="okButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="78.0" styleClass="saveButton" text="OK">
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="92.0" styleClass="exitButton" text="Cancel">
+                     <HBox.margin>
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="okButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="157.0" styleClass="saveButton" text="OK" />
                </children>
                <VBox.margin>
                   <Insets top="120.0" />
