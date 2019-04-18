@@ -159,6 +159,8 @@ public class TableViewController implements Initializable {
         
         Scene scene = new Scene (root);
         stage.setScene(scene);
+        stage.setMinWidth(791);
+        stage.setMinHeight(513);
         
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();

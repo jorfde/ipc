@@ -142,6 +142,8 @@ public class AppTableViewController implements Initializable {
         Scene scene = new Scene (root);
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setMinWidth(794);
+        stage.setMinHeight(681);
              
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show(); 
