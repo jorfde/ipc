@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/ManagementApplication.java</file>
-            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/PatientDetailsController.java</file>
-            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/ManagementApplicationController.java</file>
-            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/AppTableViewController.java</file>
-            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/TableViewController.java</file>
-            <file>file:/C:/Users/Stéphane/Documents/NetBeansProjects/ManagementApplication/src/managementapplication/DoctorDetailsController.java</file>
+            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/ManagementApplicationController.java</file>
+            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/PatientDetailsController.java</file>
+            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/AddAppointmentController.java</file>
+            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/ManagementApplication.java</file>
+            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/DoctorDetailsController.java</file>
+            <file>file:/Users/jorge/Desktop/ipcdeliverable1/ipc/src/managementapplication/CalendarController.java</file>
         </group>
     </open-files>
 </project-private>
