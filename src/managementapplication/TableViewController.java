@@ -138,6 +138,7 @@ public class TableViewController implements Initializable {
     public void createDetailsWindow(int index, int mode) throws IOException{
         FXMLLoader myLoader = null; 
         Pane root = null;
+        Stage stage = new Stage();
         
         switch(mode){
             case PATIENT_MODE: 
@@ -145,17 +146,18 @@ public class TableViewController implements Initializable {
                 root = (Pane) myLoader.load();
                 PatientDetailsController patientController = myLoader.<PatientDetailsController>getController();
                 patientController.initData(persons, patients, index);
+                stage.setMinWidth(791);stage.setMinHeight(513);
                 break;
             case DOCTOR_MODE: 
                 myLoader = new FXMLLoader(getClass().getResource("DoctorDetails.fxml"));
                 root = (Pane) myLoader.load();
                 DoctorDetailsController doctorController = myLoader.<DoctorDetailsController>getController();
                 doctorController.initData(persons, doctors, index);
+                stage.setMinWidth(600);stage.setMinHeight(649);
                 break;
         }
         
         Scene scene = new Scene (root);
-        Stage stage = new Stage();
         stage.setScene(scene);
         
         stage.initModality(Modality.APPLICATION_MODAL);

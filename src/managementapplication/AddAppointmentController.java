@@ -199,6 +199,7 @@ public class AddAppointmentController implements Initializable {
       
         Scene scene = new Scene (root);
         Stage stage = new Stage();
+        stage.setMinWidth(916);stage.setMinHeight(512);
         stage.setScene(scene);
              
         stage.initModality(Modality.APPLICATION_MODAL);
