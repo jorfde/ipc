@@ -184,7 +184,7 @@ public class AppTableViewController implements Initializable {
     }
     
     @FXML
-    private void menuHandler(ActionEvent event) {
+    private void menuHandler(ActionEvent event) throws IOException {
         switch(((MenuItem)event.getSource()).getId()){
             case "closeMenu": 
                 
@@ -198,7 +198,7 @@ public class AppTableViewController implements Initializable {
             
             case "addPatientMenu": 
                 
-            case "addAppMenu": 
+            case "addAppMenu": createAddWindow();break;
         }
     }
 }

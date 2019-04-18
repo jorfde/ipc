@@ -35,7 +35,7 @@ public class ManagementApplicationController implements Initializable {
     @FXML
     private Button doctorButton;
     @FXML
-    private Button exitButton;
+    private Button appointmentButton;
     
     private ClinicDBAccess clinic;
     

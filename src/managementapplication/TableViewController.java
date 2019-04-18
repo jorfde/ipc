@@ -124,7 +124,7 @@ public class TableViewController implements Initializable {
         remove.setContentText("Do you want to continue?");
     }
     
-    private void createDetailsWindow(int index) throws IOException{
+    private void createDetailsWindow(int index, int mode) throws IOException{
         FXMLLoader myLoader = null; 
         Pane root = null;
         
@@ -192,8 +192,8 @@ public class TableViewController implements Initializable {
         boolean removed = false;
         boolean continueRemove = false;
         switch(((Node)event.getSource()).getId()){
-            case "addButton": createDetailsWindow(-1);break;
-            case "viewButton": createDetailsWindow(index);break;
+            case "addButton": createDetailsWindow(-1, mode);break;
+            case "viewButton": createDetailsWindow(index, mode);break;
             case "deleteButton": 
                 
                 if(mode == PATIENT_MODE && !clinic.hasAppointments(clinic.getPatients().get(index))){
