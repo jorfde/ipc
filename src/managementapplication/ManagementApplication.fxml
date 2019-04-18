@@ -42,7 +42,7 @@
                         <Font size="30.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets bottom="5.0" />
                      </HBox.margin>
                   </Text>
                </children>
@@ -55,7 +55,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="734.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What kind of operation do you want to perform?" textAlignment="CENTER" wrappingWidth="690.59375">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="What kind of task do you want to perform?" textAlignment="CENTER" wrappingWidth="690.59375">
                      <font>
                         <Font size="20.0" />
                      </font>

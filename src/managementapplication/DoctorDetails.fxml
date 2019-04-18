@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="649.0" minWidth="600.0" prefHeight="649.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.DoctorDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="649.0" minWidth="600.0" prefHeight="649.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.DoctorDetailsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
    <top>
       <HBox prefHeight="129.0" prefWidth="570.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="doctorTitle" text="Doctor Details" wrappingWidth="569.982421875">
+            <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="doctorTitle" text="New Doctor " wrappingWidth="569.982421875">
                <font>
                   <Font size="59.0" />
                </font>
