@@ -10,51 +10,82 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="899.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="916.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
    <padding>
       <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
    </padding>
    <center>
-      <TableView fx:id="tableView" prefHeight="283.0" prefWidth="599.0" styleClass="tableColumn" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="283.0" prefWidth="599.0" BorderPane.alignment="CENTER">
         <columns>
             <TableColumn fx:id="timeColumn" prefWidth="80.68903923034668" text="Time" />
             <TableColumn fx:id="mondayColumn" prefWidth="84.5" text="Mon." />
           <TableColumn fx:id="tuesdayColumn" prefWidth="84.5" text="Tue." />
           <TableColumn fx:id="wednesdayColumn" prefWidth="84.5" text="Wed." />
             <TableColumn fx:id="thursdayColumn" prefWidth="84.5" text="Th." />
-            <TableColumn fx:id="fridayColumn" prefWidth="84.5" text="Fri." />
-            <TableColumn fx:id="saturdayColumn" prefWidth="84.5" text="Sat." />
-            <TableColumn fx:id="sundayColumn" prefWidth="84.5" text="Sun." />
+            <TableColumn fx:id="fridayColumn" prefWidth="93.80245971679688" text="Fri." />
+            <TableColumn fx:id="saturdayColumn" prefWidth="89.45361328125" text="Sat." />
+            <TableColumn fx:id="sundayColumn" prefWidth="86.54632568359375" text="Sun." />
         </columns>
       </TableView>
    </center>
    <top>
-      <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="422.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="161.0" prefWidth="1013.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="46.0" prefWidth="408.0">
+            <VBox prefHeight="112.0" prefWidth="1157.0">
                <children>
-                  <Button fx:id="beforeWeek" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="17.0" text="&lt;">
-                     <HBox.margin>
-                        <Insets right="25.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label fx:id="weekNumberLabel" prefHeight="23.0" prefWidth="226.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Button fx:id="nextWeek" mnemonicParsing="false" onAction="#buttonHandler" text="&gt;">
-                     <HBox.margin>
-                        <Insets left="25.0" />
-                     </HBox.margin>
-                  </Button>
-                  <VBox prefHeight="200.0" prefWidth="100.0" />
+                  <HBox prefHeight="93.0" prefWidth="1075.0" styleClass="doctorTitle">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Calendar">
+                                 <font>
+                                    <Font size="60.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="25.0" top="25.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a slot in the table marked as free and press OK">
+                                 <VBox.margin>
+                                    <Insets left="25.0" top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="46.0" prefWidth="531.0">
+                     <children>
+                        <Button fx:id="beforeWeek" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="0.0" text="&lt;">
+                           <HBox.margin>
+                              <Insets left="175.0" right="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Label fx:id="weekNumberLabel" prefHeight="23.0" prefWidth="226.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="nextWeek" mnemonicParsing="false" onAction="#buttonHandler" text="&gt;">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="25.0" />
