@@ -52,12 +52,12 @@
                      <children>
                         <HBox prefHeight="27.0" prefWidth="318.0">
                            <children>
-                              <Label text="Identifier:   ">
+                              <Label prefHeight="17.0" prefWidth="90.0" text="Identifier:   ">
                                  <HBox.margin>
-                                    <Insets right="45.0" />
+                                    <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="identifierField" styleClass="textForm">
+                              <TextField fx:id="identifierField" prefWidth="170.0" styleClass="textForm">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></TextField>
@@ -69,12 +69,12 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Name:   ">
+                              <Label prefHeight="17.0" prefWidth="90.0" text="Name:   ">
                                  <HBox.margin>
-                                    <Insets right="65.0" />
+                                    <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="nameField" styleClass="textForm">
+                              <TextField fx:id="nameField" prefWidth="170.0" styleClass="textForm">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></TextField>
@@ -86,12 +86,12 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Surname:  ">
+                              <Label prefHeight="17.0" prefWidth="90.0" text="Surname:  ">
                                  <HBox.margin>
-                                    <Insets right="50.0" />
+                                    <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="surnameField" styleClass="textForm">
+                              <TextField fx:id="surnameField" prefWidth="170.0" styleClass="textForm">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></TextField>
@@ -103,12 +103,12 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Telephone: ">
+                              <Label prefWidth="90.0" text="Telephone: ">
                                  <HBox.margin>
-                                    <Insets right="45.0" />
+                                    <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="telephoneField" prefHeight="27.0" prefWidth="165.0" styleClass="textForm">
+                              <TextField fx:id="telephoneField" prefHeight="27.0" prefWidth="170.0" styleClass="textForm">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></TextField>
@@ -120,12 +120,12 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Visit days: ">
+                              <Label prefWidth="90.0" text="Visit days: ">
                                  <HBox.margin>
-                                    <Insets right="50.0" />
+                                    <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="visitDaysField" styleClass="textForm">
+                              <TextField fx:id="visitDaysField" prefWidth="170.0" styleClass="textForm">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></TextField>
@@ -137,12 +137,12 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Starting time: ">
+                              <Label prefWidth="90.0" text="Starting time: ">
                                  <HBox.margin>
                                     <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="startingTimeField" prefHeight="27.0" prefWidth="165.0" styleClass="textForm">
+                              <TextField fx:id="startingTimeField" prefHeight="27.0" prefWidth="170.0" styleClass="textForm">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></TextField>
@@ -154,12 +154,12 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Ending time: ">
+                              <Label prefHeight="17.0" prefWidth="90.0" text="Ending time: ">
                                  <HBox.margin>
-                                    <Insets right="35.0" />
+                                    <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="endingTimeField" prefHeight="27.0" prefWidth="171.0" styleClass="textForm">
+                              <TextField fx:id="endingTimeField" prefHeight="27.0" prefWidth="170.0" styleClass="textForm">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></TextField>
