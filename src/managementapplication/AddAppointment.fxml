@@ -83,9 +83,9 @@
                         <Insets left="25.0" top="25.0" />
                      </VBox.margin>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the doctor you want to visit and click the  blue button">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a patient and a doctor and click the blue button">
                      <VBox.margin>
-                        <Insets left="25.0" top="15.0" />
+                        <Insets left="25.0" top="10.0" />
                      </VBox.margin>
                      <font>
                         <Font size="14.0" />

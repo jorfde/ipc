@@ -39,7 +39,7 @@
                         <Insets right="25.0" />
                      </HBox.margin>
                   </Button>
-                  <Label fx:id="weekNumberLabel" prefHeight="23.0" prefWidth="152.0">
+                  <Label fx:id="weekNumberLabel" prefHeight="23.0" prefWidth="506.0">
                      <font>
                         <Font size="18.0" />
                      </font>
