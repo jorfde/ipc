@@ -106,6 +106,7 @@ public class ManagementApplicationController implements Initializable {
     }
     
     public void createTable(int mode) throws IOException {     
+        mainScene = mainStage.getScene();
         switch(mode){
             case PATIENT_MODE: 
 
@@ -125,7 +126,6 @@ public class ManagementApplicationController implements Initializable {
     
     public void initStage(Stage s){
         mainStage = s;
-        mainScene = s.getScene();
     }
 
     @FXML

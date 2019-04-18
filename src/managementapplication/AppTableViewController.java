@@ -164,9 +164,7 @@ public class AppTableViewController implements Initializable {
     }
     
     private void exit(){
-        System.out.println("0");
         primaryStage.setScene(mac.getMainScene());
-        System.out.println("1");
     }
     
     private boolean delete(){
