@@ -56,12 +56,12 @@
          <children>
             <TableView fx:id="patientTable" prefHeight="538.0" prefWidth="299.0">
               <columns>
-                  <TableColumn fx:id="patientColumn" minWidth="102.5" prefWidth="289.99999809265137" styleClass="tableColumn" text="Patient" />
+                  <TableColumn fx:id="patientColumn" minWidth="102.5" prefWidth="289.99999809265137" text="Patient" />
               </columns>
             </TableView>
             <TableView fx:id="doctorTable" prefHeight="538.0" prefWidth="261.0">
               <columns>
-                <TableColumn fx:id="doctorColumn" prefWidth="252.0" styleClass="tableColumn" text="Doctor" />
+                <TableColumn fx:id="doctorColumn" prefWidth="252.0" text="Doctor" />
               </columns>
             </TableView>
          </children>
@@ -79,8 +79,17 @@
                      <font>
                         <Font size="48.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="25.0" top="25.0" />
+                     </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a patient and a doctor and click the blue button">
+                     <VBox.margin>
+                        <Insets left="25.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font></Text>
                </children>
             </VBox>
          </children>
