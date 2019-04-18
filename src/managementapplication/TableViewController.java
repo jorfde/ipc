@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -59,6 +60,8 @@ public class TableViewController implements Initializable {
     private Button deleteButton;
     @FXML
     private Button appointmentButton;
+    @FXML
+    private Button returnButton;
     
     private ArrayList<Patient> patients;
     private ArrayList<Doctor> doctors;
@@ -74,8 +77,24 @@ public class TableViewController implements Initializable {
     private Stage primaryStage;
     private Scene prevScene;
     private String prevTitle;
+    
     @FXML
-    private Button returnButton;
+    private MenuItem closeMenu1;
+    @FXML
+    private MenuItem doctorsMenu;
+    @FXML
+    private MenuItem patientsMenu;
+    @FXML
+    private MenuItem appointmentsMenu;
+    @FXML
+    private MenuItem addDoctorMenu;
+    @FXML
+    private MenuItem addPatientMenu;
+    @FXML
+    private MenuItem addAppMenu;
+
+    
+    private int index;
     
     /**
      * Initializes the controller class.
@@ -166,7 +185,7 @@ public class TableViewController implements Initializable {
     
     @FXML
     private void buttonHandler(ActionEvent event) throws IOException {
-        int index = tableView.getSelectionModel().selectedIndexProperty().getValue();
+        index = tableView.getSelectionModel().selectedIndexProperty().getValue();
         boolean removed = false;
         boolean continueRemove = false;
         switch(((Node)event.getSource()).getId()){
@@ -217,7 +236,7 @@ public class TableViewController implements Initializable {
         
         AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
         appTableViewController.initStage(primaryStage);
-        appTableViewController.initData(mode, patientID, doctorID);
+        appTableViewController.initData(mode, patientID, doctorID, index);
       
         Scene scene = new Scene (root);
         primaryStage.setScene(scene);
@@ -243,5 +262,10 @@ public class TableViewController implements Initializable {
             }
             
          return res;
+    }
+    
+    @FXML
+    private void menuHandler(ActionEvent event) {
+    
     }
 }

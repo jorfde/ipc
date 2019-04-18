@@ -27,6 +27,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import static managementapplication.ManagementApplicationController.APPOINTMENT_MODE;
+import static managementapplication.ManagementApplicationController.DOCTOR_MODE;
+import static managementapplication.ManagementApplicationController.PATIENT_MODE;
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
@@ -72,6 +75,8 @@ public class AddAppointmentController implements Initializable {
     private LocalDateTime date;
     
     private boolean done;
+    
+    private int mode;
 
     /**
      * Initializes the controller class.
@@ -81,24 +86,55 @@ public class AddAppointmentController implements Initializable {
         patientColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getName() + " " +  c.getValue().getSurname()));
         doctorColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getName() + " " +  c.getValue().getSurname()));
         
-        //Disable set time button
-        setTimeButton.disableProperty().bind(Bindings.or(Bindings.equal(-1,patientTable.getSelectionModel().selectedIndexProperty()),
-                Bindings.equal(-1,doctorTable.getSelectionModel().selectedIndexProperty())));
-        
         timeField.setEditable(false);
         dateField.setEditable(false);
     }    
 
-    void initData(ObservableList<Appointment> appointments) {
+    void initData(int mode, ObservableList<Appointment> appointments, int index) {
         this.appointments = appointments;
+        this.mode = mode;
+        
+        setTimeButton.disableProperty().unbind();
+        
+        switch(mode){
+            case DOCTOR_MODE:
+                setTimeButton.disableProperty().bind(Bindings.equal(-1,patientTable.getSelectionModel().selectedIndexProperty()));
+                break;
+                
+            case PATIENT_MODE:
+                setTimeButton.disableProperty().bind(Bindings.equal(-1,doctorTable.getSelectionModel().selectedIndexProperty()));
+                break;
+                
+            case APPOINTMENT_MODE:
+                setTimeButton.disableProperty().bind(Bindings.or(Bindings.equal(-1,patientTable.getSelectionModel().selectedIndexProperty()),
+                Bindings.equal(-1,doctorTable.getSelectionModel().selectedIndexProperty())));
+                break;
+        }
         
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         
         patients = FXCollections.observableList( clinic.getPatients() );
-        patientTable.setItems(patients);
-        
         doctors = FXCollections.observableList( clinic.getDoctors() );
-        doctorTable.setItems(doctors);
+        
+        
+        switch(mode){
+            case DOCTOR_MODE:
+                patientTable.setItems(patients);
+                doctor = doctors.get(index);
+                doctorTable.setVisible(false);
+                break;
+                
+            case PATIENT_MODE:
+                doctorTable.setItems(doctors);
+                patient = patients.get(index);
+                patientTable.setVisible(false);
+                break;
+                
+            case APPOINTMENT_MODE:
+                patientTable.setItems(patients);
+                doctorTable.setItems(doctors);
+                break;
+        }
     }
 
     @FXML
@@ -106,8 +142,10 @@ public class AddAppointmentController implements Initializable {
         int patientIndex = patientTable.getSelectionModel().selectedIndexProperty().getValue();
         int doctorIndex = doctorTable.getSelectionModel().selectedIndexProperty().getValue();
         
-        patient = patients.get(patientIndex);
-        doctor = doctors.get(doctorIndex);
+        if(mode != PATIENT_MODE)
+            patient = patients.get(patientIndex);
+        if(mode != DOCTOR_MODE)
+            doctor = doctors.get(doctorIndex);
 
         switch(((Node)event.getSource()).getId()){
             case "setTimeButton": 
@@ -116,7 +154,10 @@ public class AddAppointmentController implements Initializable {
                 
             case "okButton":
                 if(done){
-                    appointments.add(new Appointment(date, doctor, patient));
+                    Appointment app = new Appointment(date, doctor, patient);
+                    appointments.add(app);
+                    if(mode != APPOINTMENT_MODE)
+                        clinic.getAppointments().add(app);
                 }
                 okButton.getScene().getWindow().hide();
                 break;
