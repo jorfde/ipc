@@ -54,8 +54,8 @@ public class ManagementApplication extends Application {
             }
         });
         stage.setScene(scene);
-        stage.setMinWidth(734);
-        stage.setMinHeight(558);
+        stage.setMinWidth(783);
+        stage.setMinHeight(640);
 
         stage.show();
     }
