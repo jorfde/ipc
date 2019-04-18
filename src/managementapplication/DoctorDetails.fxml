@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="649.0" minWidth="600.0" prefHeight="649.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.DoctorDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="649.0" minWidth="600.0" prefHeight="649.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.DoctorDetailsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -48,16 +48,19 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="357.0" prefWidth="371.0">
+                  <VBox prefHeight="329.0" prefWidth="400.0">
                      <children>
-                        <HBox prefHeight="20.0" prefWidth="570.0">
+                        <HBox prefHeight="27.0" prefWidth="318.0">
                            <children>
-                              <Label text="Identifier:               ">
+                              <Label text="Identifier:   ">
                                  <HBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="45.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="identifierField" styleClass="textForm" />
+                              <TextField fx:id="identifierField" styleClass="textForm">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></TextField>
                               <Label fx:id="identifierError" textFill="#e41111" />
                            </children>
                            <VBox.margin>
@@ -66,12 +69,15 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Name:                    ">
+                              <Label text="Name:   ">
                                  <HBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="65.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="nameField" styleClass="textForm" />
+                              <TextField fx:id="nameField" styleClass="textForm">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></TextField>
                               <Label fx:id="nameError" textFill="#e40707" />
                            </children>
                            <VBox.margin>
@@ -80,12 +86,15 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Surname:               ">
+                              <Label text="Surname:  ">
                                  <HBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="50.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="surnameField" styleClass="textForm" />
+                              <TextField fx:id="surnameField" styleClass="textForm">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></TextField>
                               <Label fx:id="surnameError" textFill="#d70b0b" />
                            </children>
                            <VBox.margin>
@@ -94,12 +103,15 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Telephone:            ">
+                              <Label text="Telephone: ">
                                  <HBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="45.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="telephoneField" styleClass="textForm" />
+                              <TextField fx:id="telephoneField" prefHeight="27.0" prefWidth="165.0" styleClass="textForm">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></TextField>
                               <Label fx:id="telephoneError" textFill="#dd0606" />
                            </children>
                            <VBox.margin>
@@ -108,12 +120,15 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Visit days:             ">
+                              <Label text="Visit days: ">
                                  <HBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="50.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="visitDaysField" styleClass="textForm" />
+                              <TextField fx:id="visitDaysField" styleClass="textForm">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></TextField>
                               <Label fx:id="visitDaysError" textFill="#e80909" />
                            </children>
                            <VBox.margin>
@@ -122,12 +137,15 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Starting time:        ">
+                              <Label text="Starting time: ">
                                  <HBox.margin>
                                     <Insets right="30.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="startingTimeField" styleClass="textForm" />
+                              <TextField fx:id="startingTimeField" prefHeight="27.0" prefWidth="165.0" styleClass="textForm">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></TextField>
                               <Label fx:id="startingTimeError" textFill="#eb0808" />
                            </children>
                            <VBox.margin>
@@ -136,12 +154,15 @@
                         </HBox>
                         <HBox prefHeight="0.0" prefWidth="570.0">
                            <children>
-                              <Label text="Ending time:          ">
+                              <Label text="Ending time: ">
                                  <HBox.margin>
-                                    <Insets right="30.0" />
+                                    <Insets right="35.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="endingTimeField" styleClass="textForm" />
+                              <TextField fx:id="endingTimeField" prefHeight="27.0" prefWidth="171.0" styleClass="textForm">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></TextField>
                               <Label fx:id="endingTimeError" textFill="#ee0707" />
                            </children>
                            <VBox.margin>
@@ -150,14 +171,14 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="307.0" prefWidth="206.0">
+                  <VBox prefHeight="279.0" prefWidth="123.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label />
                               <HBox prefHeight="0.0" prefWidth="205.0">
                                  <children>
-                                    <Button fx:id="searchButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="0.0" prefWidth="96.0" text="Add Photo" />
+                                    <Button fx:id="searchButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="0.0" prefWidth="258.0" text="Add Photo" />
                                  </children>
                               </HBox>
                            </children>
@@ -175,7 +196,7 @@
                         <Insets />
                      </opaqueInsets>
                      <HBox.margin>
-                        <Insets left="25.0" top="50.0" />
+                        <Insets left="25.0" right="20.0" top="50.0" />
                      </HBox.margin>
                   </VBox>
                </children>
