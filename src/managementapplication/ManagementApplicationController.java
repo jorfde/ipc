@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -34,8 +35,6 @@ public class ManagementApplicationController implements Initializable {
     @FXML
     private Button doctorButton;
     @FXML
-    private Button appointmentButton;
-    @FXML
     private Button exitButton;
     
     private ClinicDBAccess clinic;
@@ -48,6 +47,21 @@ public class ManagementApplicationController implements Initializable {
     
     private Alert alert;
     
+    @FXML
+    private MenuItem closeMenu;
+    @FXML
+    private MenuItem doctorsMenu;
+    @FXML
+    private MenuItem patientsMenu;
+    @FXML
+    private MenuItem appointmentsMenu;
+    @FXML
+    private MenuItem addDoctorMenu;
+    @FXML
+    private MenuItem addPatientMenu;
+    @FXML
+    private MenuItem addAppMenu;
+ 
 
     /**
      * Initializes the controller class.
@@ -103,5 +117,10 @@ public class ManagementApplicationController implements Initializable {
     
     public void initStage(Stage s){
         mainStage = s;
+    }
+
+    @FXML
+    private void menuHandler(ActionEvent event) {
+    
     }
 }

@@ -7,13 +7,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="492.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="492.0" prefWidth="600.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
    <center>
       <TableView fx:id="tableView" prefHeight="400.0" prefWidth="627.0" BorderPane.alignment="CENTER">
         <columns>
@@ -64,58 +65,40 @@
          <children>
             <VBox prefHeight="100.0" prefWidth="637.0">
                <children>
-                  <MenuBar prefHeight="29.0" prefWidth="514.0">
-                    <menus>
-                      <Menu mnemonicParsing="false" text="Exit">
-                        <items>
-                          <MenuItem mnemonicParsing="false" text="Close" />
-                        </items>
-                      </Menu>
-                      <Menu mnemonicParsing="false" text="View">
+                  <MenuBar prefHeight="29.0" prefWidth="734.0">
+                     <menus>
+                        <Menu text="_Exit">
                            <items>
-                              <Menu mnemonicParsing="false" text="Doctors">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="View" />
-                                    <MenuItem mnemonicParsing="false" text="Add" />
-                                </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Patients">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="View" />
-                                  <MenuItem mnemonicParsing="false" text="Add" />
-                                </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Appointments">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="View" />
-                                    <MenuItem mnemonicParsing="false" text="Add" />
-                                </items>
-                              </Menu>
-                           </items>
-                      </Menu>
-                        <Menu mnemonicParsing="false" text="Add">
-                           <items>
-                              <Menu mnemonicParsing="false" text="Doctors">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="View" />
-                                    <MenuItem mnemonicParsing="false" text="Add" />
-                                 </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Patients">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="View" />
-                                    <MenuItem mnemonicParsing="false" text="Add" />
-                                 </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Appointments">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="View" />
-                                    <MenuItem mnemonicParsing="false" text="Add" />
-                                 </items>
-                              </Menu>
+                              <MenuItem fx:id="closeMenu1" onAction="#menuHandler" text="_Close" />
                            </items>
                         </Menu>
-                    </menus>
+                        <Menu text="_View ">
+                           <items>
+                              <MenuItem fx:id="doctorsMenu" onAction="#menuHandler" text="_Doctors" />
+                              <MenuItem fx:id="patientsMenu" onAction="#menuHandler" text="_Patients" />
+                              <MenuItem fx:id="appointmentsMenu" onAction="#menuHandler" text="_Appointments" />
+                           </items>
+                        </Menu>
+                        <Menu text="_Add">
+                           <items>
+                              <MenuItem fx:id="addDoctorMenu" onAction="#menuHandler" text="_Doctors">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem fx:id="addPatientMenu" onAction="#menuHandler" text="_Patients">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem fx:id="addAppMenu" onAction="#menuHandler" text="_Appointments">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                           </items>
+                        </Menu>
+                     </menus>
                   </MenuBar>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="X View">
                      <VBox.margin>
