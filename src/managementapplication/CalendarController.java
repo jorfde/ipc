@@ -281,4 +281,8 @@ public class CalendarController implements Initializable {
     private void updateLabel(){
         weekNumberLabel.setText("Week of " + date.getDayOfMonth() +" " + date.getMonth() +  " " + date.getYear() );
     }
+    
+    private void checkPatient(){
+        
+    }
 }
