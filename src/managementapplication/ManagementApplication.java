@@ -7,11 +7,14 @@
 package managementapplication;
 
 import DBAccess.ClinicDBAccess;
+import java.util.Optional;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -34,12 +37,19 @@ public class ManagementApplication extends Application {
         
         Scene scene = new Scene(root);
         stage.setOnCloseRequest((WindowEvent event) ->{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(clinic.getClinicName());
-            alert.setHeaderText("Saving data in DB");
-            alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
-            alert.show();
-            clinic.saveDB();
+            Alert conf = new Alert(AlertType.CONFIRMATION);
+            conf.setTitle("Confirmation");
+            conf.setHeaderText("You are about to exit");
+            conf.setContentText("Do you want to continue?");
+            Optional<ButtonType> result = conf.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle(clinic.getClinicName());
+                alert.setHeaderText("Saving data in DB");
+                alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+                alert.show();
+                clinic.saveDB();
+            } 
         });
         stage.setScene(scene);
         stage.setMinWidth(734);

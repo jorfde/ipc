@@ -9,6 +9,7 @@ package managementapplication;
 import DBAccess.ClinicDBAccess;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -44,8 +46,6 @@ public class ManagementApplicationController implements Initializable {
     public static final int APPOINTMENT_MODE = 2;
     
     private Stage mainStage;
-    
-    private Alert alert;
     
     @FXML
     private MenuItem closeMenu;
@@ -77,11 +77,6 @@ public class ManagementApplicationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         clinic.setClinicName("IPC Medical Services Clinic");
-        
-        alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle(clinic.getClinicName());
-        alert.setHeaderText("Saving data in DB");
-        alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
         
         try{
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
@@ -161,6 +156,19 @@ public class ManagementApplicationController implements Initializable {
     }
     
     public void exit(){
-        alert.show();clinic.saveDB();mainStage.close();
+        Alert conf = new Alert(AlertType.CONFIRMATION);
+        conf.setTitle("Confirmation");
+        conf.setHeaderText("You are about to exit");
+        conf.setContentText("Do you want to continue?");
+        Optional<ButtonType> result = conf.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(clinic.getClinicName());
+            alert.setHeaderText("Saving data in DB");
+            alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+            alert.show();
+            clinic.saveDB();
+            mainStage.close();
+        } 
     }
 }
