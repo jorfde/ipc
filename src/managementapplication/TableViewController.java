@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -76,6 +77,22 @@ public class TableViewController implements Initializable {
     private Stage primaryStage;
     private Scene prevScene;
     private String prevTitle;
+    
+    @FXML
+    private MenuItem closeMenu1;
+    @FXML
+    private MenuItem doctorsMenu;
+    @FXML
+    private MenuItem patientsMenu;
+    @FXML
+    private MenuItem appointmentsMenu;
+    @FXML
+    private MenuItem addDoctorMenu;
+    @FXML
+    private MenuItem addPatientMenu;
+    @FXML
+    private MenuItem addAppMenu;
+
     
     private int index;
     
@@ -245,5 +262,10 @@ public class TableViewController implements Initializable {
             }
             
          return res;
+    }
+    
+    @FXML
+    private void menuHandler(ActionEvent event) {
+    
     }
 }

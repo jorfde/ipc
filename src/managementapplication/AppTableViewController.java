@@ -8,7 +8,6 @@ package managementapplication;
 import DBAccess.ClinicDBAccess;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -24,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
@@ -69,7 +69,23 @@ public class AppTableViewController implements Initializable {
     
     private int index;
     
-    private Alert remove = new Alert(Alert.AlertType.CONFIRMATION);
+    private Alert remove = new Alert(Alert.AlertType.CONFIRMATION);  
+            
+    @FXML
+    private MenuItem closeMenu;
+    @FXML
+    private MenuItem doctorsMenu;
+    @FXML
+    private MenuItem patientsMenu;
+    @FXML
+    private MenuItem appointmentsMenu;
+    @FXML
+    private MenuItem addDoctorMenu;
+    @FXML
+    private MenuItem addPatientMenu;
+    @FXML
+    private MenuItem addAppMenu;
+ 
 
     /**
      * Initializes the controller class.
@@ -165,5 +181,10 @@ public class AppTableViewController implements Initializable {
             }
             
          return res;
+    }
+    
+    @FXML
+    private void menuHandler(ActionEvent event) {
+    
     }
 }
