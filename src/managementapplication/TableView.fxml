@@ -63,7 +63,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="143.0" prefWidth="812.0">
+            <VBox prefHeight="143.0" prefWidth="812.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>

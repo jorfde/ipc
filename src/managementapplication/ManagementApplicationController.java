@@ -98,6 +98,8 @@ public class ManagementApplicationController implements Initializable {
         
         tableViewController.passControllers(this, appTableViewController);
         appTableViewController.passControllers(this, tableViewController);
+        
+        
     }    
 
     @FXML

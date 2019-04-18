@@ -60,11 +60,11 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="111.0" prefWidth="908.0">
+            <VBox prefHeight="111.0" prefWidth="908.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <MenuBar fx:id="menuBar" prefHeight="29.0" prefWidth="734.0" HBox.hgrow="ALWAYS">
+                        <MenuBar fx:id="menuBar" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="734.0" HBox.hgrow="ALWAYS">
                            <menus>
                               <Menu text="_Exit">
                                  <items>
