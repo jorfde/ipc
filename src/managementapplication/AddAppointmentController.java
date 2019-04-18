@@ -39,7 +39,7 @@ import model.Patient;
 /**
  * FXML Controller class
  *
- * @author jorge
+ * @author jorge & Steph
  */
 public class AddAppointmentController implements Initializable {
 
@@ -199,7 +199,8 @@ public class AddAppointmentController implements Initializable {
       
         Scene scene = new Scene (root);
         Stage stage = new Stage();
-        stage.setMinWidth(916);stage.setMinHeight(512);
+        stage.setMinWidth(916);
+        stage.setMinHeight(512);
         stage.setScene(scene);
              
         stage.initModality(Modality.APPLICATION_MODAL);
