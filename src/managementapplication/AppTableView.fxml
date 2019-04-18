@@ -62,7 +62,7 @@
          <children>
             <VBox prefHeight="111.0" prefWidth="908.0">
                <children>
-<<<<<<< HEAD
+                  
                   <MenuBar prefHeight="29.0" prefWidth="852.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="Exit">
@@ -85,7 +85,7 @@
                         </items>
                       </Menu>
                     </menus>
-=======
+
                   <MenuBar prefHeight="29.0" prefWidth="734.0">
                      <menus>
                         <Menu text="_Exit">
@@ -120,7 +120,7 @@
                            </items>
                         </Menu>
                      </menus>
->>>>>>> 4aabe1c03567cf6b01444b8c38e17b8402a68649
+
                   </MenuBar>
                   <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Y View">
                      <font>

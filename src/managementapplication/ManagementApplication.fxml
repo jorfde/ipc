@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.ManagementApplicationController">
+<Pane stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.ManagementApplicationController">
    
 
     <children>
@@ -67,29 +67,50 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="patientButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="50.0" prefWidth="236.0" text="Patient">
+                  <Button fx:id="patientButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="84.0" prefWidth="228.0" styleClass="ti" text="Patient">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="66.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="53.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" styleClass="titleButton">
+                           <image>
+                              <Image url="@../images/patient.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <HBox.margin>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                        <Insets left="20.0" right="25.0" top="25.0" />
                      </HBox.margin>
                   </Button>
-                <Button fx:id="doctorButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="50.0" prefWidth="216.0" text="Doctor">
+                <Button fx:id="doctorButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="69.0" prefWidth="207.0" text="Doctor">
                      <font>
                         <Font size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets bottom="25.0" right="25.0" top="25.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="54.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/doctor.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="50.0" prefWidth="211.0" text="Appointment">
+                  <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="12.0" prefWidth="207.0" text="Appointment">
                      <font>
                         <Font size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets bottom="25.0" right="25.0" top="25.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="55.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/appointment.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>
