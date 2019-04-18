@@ -98,15 +98,15 @@ public class ManagementApplicationController implements Initializable {
 
     @FXML
     private void buttonHandler(ActionEvent event) throws IOException{
+        mainScene = doctorButton.getScene();
         switch(((Node)event.getSource()).getId()){
-            case "patientButton": createTable(PATIENT_MODE);break;
-            case "doctorButton": createTable(DOCTOR_MODE);break;
-            case "appointmentButton": createTable(APPOINTMENT_MODE);break;
+            case "patientButton": createTable(PATIENT_MODE, null, null, -1);break;
+            case "doctorButton": createTable(DOCTOR_MODE, null, null, -1);break;
+            case "appointmentButton": createTable(APPOINTMENT_MODE, null, null, -1);break;
         }
     }
     
-    public void createTable(int mode) throws IOException {     
-        mainScene = mainStage.getScene();
+    public void createTable(int mode, String patientID, String doctorID, int index) throws IOException {  
         switch(mode){
             case PATIENT_MODE: 
 
@@ -118,7 +118,12 @@ public class ManagementApplicationController implements Initializable {
                 
             case APPOINTMENT_MODE: 
                 appTableViewController.initStage(mainStage);
-                appTableViewController.initData(mode, null, null, -1);
+                if(patientID == null && doctorID != null)
+                    appTableViewController.initData(DOCTOR_MODE, patientID, doctorID, index);
+                else if(doctorID == null && patientID != null)
+                    appTableViewController.initData(PATIENT_MODE, patientID, doctorID, index);
+                else
+                    appTableViewController.initData(APPOINTMENT_MODE, patientID, doctorID, index);
                 mainStage.setScene(scene2);
                 break;
         }
@@ -133,11 +138,11 @@ public class ManagementApplicationController implements Initializable {
         switch(((MenuItem)event.getSource()).getId()){
             case "closeMenu": exit();break;
                 
-            case "doctorsMenu": createTable(DOCTOR_MODE);break;
+            case "doctorsMenu": createTable(DOCTOR_MODE, null, null, -1);break;
                 
-            case "patientsMenu": createTable(PATIENT_MODE);break;
+            case "patientsMenu": createTable(PATIENT_MODE, null, null, -1);break;
                 
-            case "appointmentsMenu": createTable(APPOINTMENT_MODE);break;
+            case "appointmentsMenu": createTable(APPOINTMENT_MODE, null, null, -1);break;
             
             case "addDoctorMenu": 
                 tableViewController.initData(DOCTOR_MODE);
@@ -176,6 +181,6 @@ public class ManagementApplicationController implements Initializable {
     }
     
     public Scene getMainScene(){
-        return mainScene;
+        return doctorButton.getScene();
     }
 }

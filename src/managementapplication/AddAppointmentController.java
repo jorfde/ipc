@@ -97,7 +97,13 @@ public class AddAppointmentController implements Initializable {
         timeField.setEditable(false);
         dateField.setEditable(false);
         
+        doctorTable.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
+            changeClear();
+        });
         
+        patientTable.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
+            changeClear();
+        });
     }    
 
     void initData(int mode, ObservableList<Appointment> appointments, int index) {
@@ -204,5 +210,11 @@ public class AddAppointmentController implements Initializable {
         timeField.setText(date.toLocalTime().toString());
         dateField.setText(date.toLocalDate().toString());
         done = true;
+    }
+    
+    private void changeClear(){
+        done = false;
+        timeField.setText("");
+        dateField.setText("");
     }
 }

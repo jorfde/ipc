@@ -209,7 +209,7 @@ public class TableViewController implements Initializable {
                         removed = true;
                     }
                 }
-                else if(mode == DOCTOR_MODE && !clinic.hasAppointments(clinic.getPatients().get(index))) {
+                else if(mode == DOCTOR_MODE && !clinic.hasAppointments(clinic.getDoctors().get(index))) {
                     if(delete()){
                         doctors.remove(index);
                         removed = true;
@@ -241,16 +241,7 @@ public class TableViewController implements Initializable {
     }
     
     private void createAppointmentWindow(int mode, String patientID, String doctorID) throws IOException{
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AppTableView.fxml"));; 
-        Pane root = (Pane) myLoader.load();;
-        
-        AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
-        appTableViewController.initStage(primaryStage);
-        appTableViewController.initData(mode, patientID, doctorID, index);
-      
-        Scene scene = new Scene (root);
-        primaryStage.setScene(scene);
-        primaryStage.show(); 
+        mac.createTable(APPOINTMENT_MODE, patientID, doctorID, index);
     }
 
     public void initStage(Stage stage) {
@@ -276,11 +267,11 @@ public class TableViewController implements Initializable {
         switch(((MenuItem)event.getSource()).getId()){
             case "closeMenu": mac.exit();break;
                 
-            case "doctorsMenu": mac.createTable(DOCTOR_MODE);break;
+            case "doctorsMenu": mac.createTable(DOCTOR_MODE, null, null, -1);break;
                 
-            case "patientsMenu": mac.createTable(PATIENT_MODE);break;
+            case "patientsMenu": mac.createTable(PATIENT_MODE, null, null, -1);break;
                 
-            case "appointmentsMenu": mac.createTable(APPOINTMENT_MODE);break;
+            case "appointmentsMenu": mac.createTable(APPOINTMENT_MODE, null, null, -1);break;
             
             case "addDoctorMenu": createDetailsWindow(-1, DOCTOR_MODE);break;
             

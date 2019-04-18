@@ -87,6 +87,8 @@ public class AppTableViewController implements Initializable {
     private ManagementApplicationController mac;
     
     private TableViewController tvc;
+    
+    private Scene prevScene;
 
     /**
      * Initializes the controller class.
@@ -161,10 +163,14 @@ public class AppTableViewController implements Initializable {
 
     public void initStage(Stage stage) {
         primaryStage = stage;
+        prevScene = primaryStage.getScene();
     }
     
     private void exit(){
-        primaryStage.setScene(mac.getMainScene());
+        if(mode == APPOINTMENT_MODE)
+            primaryStage.setScene(mac.getMainScene());
+        else
+            primaryStage.setScene(prevScene);
     }
     
     private boolean delete(){
@@ -182,11 +188,11 @@ public class AppTableViewController implements Initializable {
         switch(((MenuItem)event.getSource()).getId()){
             case "closeMenu": mac.exit();break;
                 
-            case "doctorsMenu": mac.createTable(DOCTOR_MODE);break;
+            case "doctorsMenu": mac.createTable(DOCTOR_MODE, null, null, -1);break;
                 
-            case "patientsMenu": mac.createTable(PATIENT_MODE);break;
+            case "patientsMenu": mac.createTable(PATIENT_MODE, null, null, -1);break;
                 
-            case "appointmentsMenu": mac.createTable(APPOINTMENT_MODE);break;
+            case "appointmentsMenu": mac.createTable(APPOINTMENT_MODE, null, null, -1);break;
             
             case "addDoctorMenu": tvc.initData(DOCTOR_MODE);tvc.initStage(primaryStage);tvc.createDetailsWindow(-1, DOCTOR_MODE);break;
             
