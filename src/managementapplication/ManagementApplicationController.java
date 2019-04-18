@@ -94,6 +94,9 @@ public class ManagementApplicationController implements Initializable {
             appTableViewController = myLoader.<AppTableViewController>getController();
             scene2 = new Scene (root2);
         } catch(IOException ioe) {}
+        
+        tableViewController.passControllers(this, appTableViewController);
+        appTableViewController.passControllers(this, tableViewController);
     }    
 
     @FXML
@@ -111,7 +114,7 @@ public class ManagementApplicationController implements Initializable {
 
             case DOCTOR_MODE: 
                 tableViewController.initStage(mainStage);
-                tableViewController.initData(mode, clinic);
+                tableViewController.initData(mode);
                 mainStage.setScene(scene1);
                 break;
                 
@@ -139,10 +142,21 @@ public class ManagementApplicationController implements Initializable {
             case "appointmentsMenu": createTable(APPOINTMENT_MODE);break;
             
             case "addDoctorMenu": 
+                tableViewController.initData(DOCTOR_MODE);
+                tableViewController.initStage(mainStage);
+                tableViewController.createDetailsWindow(-1, DOCTOR_MODE);
+                break;
             
             case "addPatientMenu": 
+                tableViewController.initData(PATIENT_MODE);
+                tableViewController.initStage(mainStage);
+                tableViewController.createDetailsWindow(-1, PATIENT_MODE);
+                break;
                 
             case "addAppMenu": 
+                appTableViewController.initStage(mainStage);
+                appTableViewController.initData(APPOINTMENT_MODE, null, null, -1);
+                appTableViewController.createAddWindow();break;
         }
     }
     
