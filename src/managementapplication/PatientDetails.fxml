@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="791.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.PatientDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="791.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.PatientDetailsController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -110,7 +110,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Data" wrappingWidth="574.2060546875">
+            <Text fx:id="title" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Data" wrappingWidth="574.2060546875">
                <font>
                   <Font size="48.0" />
                </font>

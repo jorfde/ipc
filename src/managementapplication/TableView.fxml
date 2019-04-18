@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="564.0" prefWidth="741.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="564.0" prefWidth="741.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
    <center>
       <TableView fx:id="tableView" prefHeight="400.0" prefWidth="627.0" BorderPane.alignment="CENTER">
         <columns>
@@ -100,7 +100,7 @@
                         </Menu>
                      </menus>
                   </MenuBar>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patients View">
+                  <Text fx:id="title" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patients View">
                      <VBox.margin>
                         <Insets left="25.0" top="25.0" />
                      </VBox.margin>
