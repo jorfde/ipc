@@ -76,8 +76,6 @@ public class TableViewController implements Initializable {
     private Alert remove = new Alert(Alert.AlertType.CONFIRMATION);
     
     private Stage primaryStage;
-    private Scene prevScene;
-    private String prevTitle;
     
     @FXML
     private MenuItem doctorsMenu;
@@ -257,13 +255,10 @@ public class TableViewController implements Initializable {
 
     public void initStage(Stage stage) {
         primaryStage = stage;
-        prevScene = stage.getScene();
-        prevTitle = stage.getTitle();
     }
     
     private void exit(){
-        primaryStage.setTitle(prevTitle);
-        primaryStage.setScene(prevScene);
+        primaryStage.setScene(mac.getMainScene());
     }
     
     private boolean delete(){

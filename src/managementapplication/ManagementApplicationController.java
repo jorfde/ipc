@@ -69,6 +69,8 @@ public class ManagementApplicationController implements Initializable {
     private TableViewController tableViewController;
     
     private AppTableViewController appTableViewController;
+    
+    private Scene mainScene;
 
     /**
      * Initializes the controller class.
@@ -123,6 +125,7 @@ public class ManagementApplicationController implements Initializable {
     
     public void initStage(Stage s){
         mainStage = s;
+        mainScene = s.getScene();
     }
 
     @FXML
@@ -170,5 +173,9 @@ public class ManagementApplicationController implements Initializable {
             clinic.saveDB();
             mainStage.close();
         } 
+    }
+    
+    public Scene getMainScene(){
+        return mainScene;
     }
 }

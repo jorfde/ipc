@@ -49,7 +49,9 @@ public class ManagementApplication extends Application {
                 alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
                 alert.show();
                 clinic.saveDB();
-            } 
+            } else {
+                event.consume();
+            }
         });
         stage.setScene(scene);
         stage.setMinWidth(734);

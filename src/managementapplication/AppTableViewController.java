@@ -62,8 +62,6 @@ public class AppTableViewController implements Initializable {
     private ObservableList<Appointment> appointments = FXCollections.observableArrayList();
     
     private Stage primaryStage;
-    private Scene prevScene;
-    private String prevTitle;
     
     private int mode;
     
@@ -163,13 +161,12 @@ public class AppTableViewController implements Initializable {
 
     public void initStage(Stage stage) {
         primaryStage = stage;
-        prevScene = stage.getScene();
-        prevTitle = stage.getTitle();
     }
     
     private void exit(){
-        primaryStage.setTitle(prevTitle);
-        primaryStage.setScene(prevScene);
+        System.out.println("0");
+        primaryStage.setScene(mac.getMainScene());
+        System.out.println("1");
     }
     
     private boolean delete(){
