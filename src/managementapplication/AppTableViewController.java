@@ -85,7 +85,10 @@ public class AppTableViewController implements Initializable {
     private MenuItem addPatientMenu;
     @FXML
     private MenuItem addAppMenu;
- 
+    
+    private ManagementApplicationController mac;
+    
+    private TableViewController tvc;
 
     /**
      * Initializes the controller class.
@@ -121,7 +124,7 @@ public class AppTableViewController implements Initializable {
         }
     }
     
-    private void createAddWindow() throws IOException{
+    public void createAddWindow() throws IOException{
         FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AddAppointment.fxml"));; 
         Pane root = (Pane) myLoader.load();;
         
@@ -131,7 +134,6 @@ public class AppTableViewController implements Initializable {
         Scene scene = new Scene (root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Add an appointment");
              
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show(); 
@@ -145,16 +147,13 @@ public class AppTableViewController implements Initializable {
         switch(mode){
             case PATIENT_MODE:
                     appointments = FXCollections.observableList( clinic.getPatientAppointments(patientID) );
-                    primaryStage.setTitle("Patient's Appointments");
                     break;
             case DOCTOR_MODE: 
                     appointments = FXCollections.observableList( clinic.getDoctorAppointments(doctorID) );
-                    primaryStage.setTitle("Doctor's Appointments");
                     break;
                 
             case APPOINTMENT_MODE:
                     appointments = FXCollections.observableList( clinic.getAppointments() );
-                    primaryStage.setTitle("List of Appointments");
                     break;
                 
         }
@@ -186,19 +185,24 @@ public class AppTableViewController implements Initializable {
     @FXML
     private void menuHandler(ActionEvent event) throws IOException {
         switch(((MenuItem)event.getSource()).getId()){
-            case "closeMenu": 
+            case "closeMenu": mac.exit();break;
                 
-            case "doctorsMenu": 
+            case "doctorsMenu": mac.createTable(DOCTOR_MODE);break;
                 
-            case "patientsMenu": 
+            case "patientsMenu": mac.createTable(PATIENT_MODE);break;
                 
-            case "appointmentsMenu": 
+            case "appointmentsMenu": mac.createTable(APPOINTMENT_MODE);break;
             
-            case "addDoctorMenu": 
+            case "addDoctorMenu": tvc.initData(DOCTOR_MODE);tvc.initStage(primaryStage);tvc.createDetailsWindow(-1, DOCTOR_MODE);break;
             
-            case "addPatientMenu": 
+            case "addPatientMenu": tvc.initData(PATIENT_MODE);tvc.initStage(primaryStage);tvc.createDetailsWindow(-1, PATIENT_MODE);break;
                 
             case "addAppMenu": createAddWindow();break;
         }
+    }
+    
+    public void passControllers(ManagementApplicationController mac, TableViewController tvc){
+        this.mac = mac;
+        this.tvc = tvc;
     }
 }

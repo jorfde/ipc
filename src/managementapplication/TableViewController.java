@@ -32,6 +32,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import static managementapplication.ManagementApplicationController.APPOINTMENT_MODE;
 import static managementapplication.ManagementApplicationController.DOCTOR_MODE;
 import static managementapplication.ManagementApplicationController.PATIENT_MODE;
 import model.Doctor;
@@ -79,8 +80,6 @@ public class TableViewController implements Initializable {
     private String prevTitle;
     
     @FXML
-    private MenuItem closeMenu1;
-    @FXML
     private MenuItem doctorsMenu;
     @FXML
     private MenuItem patientsMenu;
@@ -92,13 +91,15 @@ public class TableViewController implements Initializable {
     private MenuItem addPatientMenu;
     @FXML
     private MenuItem addAppMenu;
+    @FXML
+    private MenuItem closeMenu;
 
     private int index;
     
     private ManagementApplicationController mac;
     
     private AppTableViewController atvc;
-    
+       
     /**
      * Initializes the controller class.
      */
@@ -124,7 +125,7 @@ public class TableViewController implements Initializable {
         remove.setContentText("Do you want to continue?");
     }
     
-    private void createDetailsWindow(int index, int mode) throws IOException{
+    public void createDetailsWindow(int index, int mode) throws IOException{
         FXMLLoader myLoader = null; 
         Pane root = null;
         
@@ -159,9 +160,9 @@ public class TableViewController implements Initializable {
   
     }
     
-    public void initData(int mode, ClinicDBAccess clinic){
+    public void initData(int mode){
         this.mode = mode;
-        this.clinic = clinic;
+        this.clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         switch(mode){
             case PATIENT_MODE:
                     patients = clinic.getPatients();
@@ -268,21 +269,24 @@ public class TableViewController implements Initializable {
     }
     
     @FXML
-    private void menuHandler(ActionEvent event) {
+    private void menuHandler(ActionEvent event) throws IOException {
         switch(((MenuItem)event.getSource()).getId()){
-            case "closeMenu": 
+            case "closeMenu": mac.exit();break;
                 
-            case "doctorsMenu": 
+            case "doctorsMenu": mac.createTable(DOCTOR_MODE);break;
                 
-            case "patientsMenu": 
+            case "patientsMenu": mac.createTable(PATIENT_MODE);break;
                 
-            case "appointmentsMenu": 
+            case "appointmentsMenu": mac.createTable(APPOINTMENT_MODE);break;
             
-            case "addDoctorMenu": 
+            case "addDoctorMenu": createDetailsWindow(-1, DOCTOR_MODE);break;
             
-            case "addPatientMenu": 
+            case "addPatientMenu": createDetailsWindow(-1, PATIENT_MODE);break;
                 
             case "addAppMenu": 
+                atvc.initStage(primaryStage);
+                atvc.initData(APPOINTMENT_MODE, null, null, -1);
+                atvc.createAddWindow();break;
         }
     }
     

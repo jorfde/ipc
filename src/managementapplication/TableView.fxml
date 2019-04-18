@@ -69,7 +69,7 @@
                      <menus>
                         <Menu text="_Exit">
                            <items>
-                              <MenuItem fx:id="closeMenu1" onAction="#menuHandler" text="_Close" />
+                              <MenuItem fx:id="closeMenu" onAction="#menuHandler" text="_Close" />
                            </items>
                         </Menu>
                         <Menu text="_View ">
