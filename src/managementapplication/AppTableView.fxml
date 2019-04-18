@@ -60,7 +60,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="100.0" prefWidth="629.0">
+            <VBox prefHeight="111.0" prefWidth="908.0">
                <children>
                   <MenuBar prefHeight="29.0" prefWidth="734.0">
                      <menus>
