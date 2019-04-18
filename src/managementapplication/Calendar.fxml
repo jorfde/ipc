@@ -18,28 +18,28 @@
    <center>
       <TableView fx:id="tableView" prefHeight="283.0" prefWidth="599.0" styleClass="tableColumn" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn fx:id="timeColumn" prefWidth="80.68903923034668" styleClass="tableview" text="Time" />
-            <TableColumn fx:id="mondayColumn" prefWidth="84.5" styleClass="tableview" text="Mon." />
-          <TableColumn fx:id="tuesdayColumn" prefWidth="84.5" styleClass="tableview" text="Tue." />
-          <TableColumn fx:id="wednesdayColumn" prefWidth="84.5" styleClass="tableview" text="Wed." />
-            <TableColumn fx:id="thursdayColumn" prefWidth="84.5" styleClass="tableview" text="Th." />
-            <TableColumn fx:id="fridayColumn" prefWidth="84.5" styleClass="tableview" text="Fri." />
-            <TableColumn fx:id="saturdayColumn" prefWidth="84.5" styleClass="tableview" text="Sat." />
-            <TableColumn fx:id="sundayColumn" prefWidth="84.5" styleClass="tableview" text="Sun." />
+            <TableColumn fx:id="timeColumn" prefWidth="80.68903923034668" text="Time" />
+            <TableColumn fx:id="mondayColumn" prefWidth="84.5" text="Mon." />
+          <TableColumn fx:id="tuesdayColumn" prefWidth="84.5" text="Tue." />
+          <TableColumn fx:id="wednesdayColumn" prefWidth="84.5" text="Wed." />
+            <TableColumn fx:id="thursdayColumn" prefWidth="84.5" text="Th." />
+            <TableColumn fx:id="fridayColumn" prefWidth="84.5" text="Fri." />
+            <TableColumn fx:id="saturdayColumn" prefWidth="84.5" text="Sat." />
+            <TableColumn fx:id="sundayColumn" prefWidth="84.5" text="Sun." />
         </columns>
       </TableView>
    </center>
    <top>
       <HBox alignment="TOP_CENTER" prefHeight="46.0" prefWidth="422.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="46.0" prefWidth="32.0">
+            <HBox prefHeight="46.0" prefWidth="408.0">
                <children>
-                  <Button fx:id="beforeWeek" mnemonicParsing="false" onAction="#buttonHandler" text="&lt;">
+                  <Button fx:id="beforeWeek" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="46.0" prefWidth="17.0" text="&lt;">
                      <HBox.margin>
                         <Insets right="25.0" />
                      </HBox.margin>
                   </Button>
-                  <Label fx:id="weekNumberLabel">
+                  <Label fx:id="weekNumberLabel" prefHeight="23.0" prefWidth="152.0">
                      <font>
                         <Font size="18.0" />
                      </font>
