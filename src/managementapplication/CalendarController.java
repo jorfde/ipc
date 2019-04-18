@@ -113,6 +113,8 @@ public class CalendarController implements Initializable {
     
     AddAppointmentController controller;
     
+    private Patient patient;
+    
     /**
      * Initializes the controller class.
      */
@@ -197,6 +199,7 @@ public class CalendarController implements Initializable {
                 if(week != currentWeek) {
                     doctorWeek = getAppointmentsWeek(--week, days, start, 
                         end, appointments);
+                    checkPatient();
                     slots = FXCollections.observableList( doctorWeek );
                     tableView.setItems(slots);
                     date = date.minusWeeks(1);
@@ -206,6 +209,7 @@ public class CalendarController implements Initializable {
             case "nextWeek": 
                 doctorWeek = getAppointmentsWeek(++week, days, start, 
                         end, appointments);
+                checkPatient();
                 slots = FXCollections.observableList( doctorWeek );
                 tableView.setItems(slots);
                 date = date.plusWeeks(1);
@@ -242,9 +246,11 @@ public class CalendarController implements Initializable {
         id = d.getIdentifier();
         appointments = clinic.getDoctorAppointments(id);
         
+        this.patient = p;
+        
         doctorWeek = getAppointmentsWeek(currentWeek, days, start, 
                 end, appointments);
-        
+        checkPatient();
         slots = FXCollections.observableList( doctorWeek );
         tableView.setItems(slots);
         
@@ -279,10 +285,43 @@ public class CalendarController implements Initializable {
     }
     
     private void updateLabel(){
-        weekNumberLabel.setText("Week of " + date.getDayOfMonth() +" " + date.getMonth() +  " " + date.getYear() );
+        weekNumberLabel.setText("WEEK OF " + date.getDayOfMonth() +" " + date.getMonth() +  " " + date.getYear() );
     }
     
     private void checkPatient(){
+        ArrayList<Appointment> appoint = clinic.getPatientAppointments(patient.getIdentifier());
+        for(int i = 0;i < appoint.size(); i++){
+            Appointment app = appoint.get(i);
+            int w = app.getAppointmentWeek();
+            if(w == week) {
+                int index = searchIndex(app.getAppointmentDateTime().toLocalTime());
+                if(index != -1){
+                    SlotWeek sw = doctorWeek.get(index);
+                    switch(app.getAppointmentDay()){
+                        case Monday: sw.setMondayAvailability("Patient App."); break;
+                        case Tuesday: sw.setTuesdayAvailability("Patient App."); break;
+                        case Wednesday: sw.setWednesdayAvailability("Patient App."); break;
+                        case Thursday: sw.setThursdayAvailability("Patient App."); break;
+                        case Friday: sw.setFridayAvailability("Patient App."); break;
+                        case Saturday: sw.setSaturdayAvailability("Patient App."); break;
+                        case Sunday: sw.setSundayAvailability("Patient App."); break;
+                    }
+                }
+            }
+        }
+    }
+    
+    private int searchIndex(LocalTime lt){
+        int index = -1;
+        boolean end = false;
         
+        for(int i = 0; i < doctorWeek.size() && !end; i++){
+            if(doctorWeek.get(i).getSlot().equals(lt)){
+                end = true;
+                index = i;
+            }
+        }
+        
+        return index;
     }
 }

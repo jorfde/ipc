@@ -161,11 +161,13 @@ public class AddAppointmentController implements Initializable {
         int patientIndex = patientTable.getSelectionModel().selectedIndexProperty().getValue();
         int doctorIndex = doctorTable.getSelectionModel().selectedIndexProperty().getValue();
         
-        if(mode != PATIENT_MODE && patientIndex != -1)
+        if(mode != PATIENT_MODE && patientIndex != -1){
             patient = patients.get(patientIndex);
-        if(mode != DOCTOR_MODE && doctorIndex != -1)
+        }
+        if(mode != DOCTOR_MODE && doctorIndex != -1){
             doctor = doctors.get(doctorIndex);
-
+        }
+        
         switch(((Node)event.getSource()).getId()){
             case "setTimeButton": 
                 createTimeWindow(); 
