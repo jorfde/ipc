@@ -101,6 +101,8 @@ public class TableViewController implements Initializable {
     private AppTableViewController atvc;
     @FXML
     private Text title;
+    @FXML
+    private Text instructions;
        
     /**
      * Initializes the controller class.
@@ -305,5 +307,9 @@ public class TableViewController implements Initializable {
         viewButton.setText(mode + " Data");
         addButton.setText("New " + mode);
         deleteButton.setText("Delete " + mode);
+        
+        String aux = mode.toLowerCase();
+        
+        instructions.setText("Select a row to see the "+ aux + "'s info, remove the "+ aux +" or see its scheduled appointments. ");
     }
 }

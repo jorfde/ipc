@@ -118,6 +118,7 @@ public class CalendarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        errorAlert.setContentText("Please select a free day");
          
         //Initialization of the columns of the TableView
         timeColumn.setCellValueFactory(new PropertyValueFactory<SlotWeek, LocalTime>("slot"));
@@ -215,7 +216,6 @@ public class CalendarController implements Initializable {
                     controller.getData(LocalDateTime.of(date, time));
                     okButton.getScene().getWindow().hide();
                 } else {
-                    errorAlert.setContentText("Please select a free day");
                     errorAlert.showAndWait();
                 }
                 break;

@@ -108,7 +108,7 @@
                         <Font size="48.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a row to see the patient's info, remove the patient or see its scheduled appointments. " wrappingWidth="595.67041015625">
+                  <Text fx:id="instructions" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a row to see the patient's info, remove the patient or see its scheduled appointments. " wrappingWidth="595.67041015625">
                      <VBox.margin>
                         <Insets bottom="5.0" left="25.0" top="10.0" />
                      </VBox.margin>

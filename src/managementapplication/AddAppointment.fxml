@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minWidth="-Infinity" prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
+<BorderPane minWidth="-Infinity" prefHeight="549.0" prefWidth="794.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.AddAppointmentController">
    <right>
       <VBox prefHeight="494.0" prefWidth="175.0" BorderPane.alignment="TOP_CENTER">
          <children>
@@ -83,7 +83,7 @@
                         <Insets left="25.0" top="25.0" />
                      </VBox.margin>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a patient and a doctor and click the blue button">
+                  <Text fx:id="instructions" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a patient and a doctor and click the blue button">
                      <VBox.margin>
                         <Insets left="25.0" top="10.0" />
                      </VBox.margin>
