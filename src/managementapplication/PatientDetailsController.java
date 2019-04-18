@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import model.Patient;
@@ -73,6 +74,8 @@ public class PatientDetailsController  {
     private boolean error = false;
     
     private String contentText = "";
+    @FXML
+    private Text title;
 
     
     /**
@@ -158,6 +161,7 @@ public class PatientDetailsController  {
         this.persons = persons;
         
         if (index >= 0){
+            title.setText("Patient's Details");
             Patient patient = patients.get(index);
             identifierField.setText(patient.getIdentifier());
             identifierField.setEditable(false);
@@ -169,6 +173,8 @@ public class PatientDetailsController  {
             telephoneField.setEditable(false);
             imageView.imageProperty().setValue(patient.getPhoto());
             searchButton.setVisible(false);
+        } else {
+            title.setText("New Patient");
         }
     }
     

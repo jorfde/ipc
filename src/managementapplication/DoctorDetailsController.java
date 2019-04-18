@@ -13,8 +13,6 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.Days;
 import model.Doctor;
@@ -96,6 +95,8 @@ public class DoctorDetailsController implements Initializable {
     private boolean error = false;
     
     private String contentText = "";
+    @FXML
+    private Text title;
 
     /**
      * Initializes the controller class.
@@ -109,6 +110,7 @@ public class DoctorDetailsController implements Initializable {
         this.persons = persons;
         
         if (index >= 0){
+            title.setText("Doctor's Details");
             Doctor doctor = doctors.get(index);
             identifierField.setText(doctor.getIdentifier());
             identifierField.setEditable(false);
@@ -138,6 +140,8 @@ public class DoctorDetailsController implements Initializable {
             Image image = doctor.getPhoto();
             imageView.imageProperty().setValue(image);
             searchButton.setVisible(false);
+        } else{
+            title.setText("New Doctor");
         }
     }    
 

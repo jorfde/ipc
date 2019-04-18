@@ -29,9 +29,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import static managementapplication.ManagementApplicationController.APPOINTMENT_MODE;
 import static managementapplication.ManagementApplicationController.DOCTOR_MODE;
 import static managementapplication.ManagementApplicationController.PATIENT_MODE;
@@ -99,6 +99,8 @@ public class TableViewController implements Initializable {
     private ManagementApplicationController mac;
     
     private AppTableViewController atvc;
+    @FXML
+    private Text title;
        
     /**
      * Initializes the controller class.
@@ -165,11 +167,13 @@ public class TableViewController implements Initializable {
         this.clinic = ClinicDBAccess.getSingletonClinicDBAccess();
         switch(mode){
             case PATIENT_MODE:
+                    title.setText("List of Patients");
                     patients = clinic.getPatients();
                     persons = FXCollections.observableList( changeClass(patients) );
                     tableView.setItems(persons);
                     break;
             case DOCTOR_MODE: 
+                    title.setText("List of Doctors");
                     doctors = clinic.getDoctors();
                     persons = FXCollections.observableList( changeClass(doctors) );
                     tableView.setItems(persons);
