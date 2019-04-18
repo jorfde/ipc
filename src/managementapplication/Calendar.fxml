@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="916.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="916.0" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.CalendarController">
    <padding>
-      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+      <Insets bottom="25.0" />
    </padding>
    <center>
       <TableView fx:id="tableView" prefHeight="283.0" prefWidth="599.0" BorderPane.alignment="CENTER">
@@ -28,6 +28,9 @@
             <TableColumn fx:id="saturdayColumn" prefWidth="89.45361328125" text="Sat." />
             <TableColumn fx:id="sundayColumn" prefWidth="86.54632568359375" text="Sun." />
         </columns>
+         <BorderPane.margin>
+            <Insets left="25.0" />
+         </BorderPane.margin>
       </TableView>
    </center>
    <right>
@@ -63,7 +66,7 @@
       </VBox>
    </right>
    <top>
-      <VBox alignment="TOP_CENTER" prefHeight="153.0" prefWidth="1079.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="153.0" prefWidth="866.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="111.0" prefWidth="980.0" styleClass="doctorTitle">
                <VBox.margin>
@@ -116,6 +119,9 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>
