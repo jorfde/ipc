@@ -185,6 +185,20 @@ public class AppTableViewController implements Initializable {
     
     @FXML
     private void menuHandler(ActionEvent event) {
-    
+        switch(((MenuItem)event.getSource()).getId()){
+            case "closeMenu": 
+                
+            case "doctorsMenu": 
+                
+            case "patientsMenu": 
+                
+            case "appointmentsMenu": 
+            
+            case "addDoctorMenu": 
+            
+            case "addPatientMenu": 
+                
+            case "addAppMenu": 
+        }
     }
 }

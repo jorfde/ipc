@@ -61,7 +61,14 @@ public class ManagementApplicationController implements Initializable {
     private MenuItem addPatientMenu;
     @FXML
     private MenuItem addAppMenu;
- 
+    
+    private Scene scene1;
+    
+    private Scene scene2;
+    
+    private TableViewController tableViewController;
+    
+    private AppTableViewController appTableViewController;
 
     /**
      * Initializes the controller class.
@@ -75,6 +82,18 @@ public class ManagementApplicationController implements Initializable {
         alert.setTitle(clinic.getClinicName());
         alert.setHeaderText("Saving data in DB");
         alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+        
+        try{
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
+            Pane root1 = (Pane) myLoader.load();
+            tableViewController = myLoader.<TableViewController>getController();
+            scene1 = new Scene (root1);
+            
+            myLoader = new FXMLLoader(getClass().getResource("AppTableView.fxml"));
+            Pane root2 = (Pane) myLoader.load();
+            appTableViewController = myLoader.<AppTableViewController>getController();
+            scene2 = new Scene (root2);
+        } catch(IOException ioe) {}
     }    
 
     @FXML
@@ -83,36 +102,25 @@ public class ManagementApplicationController implements Initializable {
             case "patientButton": createTable(PATIENT_MODE);break;
             case "doctorButton": createTable(DOCTOR_MODE);break;
             case "appointmentButton": createTable(APPOINTMENT_MODE);break;
-            case "exitButton": alert.show();clinic.saveDB();mainStage.close();
         }
     }
     
     public void createTable(int mode) throws IOException {     
-        FXMLLoader myLoader = null; 
-        Pane root = null;
-        
         switch(mode){
             case PATIENT_MODE: 
 
             case DOCTOR_MODE: 
-                myLoader = new FXMLLoader(getClass().getResource("TableView.fxml"));
-                root = (Pane) myLoader.load();
-                TableViewController tableViewController = myLoader.<TableViewController>getController();
                 tableViewController.initStage(mainStage);
                 tableViewController.initData(mode, clinic);
+                mainStage.setScene(scene1);
                 break;
                 
             case APPOINTMENT_MODE: 
-                myLoader = new FXMLLoader(getClass().getResource("AppTableView.fxml"));
-                root = (Pane) myLoader.load();
-                AppTableViewController appTableViewController = myLoader.<AppTableViewController>getController();
                 appTableViewController.initStage(mainStage);
                 appTableViewController.initData(mode, null, null, -1);
+                mainStage.setScene(scene2);
                 break;
         }
-        
-        Scene scene = new Scene (root);
-        mainStage.setScene(scene); 
     }
     
     public void initStage(Stage s){
@@ -120,7 +128,25 @@ public class ManagementApplicationController implements Initializable {
     }
 
     @FXML
-    private void menuHandler(ActionEvent event) {
+    private void menuHandler(ActionEvent event) throws IOException {
+        switch(((MenuItem)event.getSource()).getId()){
+            case "closeMenu": exit();break;
+                
+            case "doctorsMenu": createTable(DOCTOR_MODE);break;
+                
+            case "patientsMenu": createTable(PATIENT_MODE);break;
+                
+            case "appointmentsMenu": createTable(APPOINTMENT_MODE);break;
+            
+            case "addDoctorMenu": 
+            
+            case "addPatientMenu": 
+                
+            case "addAppMenu": 
+        }
+    }
     
+    public void exit(){
+        alert.show();clinic.saveDB();mainStage.close();
     }
 }

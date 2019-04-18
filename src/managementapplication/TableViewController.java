@@ -93,8 +93,11 @@ public class TableViewController implements Initializable {
     @FXML
     private MenuItem addAppMenu;
 
-    
     private int index;
+    
+    private ManagementApplicationController mac;
+    
+    private AppTableViewController atvc;
     
     /**
      * Initializes the controller class.
@@ -266,6 +269,25 @@ public class TableViewController implements Initializable {
     
     @FXML
     private void menuHandler(ActionEvent event) {
+        switch(((MenuItem)event.getSource()).getId()){
+            case "closeMenu": 
+                
+            case "doctorsMenu": 
+                
+            case "patientsMenu": 
+                
+            case "appointmentsMenu": 
+            
+            case "addDoctorMenu": 
+            
+            case "addPatientMenu": 
+                
+            case "addAppMenu": 
+        }
+    }
     
+    public void passControllers(ManagementApplicationController mac, AppTableViewController atvc){
+        this.mac = mac;
+        this.atvc = atvc;
     }
 }
