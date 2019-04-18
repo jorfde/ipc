@@ -87,7 +87,7 @@ public class ManagementApplicationController implements Initializable {
         }
     }
     
-    private void createTable(int mode) throws IOException {     
+    public void createTable(int mode) throws IOException {     
         FXMLLoader myLoader = null; 
         Pane root = null;
         
