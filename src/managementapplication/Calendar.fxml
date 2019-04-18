@@ -36,7 +36,7 @@
    <right>
       <VBox prefHeight="279.0" prefWidth="152.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="25.0" />
+            <Insets left="25.0" right="25.0" />
          </BorderPane.margin>
          <children>
             <Label text="Time:" />
@@ -59,7 +59,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="120.0" />
+                  <Insets bottom="25.0" top="120.0" />
                </VBox.margin>
             </HBox>
          </children>
