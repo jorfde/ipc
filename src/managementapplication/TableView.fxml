@@ -74,21 +74,21 @@
                         </Menu>
                         <Menu text="_View ">
                            <items>
-                              <MenuItem fx:id="doctorsMenu" onAction="#menuHandler" text="_Doctors" />
                               <MenuItem fx:id="patientsMenu" onAction="#menuHandler" text="_Patients" />
+                              <MenuItem fx:id="doctorsMenu" onAction="#menuHandler" text="_Doctors" />
                               <MenuItem fx:id="appointmentsMenu" onAction="#menuHandler" text="_Appointments" />
                            </items>
                         </Menu>
                         <Menu text="_Add">
                            <items>
-                              <MenuItem fx:id="addDoctorMenu" onAction="#menuHandler" text="_Doctors">
-                                 <accelerator>
-                                    <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                                 </accelerator>
-                              </MenuItem>
                               <MenuItem fx:id="addPatientMenu" onAction="#menuHandler" text="_Patients">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem fx:id="addDoctorMenu" onAction="#menuHandler" text="_Doctors">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                                  </accelerator>
                               </MenuItem>
                               <MenuItem fx:id="addAppMenu" onAction="#menuHandler" text="_Appointments">

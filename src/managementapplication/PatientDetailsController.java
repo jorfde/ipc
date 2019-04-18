@@ -141,16 +141,15 @@ public class PatientDetailsController  {
                         alert.setContentText("The patient was succesfully added to the data base.");
 
                         alert.showAndWait();
-                        exit(event);
+                        exit();
                     }
                 } else {
-                    exit(event);
+                    exit();
                 }
-                
                 break;
         
             case "cancelButton":
-                exit(event);
+                exit();
                 break;               
         }
     }
@@ -193,7 +192,7 @@ public class PatientDetailsController  {
         return res;
     }
     
-    private void exit(ActionEvent event){
-        ((Node) event.getSource()).getScene().getWindow().hide();
+    private void exit(){
+        cancelButton.getScene().getWindow().hide();
     }
 }

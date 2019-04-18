@@ -200,7 +200,6 @@ public class AddAppointmentController implements Initializable {
         Scene scene = new Scene (root);
         Stage stage = new Stage();
         stage.setScene(scene);
-        stage.setTitle("Set Time and Date");
              
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show(); 

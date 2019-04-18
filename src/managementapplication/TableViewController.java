@@ -150,13 +150,6 @@ public class TableViewController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         
-        //Retocar
-        if (index >=0){
-            stage.setTitle("Edit person details");
-        } else {
-            stage.setTitle("Add a new person");
-        }
-        
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
   
@@ -231,8 +224,11 @@ public class TableViewController implements Initializable {
                 }
                 break;
             case "appointmentButton": 
-                if(mode == PATIENT_MODE) createAppointmentWindow(PATIENT_MODE, patients.get(index).getIdentifier(), null);
-                else createAppointmentWindow(DOCTOR_MODE, null, doctors.get(index).getIdentifier());
+                if(mode == PATIENT_MODE) {
+                    createAppointmentWindow(PATIENT_MODE, patients.get(index).getIdentifier(), null);
+                } else {
+                    createAppointmentWindow(DOCTOR_MODE, null, doctors.get(index).getIdentifier());
+                }
                 break;
                 
             case "returnButton": exit();break;

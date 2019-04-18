@@ -204,7 +204,7 @@ public class CalendarController implements Initializable {
                     tableView.setItems(slots);
                     date = date.minusWeeks(1);
                 }
-            break;
+                break;
             
             case "nextWeek": 
                 doctorWeek = getAppointmentsWeek(++week, days, start, 

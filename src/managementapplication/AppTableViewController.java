@@ -95,6 +95,7 @@ public class AppTableViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         //Initialization of the columns of the TableView
         patientColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getPatient().getName() + " " +  c.getValue().getPatient().getSurname()));
         doctorColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDoctor().getName() + " " +  c.getValue().getDoctor().getSurname()));
@@ -117,15 +118,16 @@ public class AppTableViewController implements Initializable {
             case "addButton": createAddWindow();break;
                 
             case "deleteButton":
-                if(delete())
-                appointments.remove(index);break;
+                if(delete()){
+                    appointments.remove(index);break;
+                }
                 
             case "returnButton": exit();break;
         }
     }
     
     public void createAddWindow() throws IOException{
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AddAppointment.fxml"));; 
+        FXMLLoader myLoader = new FXMLLoader(getClass().getResource("AddAppointment.fxml")); 
         Pane root = (Pane) myLoader.load();;
         
         AddAppointmentController addAppointmentController = myLoader.<AddAppointmentController>getController();
@@ -167,10 +169,11 @@ public class AppTableViewController implements Initializable {
     }
     
     private void exit(){
-        if(mode == APPOINTMENT_MODE)
+        if(mode == APPOINTMENT_MODE){
             primaryStage.setScene(mac.getMainScene());
-        else
+        } else {
             primaryStage.setScene(prevScene);
+        }
     }
     
     private boolean delete(){
