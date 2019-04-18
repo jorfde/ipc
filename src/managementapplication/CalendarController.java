@@ -279,6 +279,6 @@ public class CalendarController implements Initializable {
     }
     
     private void updateLabel(){
-        weekNumberLabel.setText("DAY: "+ date.getDayOfMonth() +" MONTH: " + date.getMonth() +  " YEAR: " + date.getYear() );
+        weekNumberLabel.setText(date.getDayOfMonth() +" " + date.getMonth() +  " " + date.getYear() );
     }
 }

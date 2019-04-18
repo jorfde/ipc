@@ -168,12 +168,14 @@ public class TableViewController implements Initializable {
         switch(mode){
             case PATIENT_MODE:
                     title.setText("List of Patients");
+                    setButtonTitle("Patient");
                     patients = clinic.getPatients();
                     persons = FXCollections.observableList( changeClass(patients) );
                     tableView.setItems(persons);
                     break;
             case DOCTOR_MODE: 
                     title.setText("List of Doctors");
+                    setButtonTitle("Doctor");
                     doctors = clinic.getDoctors();
                     persons = FXCollections.observableList( changeClass(doctors) );
                     tableView.setItems(persons);
@@ -297,5 +299,11 @@ public class TableViewController implements Initializable {
     public void passControllers(ManagementApplicationController mac, AppTableViewController atvc){
         this.mac = mac;
         this.atvc = atvc;
+    }
+    
+    private void setButtonTitle(String mode){
+        viewButton.setText(mode + " Data");
+        addButton.setText("New " + mode);
+        deleteButton.setText("Delete " + mode);
     }
 }
