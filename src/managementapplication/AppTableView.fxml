@@ -59,9 +59,9 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="100.0" prefWidth="629.0">
+            <VBox prefHeight="111.0" prefWidth="908.0">
                <children>
-                  <MenuBar>
+                  <MenuBar prefHeight="29.0" prefWidth="852.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="Exit">
                         <items>

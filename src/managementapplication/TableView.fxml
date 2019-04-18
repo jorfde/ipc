@@ -52,7 +52,7 @@
                   <Insets left="25.0" right="25.0" top="25.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="19.0" prefWidth="119.0" text="Return">
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="19.0" prefWidth="119.0" styleClass="returnButton" text="Return">
                <VBox.margin>
                   <Insets left="25.0" top="30.0" />
                </VBox.margin></Button>
@@ -64,7 +64,7 @@
          <children>
             <VBox prefHeight="100.0" prefWidth="637.0">
                <children>
-                  <MenuBar prefHeight="29.0" prefWidth="514.0">
+                  <MenuBar prefHeight="29.0" prefWidth="857.0">
                     <menus>
                       <Menu mnemonicParsing="false" text="Exit">
                         <items>
