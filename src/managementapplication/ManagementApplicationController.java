@@ -21,10 +21,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -71,6 +71,10 @@ public class ManagementApplicationController implements Initializable {
     private AppTableViewController appTableViewController;
     
     private Scene mainScene;
+    @FXML
+    private Pane pane;
+    @FXML
+    private MenuBar menuBar;
 
     /**
      * Initializes the controller class.

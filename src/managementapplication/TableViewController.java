@@ -24,10 +24,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -96,7 +98,13 @@ public class TableViewController implements Initializable {
     
     private ManagementApplicationController mac;
     
-    private AppTableViewController atvc;
+    private AppTableViewController atvc;    
+    
+    @FXML
+    private BorderPane borderPane;
+    @FXML
+    private MenuBar menuBar;
+
     @FXML
     private Text title;
     @FXML

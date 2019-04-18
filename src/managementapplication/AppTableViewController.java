@@ -23,9 +23,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -89,6 +91,10 @@ public class AppTableViewController implements Initializable {
     private TableViewController tvc;
     
     private Scene prevScene;
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.

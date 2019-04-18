@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="564.0" prefWidth="741.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="564.0" prefWidth="741.0" styleClass="dashboard" stylesheets="@appointmentstableview.css" xmlns="http://javafx.com/javafx/8.0.211" xmlns:fx="http://javafx.com/fxml/1" fx:controller="managementapplication.TableViewController">
    <center>
       <TableView fx:id="tableView" prefHeight="400.0" prefWidth="627.0" BorderPane.alignment="CENTER">
         <columns>
@@ -65,41 +65,45 @@
          <children>
             <VBox prefHeight="143.0" prefWidth="812.0">
                <children>
-                  <MenuBar prefHeight="29.0" prefWidth="912.0">
-                     <menus>
-                        <Menu text="_Exit">
-                           <items>
-                              <MenuItem fx:id="closeMenu" onAction="#menuHandler" text="_Close" />
-                           </items>
-                        </Menu>
-                        <Menu text="_View ">
-                           <items>
-                              <MenuItem fx:id="patientsMenu" onAction="#menuHandler" text="_Patients" />
-                              <MenuItem fx:id="doctorsMenu" onAction="#menuHandler" text="_Doctors" />
-                              <MenuItem fx:id="appointmentsMenu" onAction="#menuHandler" text="_Appointments" />
-                           </items>
-                        </Menu>
-                        <Menu text="_Add">
-                           <items>
-                              <MenuItem fx:id="addPatientMenu" onAction="#menuHandler" text="_Patients">
-                                 <accelerator>
-                                    <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                                 </accelerator>
-                              </MenuItem>
-                              <MenuItem fx:id="addDoctorMenu" onAction="#menuHandler" text="_Doctors">
-                                 <accelerator>
-                                    <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                                 </accelerator>
-                              </MenuItem>
-                              <MenuItem fx:id="addAppMenu" onAction="#menuHandler" text="_Appointments">
-                                 <accelerator>
-                                    <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                                 </accelerator>
-                              </MenuItem>
-                           </items>
-                        </Menu>
-                     </menus>
-                  </MenuBar>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <MenuBar fx:id="menuBar" prefHeight="29.0" prefWidth="912.0" HBox.hgrow="ALWAYS">
+                           <menus>
+                              <Menu text="_Exit">
+                                 <items>
+                                    <MenuItem fx:id="closeMenu" onAction="#menuHandler" text="_Close" />
+                                 </items>
+                              </Menu>
+                              <Menu text="_View ">
+                                 <items>
+                                    <MenuItem fx:id="patientsMenu" onAction="#menuHandler" text="_Patients" />
+                                    <MenuItem fx:id="doctorsMenu" onAction="#menuHandler" text="_Doctors" />
+                                    <MenuItem fx:id="appointmentsMenu" onAction="#menuHandler" text="_Appointments" />
+                                 </items>
+                              </Menu>
+                              <Menu text="_Add">
+                                 <items>
+                                    <MenuItem fx:id="addPatientMenu" onAction="#menuHandler" text="_Patients">
+                                       <accelerator>
+                                          <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                       </accelerator>
+                                    </MenuItem>
+                                    <MenuItem fx:id="addDoctorMenu" onAction="#menuHandler" text="_Doctors">
+                                       <accelerator>
+                                          <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                       </accelerator>
+                                    </MenuItem>
+                                    <MenuItem fx:id="addAppMenu" onAction="#menuHandler" text="_Appointments">
+                                       <accelerator>
+                                          <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                       </accelerator>
+                                    </MenuItem>
+                                 </items>
+                              </Menu>
+                           </menus>
+                        </MenuBar>
+                     </children>
+                  </HBox>
                   <Text fx:id="title" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patients View">
                      <VBox.margin>
                         <Insets left="25.0" top="25.0" />
