@@ -72,8 +72,6 @@ public class ManagementApplicationController implements Initializable {
     
     private Scene mainScene;
     @FXML
-    private Pane pane;
-    @FXML
     private MenuBar menuBar;
 
     /**
@@ -97,9 +95,7 @@ public class ManagementApplicationController implements Initializable {
         } catch(IOException ioe) {}
         
         tableViewController.passControllers(this, appTableViewController);
-        appTableViewController.passControllers(this, tableViewController);
-        
-        
+        appTableViewController.passControllers(this, tableViewController);  
     }    
 
     @FXML

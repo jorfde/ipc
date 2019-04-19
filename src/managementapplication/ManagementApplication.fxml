@@ -164,4 +164,53 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <HBox prefHeight="22.0" prefWidth="734.0" styleClass="doctorTitle" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="185.0" prefWidth="734.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="30.0" prefWidth="734.0">
+                     <children>
+                        <MenuBar fx:id="menuBar" HBox.hgrow="ALWAYS">
+                           <menus>
+                              <Menu text="_Exit">
+                                 <items>
+                                    <MenuItem fx:id="closeMenu" onAction="#menuHandler" text="_Close" />
+                                 </items>
+                              </Menu>
+                              <Menu text="_View ">
+                                 <items>
+                                    <MenuItem fx:id="patientsMenu" onAction="#menuHandler" text="_Patients" />
+                                    <MenuItem fx:id="doctorsMenu" onAction="#menuHandler" text="_Doctors" />
+                                    <MenuItem fx:id="appointmentsMenu" onAction="#menuHandler" text="_Appointments" />
+                                 </items>
+                              </Menu>
+                              <Menu text="_Add">
+                                 <items>
+                                    <MenuItem fx:id="addPatientMenu" onAction="#menuHandler" text="_Patients">
+                                       <accelerator>
+                                          <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                       </accelerator>
+                                    </MenuItem>
+                                    <MenuItem fx:id="addDoctorMenu" onAction="#menuHandler" text="_Doctors">
+                                       <accelerator>
+                                          <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                       </accelerator>
+                                    </MenuItem>
+                                    <MenuItem fx:id="addAppMenu" onAction="#menuHandler" text="_Appointments">
+                                       <accelerator>
+                                          <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                       </accelerator>
+                                    </MenuItem>
+                                 </items>
+                              </Menu>
+                           </menus>
+                        </MenuBar>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>
