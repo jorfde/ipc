@@ -8,6 +8,7 @@ package managementapplication;
 import DBAccess.ClinicDBAccess;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -22,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -70,6 +72,8 @@ public class AppTableViewController implements Initializable {
     private int index;
     
     private Alert remove = new Alert(Alert.AlertType.CONFIRMATION);  
+    
+    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             
     @FXML
     private MenuItem closeMenu;
@@ -101,6 +105,7 @@ public class AppTableViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        errorAlert.setContentText("The appointment has already happened, so you can't delete it");
         
         //Initialization of the columns of the TableView
         patientColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getPatient().getName() + " " +  c.getValue().getPatient().getSurname()));
@@ -114,6 +119,11 @@ public class AppTableViewController implements Initializable {
         
         //Disable delete button
         deleteButton.disableProperty().bind(Bindings.equal(-1,tableView.getSelectionModel().selectedIndexProperty()));
+        
+        patientColumn.prefWidthProperty().bind(Bindings.divide(4,tableView.widthProperty()));     
+        doctorColumn.prefWidthProperty().bind(Bindings.divide(4,tableView.widthProperty()));
+        dateColumn.prefWidthProperty().bind(Bindings.divide(4,tableView.widthProperty()));     
+        timeColumn.prefWidthProperty().bind(Bindings.divide(4,tableView.widthProperty()));
     }    
 
     @FXML
@@ -124,9 +134,14 @@ public class AppTableViewController implements Initializable {
             case "addButton": createAddWindow();break;
                 
             case "deleteButton":
-                if(delete()){
-                    appointments.remove(index);break;
-                }
+                if(appointments.get(index).getAppointmentDateTime().isAfter(LocalDateTime.now())){
+                    if(delete()){
+                        appointments.remove(index);
+                    }
+                } else {
+                    ((Button) errorAlert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+                    errorAlert.showAndWait();
+                } break;
                 
             case "returnButton": exit();break;
         }
@@ -186,6 +201,8 @@ public class AppTableViewController implements Initializable {
     
     private boolean delete(){
         boolean res = false;
+        ((Button) remove.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+        ((Button) remove.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Cancel");
         Optional<ButtonType> result = remove.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK){
                 res = true;

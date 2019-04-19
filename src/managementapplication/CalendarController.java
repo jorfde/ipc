@@ -24,6 +24,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -194,6 +196,9 @@ public class CalendarController implements Initializable {
 
     @FXML
     private void buttonHandler(ActionEvent event) throws IOException {
+        ButtonType buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ((Button) errorAlert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+        
         switch(((Node) event.getSource()).getId()){
             case "beforeWeek":
                 if(week != currentWeek) {

@@ -12,13 +12,14 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -76,7 +77,8 @@ public class PatientDetailsController  {
     private String contentText = "";
     @FXML
     private Text title;
-
+    
+    private ButtonType buttonTypeOK;
     
     /**
      * Initializes the controller class.
@@ -85,6 +87,8 @@ public class PatientDetailsController  {
     public void initialize(URL url, ResourceBundle rb) {
         errorAlert.setTitle("Error");
         errorAlert.setHeaderText("A field is not valid");
+        
+        
     }    
 
     @FXML
@@ -93,6 +97,12 @@ public class PatientDetailsController  {
         boolean errorTelephone = false;
         boolean errorName = false;
         boolean errorSurname = false;
+        
+        buttonTypeOK = new ButtonType("OK", ButtonData.OK_DONE);
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+        ((Button) errorAlert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+        
+        contentText = "";
         
         switch(((Node)event.getSource()).getId()){
             case "searchButton":
@@ -129,6 +139,7 @@ public class PatientDetailsController  {
 
                     if(error){
                         errorAlert.setContentText(contentText);
+                        
                         errorAlert.showAndWait();
                     } else {
                         Patient p = new Patient(identifierField.getText(), nameField.getText(), surnameField.getText(),
@@ -139,7 +150,7 @@ public class PatientDetailsController  {
                         alert.setTitle("Information");
                         alert.setHeaderText("You have added a patient");
                         alert.setContentText("The patient was succesfully added to the data base.");
-
+                        
                         alert.showAndWait();
                         exit();
                     }

@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -109,6 +110,9 @@ public class TableViewController implements Initializable {
     private Text title;
     @FXML
     private Text instructions;
+    
+    private ButtonType buttonTypeOK;
+    private ButtonType buttonTypeCancel;
        
     /**
      * Initializes the controller class.
@@ -133,6 +137,16 @@ public class TableViewController implements Initializable {
         remove.setTitle("Confirmation Dialog");
         remove.setHeaderText("Remove an element");
         remove.setContentText("Do you want to continue?");
+        
+        buttonTypeOK = new ButtonType("OK", ButtonData.OK_DONE);
+        buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+        remove.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+        
+        alert.getButtonTypes().setAll(buttonTypeOK);
+        
+        nameColumn.prefWidthProperty().bind(Bindings.divide(3, tableView.widthProperty()));
+        surnameColumn.prefWidthProperty().bind(Bindings.divide(3, tableView.widthProperty()));
+        dniColumn.prefWidthProperty().bind(Bindings.divide(3, tableView.widthProperty()));
     }
     
     public void createDetailsWindow(int index, int mode) throws IOException{
@@ -263,7 +277,7 @@ public class TableViewController implements Initializable {
     private boolean delete(){
         boolean res = false;
         Optional<ButtonType> result = remove.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK){
+            if (result.isPresent() && result.get() == buttonTypeOK){
                 res = true;
             }
             

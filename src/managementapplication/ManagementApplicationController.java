@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -73,6 +74,9 @@ public class ManagementApplicationController implements Initializable {
     private Scene mainScene;
     @FXML
     private MenuBar menuBar;
+    
+    private ButtonType buttonTypeOK;
+    private ButtonType buttonTypeCancel;
 
     /**
      * Initializes the controller class.
@@ -108,7 +112,9 @@ public class ManagementApplicationController implements Initializable {
         }
     }
     
-    public void createTable(int mode, String patientID, String doctorID, int index) throws IOException {  
+    public void createTable(int mode, String patientID, String doctorID, int index) throws IOException { 
+        double height = mainStage.getHeight();
+        double width = mainStage.getWidth();
         switch(mode){
             case PATIENT_MODE: 
 
@@ -129,6 +135,9 @@ public class ManagementApplicationController implements Initializable {
                 mainStage.setScene(scene2);
                 break;
         }
+        
+        mainStage.setWidth(width);
+        mainStage.setHeight(height);
     }
     
     public void initStage(Stage s){
@@ -170,12 +179,18 @@ public class ManagementApplicationController implements Initializable {
         conf.setTitle("Confirmation");
         conf.setHeaderText("You are about to exit");
         conf.setContentText("Do you want to continue?");
+        
+        buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        conf.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+        
         Optional<ButtonType> result = conf.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK){
+        if (result.isPresent() && result.get() == buttonTypeOK){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(clinic.getClinicName());
             alert.setHeaderText("Saving data in DB");
             alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+            alert.getButtonTypes().setAll(buttonTypeOK);
             alert.show();
             clinic.saveDB();
             mainStage.close();

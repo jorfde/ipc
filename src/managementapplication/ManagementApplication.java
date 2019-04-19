@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -23,6 +24,9 @@ import javafx.stage.WindowEvent;
  * @author Stéphane
  */
 public class ManagementApplication extends Application {
+    
+    private ButtonType buttonTypeOK;
+    private ButtonType buttonTypeCancel;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -41,12 +45,18 @@ public class ManagementApplication extends Application {
             conf.setTitle("Confirmation");
             conf.setHeaderText("You are about to exit");
             conf.setContentText("Do you want to continue?");
+            
+            buttonTypeOK = new ButtonType("OK", ButtonData.OK_DONE);
+            buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+            conf.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+            
             Optional<ButtonType> result = conf.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK){
+            if (result.isPresent() && result.get() == buttonTypeOK){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle(clinic.getClinicName());
                 alert.setHeaderText("Saving data in DB");
                 alert.setContentText("The application is saving the changes in the data into the database. This action can expend some minutes.");
+                alert.getButtonTypes().setAll(buttonTypeOK);
                 alert.show();
                 clinic.saveDB();
             } else {

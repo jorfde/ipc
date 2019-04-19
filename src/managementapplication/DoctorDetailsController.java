@@ -20,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -97,6 +99,10 @@ public class DoctorDetailsController implements Initializable {
     private String contentText = "";
     @FXML
     private Text title;
+    
+    private ButtonType buttonTypeOK;
+    
+    private boolean errorVisitDays = false;
 
     /**
      * Initializes the controller class.
@@ -151,10 +157,14 @@ public class DoctorDetailsController implements Initializable {
         boolean errorTelephone = false;
         boolean errorName = false;
         boolean errorSurname = false;
-        boolean errorVisitDays = false;
+        errorVisitDays = false;
         boolean errorStartingTime = false;
         boolean errorEndingTime = false;
         boolean errorNumberRoom = false;  
+        
+        buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+        ((Button) errorAlert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
         
         switch(((Node) event.getSource()).getId()){
             
@@ -198,13 +208,13 @@ public class DoctorDetailsController implements Initializable {
                             day += "" + c;
                         else {
                             switch(day.toLowerCase()){
-                                case "monday": days.add(Days.Monday);errorVisitDays = false;break;
-                                case "tuesday": days.add(Days.Tuesday);errorVisitDays = false;break;
-                                case "wednesday": days.add(Days.Wednesday);errorVisitDays = false;break;
-                                case "thursday": days.add(Days.Thursday);errorVisitDays = false;break;
-                                case "friday": days.add(Days.Friday);errorVisitDays = false;break;
-                                case "saturday": days.add(Days.Saturday);errorVisitDays = false;break;
-                                case "sunday": days.add(Days.Sunday);errorVisitDays = false;break;    
+                                case "monday": days.add(Days.Monday);clear();break;
+                                case "tuesday": days.add(Days.Tuesday);clear();break;
+                                case "wednesday": days.add(Days.Wednesday);clear();break;
+                                case "thursday": days.add(Days.Thursday);clear();break;
+                                case "friday": days.add(Days.Friday);clear();break;
+                                case "saturday": days.add(Days.Saturday);clear();break;
+                                case "sunday": days.add(Days.Sunday);clear();break;    
                                 default: 
                                     errorVisitDays = true; 
                                     visitDaysError.setText("Not valid");
@@ -280,6 +290,11 @@ public class DoctorDetailsController implements Initializable {
     
     private void exit(){
         okButton.getScene().getWindow().hide();
+    }
+    
+    private void clear(){
+        errorVisitDays = false;
+        visitDaysError.setText("");
     }
     
 }

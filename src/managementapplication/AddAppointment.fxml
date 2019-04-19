@@ -52,16 +52,16 @@
       </VBox>
    </right>
    <center>
-      <HBox prefHeight="297.0" prefWidth="544.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="boxTables" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="544.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="patientTable" prefHeight="538.0" prefWidth="299.0">
+            <TableView fx:id="patientTable" prefHeight="538.0" prefWidth="299.0" HBox.hgrow="ALWAYS">
               <columns>
                   <TableColumn fx:id="patientColumn" minWidth="102.5" prefWidth="289.99999809265137" text="Patient" />
               </columns>
             </TableView>
-            <TableView fx:id="doctorTable" prefHeight="538.0" prefWidth="261.0">
+            <TableView fx:id="doctorTable" prefHeight="538.0" prefWidth="317.0" HBox.hgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="doctorColumn" prefWidth="252.0" text="Doctor" />
+                <TableColumn fx:id="doctorColumn" prefWidth="280.0" text="Doctor" />
               </columns>
             </TableView>
          </children>

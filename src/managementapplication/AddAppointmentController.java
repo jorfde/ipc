@@ -22,9 +22,12 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -81,8 +84,13 @@ public class AddAppointmentController implements Initializable {
     private int mode;
     
     private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+    
+    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    
     @FXML
     private Text instructions;
+    @FXML
+    private HBox boxTables;
 
     /**
      * Initializes the controller class.
@@ -104,6 +112,12 @@ public class AddAppointmentController implements Initializable {
         patientTable.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
             changeClear();
         });
+        
+        patientColumn.prefWidthProperty().bind(patientTable.widthProperty());     
+        doctorColumn.prefWidthProperty().bind(doctorTable.widthProperty());
+        
+        doctorTable.prefWidthProperty().bind(Bindings.divide(2,boxTables.widthProperty()));
+        patientTable.prefWidthProperty().bind(Bindings.divide(2,boxTables.widthProperty()));
     }    
 
     void initData(int mode, ObservableList<Appointment> appointments, int index) {
@@ -115,7 +129,7 @@ public class AddAppointmentController implements Initializable {
         switch(mode){
             case DOCTOR_MODE:
                 setTimeButton.disableProperty().bind(Bindings.equal(-1,patientTable.getSelectionModel().selectedIndexProperty()));
-                instructions.setText("Select a patient and click the blue button");
+                instructions.setText("Select a patient and click the blue button");            
                 break;
                 
             case PATIENT_MODE:
@@ -158,6 +172,9 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     private void buttonHandle(ActionEvent event) throws IOException {
+        ((Button) errorAlert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("OK");
+        
         int patientIndex = patientTable.getSelectionModel().selectedIndexProperty().getValue();
         int doctorIndex = doctorTable.getSelectionModel().selectedIndexProperty().getValue();
         
@@ -177,6 +194,10 @@ public class AddAppointmentController implements Initializable {
                 if(done){
                     Appointment app = new Appointment(date, doctor, patient);
                     appointments.add(app);
+                    alert.setTitle("Information");
+                    alert.setHeaderText("You have added an appointment");
+                    alert.setContentText("The appointment was succesfully added to the data base.");
+                    alert.showAndWait();
                     if(mode != APPOINTMENT_MODE){
                         clinic.getAppointments().add(app);
                     }
