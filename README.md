@@ -23,4 +23,4 @@ The program's GUI allows:
 * To view appointment details
 
 
-Authors: Stéphane Díaz-Alejo León & Jorge Fernández Alfonso
+Authors: Stéphane Díaz-Alejo León & Jorge Fernández Alfonsoq
