@@ -12,7 +12,7 @@ If you just want to run the app, go to the  ``dist_copy`` folder and just double
 
 
 
-The program's GUI allows:
+The program's GUI allows you:
 
 * To add patients
 * To delete patients
